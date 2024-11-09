@@ -1,0 +1,201 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[margin=2.54cm]{geometry}
+
+% Fonts
+\usepackage{fourier-otf}
+\usepackage{fontspec}
+\setmainfont{Heuristica}  
+
+% Math
+\usepackage{amsmath, amsthm, mathrsfs,bm}
+
+\usepackage[ngerman]{babel}
+\usepackage{csquotes}
+
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{comment}
+\usepackage{xcolor}
+\usepackage{lipsum} 
+\usepackage{mdframed}  
+\usepackage[backend=biber]{biblatex}
+\addbibresource{refs.bib}
+\graphicspath{{image}}
+\usepackage{setspace}
+\usepackage{parskip}
+\onehalfspacing
+
+\usepackage[hidelinks]{hyperref}
+
+\usepackage{titling}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}  
+\fancyhead[R]{\textsc{Hacking}}  
+\fancyfoot[C]{\thepage} 
+\renewcommand{\headrulewidth}{0pt} 
+\renewcommand{\footrulewidth}{0pt} 
+
+\setlength{\headheight}{55pt} % For the first warning
+\addtolength{\topmargin}{-40pt}
+
+\newcommand{\articletype}[1]{\textit{\small #1}\par\vspace{2mm}}  
+
+
+\pretitle{\flushleft\Large\bfseries}
+\posttitle{\vskip 0.5em}
+
+\preauthor{\flushleft\large\lineskip 0.5em}
+\postauthor{}
+
+
+\fancypagestyle{firstpage}{%
+  \fancyhead[L]{ \vspace{0.8cm} \footnotesize Oktober 2024} 
+  \fancyhead[R]{\includegraphics[height=1.7cm]{image/ks_im_lee_logo_blue.png}}  
+  \renewcommand{\headrulewidth}{0pt}  
+  \setlength{\headheight}{55pt}
+  \addtolength{\topmargin}{40pt}
+
+    {\footnotesize \hspace{1pt}  Kantonsschule Im Lee}
+}
+
+
+
+\renewenvironment{abstract}
+  {\begin{mdframed}[
+    backgroundcolor=gray!20, 
+    innertopmargin=10pt, 
+    innerbottommargin=15pt, 
+    innerleftmargin=15pt, 
+    innerrightmargin=15pt, 
+    linewidth=0pt, 
+    roundcorner=0pt,
+    frametitleaboveskip=5mm, 
+    frametitlebelowskip=-1mm, 
+    frametitle={\bfseries Abstrakt}, 
+    frametitlefont={\bfseries},
+    frametitlealignment=\raggedright
+    ]
+   \vspace{2mm}}
+  {\end{mdframed}}
+
+
+
+\newcommand{\keywords}[1]{
+  \vspace{12pt} 
+  \par\noindent\textbf{Stichworte:} #1
+}
+
+
+
+\title{\articletype{Maturitätsarbeit} Hacking und Cybersicherheit}
+\author{Corsin Streit\textsuperscript{1} unter Aufsicht von Thomas Graf\textsuperscript{2} \\
+{\footnotesize \textsuperscript{1}Student, Kantonsschule Im Lee, Winterthur} \\
+{\footnotesize \textsuperscript{2}Fachschaft Informatik, Kantonsschule Im Lee, Winterthur}}
+\date{}
+
+
+\begin{document}
+
+\maketitle
+\thispagestyle{firstpage}
+
+
+\begin{abstract}
+Das Ziel dieser Arbeit besteht darin, durch Literaturrecherche und selbstständiger Nachforschung einen für die Allgemeinheit verständlichen Überblick über das Thema Hacking und Cybersicherheit zu schaffen. Dazu werden technische Grundlagen und Hacking-Methoden erläutert und anhand von konkreten Beispielen anschaulich dargestellt. Ferner wird auf die Themen Dark Web, Künstliche Intelligenz im Bereich des Hackings und rechtliche Aspekte eingegangen.
+\end{abstract}
+
+\keywords{Hacking, Cybersicherheit, Hacking-Methoden, Dark Web, Künstliche Intelligenz}
+
+\newpage
+\tableofcontents
+\newpage
+
+
+
+\section{Einführung}
+Der Stereotyp ist schlecht wegzudenken. Schwarzer Kapuzenpulli, abgedunkelter Raum und ein Bildschirm mit kryptografischen Zeichen. Auf dem Computer laufen bösartige Programme, die Schwachstellen von anderen ausnutzen und dabei Unheil anrichten. Die Handlung ist kriminell und bestrafbar. Auch wenn diese stereotypische Beschreibung wohl auf eine sehr kleine Gruppe von Personen zutreffen mag, sieht die Realität bedeutend anders aus und die Welt der Cybersicherheit ist, zumindest konzeptuell, viel weniger abstrakt als die meisten Leute denken. 
+
+\subsection{Bedeutung und Urpsrung des Begriffes}
+Im Grunde genommen ist ein «Hack» nichts mehr als eine «von Innovation, Stil und technischem Können durchdrungene» Lösung zu einem Problem, das nicht einmal einen Bezug zu Computern aufweisen muss. Den Ursprung nahm der Begriff im Modelleisenbahnclub des Massachusetts Institute of Technology, kurz MIT. Aus geschenkten Elektronikbauteilen bauten die Clubmitglieder die Steuerung ihrer Modellzüge. Durch verschiedene Optimierung, Hacks, versuchten sie, diese so elegant wie möglich zu gestalten. Ihr Ziel war nicht das simple Funktionieren. Es war nicht einmal wichtig, dass die Lösung einen grossen Nutzen zeigte. Was zählte, war die technische Eleganz, die hinter der Lösung steckte. \\Mit dem Erscheinen erster Computer und der Gründung eines Computerclubs im MIT wurde die Bedeutung auf die technische Welt ausgeweitet. Als Steven Levy 1984 die Leiterprinzipen des Hackings zu einer «Hackerethik» zusammenfasste, formulierte er folgenden Satz: «Du kannst mit Computern Kunst und Schönheit schaffen.» \cite{bpbKleineGeschichte:online}
+
+Das Negative, das viele Personen heute mit dem Hacking assoziieren, wurde erst nach und nach dem Bedeutungskonzept hinzugefügt. Nach weiteren Grundsätzen der Hackerethik sollten sich Hacker*innen für freie Informationszugänglichkeit, Dezentralisierung und unlimitierten Zugriff auf alles, was einen etwas über die Welt lehren kann, einsetzen. Mit den gesetzlichen Richtlinien nahmen sie es nicht genau. Die Neugier, Wissensbegierde und allgemein das technische Interesse führte zur Entdeckung und Erkundung neuer «Spielwiesen», was in den 1960er-Jahre zum ersten «modernen» Hack führten. Findige Hacker fanden heraus, dass sich durch das Abspielen einer ganz bestimmten Frequenz das Telefonnetz so manipulieren liess, dass Anrufe nicht verrechnet wurden. Sogar Tech-Legenden wie die späteren Apple-Gründer Steve Jobs und Steve Wozniak beteiligten sich an dem sogenannten Blue-Boxing und verdienten Geld durch das Verkaufen von Frequenzgeneratoren, den Blue-Boxes. \\Zeitungsartikel und Filme, insbesondere der 1983 veröffentlichte Titel War Games, trugen in grossem Masse zur heutigen Auffassung des Hackers bei.  Ein Hacker*in ist «jemand, der*die ohne Erlaubnis in die Computersysteme anderer Leute eindringt, um Informationen herauszufinden oder etwas Illegales zu tun.» (übersetzt von Cambridge Dictionary) \cite{bpbKleineGeschichte:online, CambridgeHacker:online}
+
+\subsection{Motivation, Ethik und Begriffserklärung}
+Die Motivationen und Ethiken, die Hacker*innen verfolgen, fallen sehr unterschiedlich aus. Grob kann man sie in zwei Kategorien einteilen: die «Black Hats» (auch «Cracker» genannt) und die «White Hats» (auch «Penetration Tester» genannt). \\Black Hat Hacker*innen verfolgen kriminelle Ziele, die (umwelt-)politisch, monetär oder egoistisch motiviert sein können. Oftmals verbreiten sie Malware (siehe Kapitel \ref{chapter_malware}). Dabei ignorieren sie legale und ethische Grundsätze. \\Ihre Gegenspieler sind die White Hat Hacker*innen. Diese benutzen dieselben Methoden, arbeiten aber im Rahmen der Gesetze und halten sich an ethische Grundsätze. Ihre Aufgabe ist es, Privatpersonen, Firmen oder ganz allgemein gefährdete Computer vor den Black Hats zu schützen. Um dies zu bewerkstelligen, hacken sie sich nach vorheriger Absprache mit den Besitzer*innen in Computersysteme ein, um mögliche Sicherheitslücken zu finden und zu beheben. \\Dazwischen liegt die dritte Kategorie der Grey Hat Hacker*innen, die zwar oftmals illegal vorgehen, dabei aber keine negativen Absichten verfolgen. Beispielsweise hacken sie sich unberechtigt in ein Firmensystem ein, kommunizieren aber danach die gefunden Schwachstellen. \cite{WhiteHatBlackHat:paper, BlackHat34:online}
+
+Ein weiterer oft verwendeter Begriff ist «Script Kiddies». Dies sind ungeschulte (meist junge) Person ohne tiefgründige Hacking-Kenntnisse, die «von anderen entwickelten Skripts oder Programme für hauptsächlich böswillige Zwecke verwenden» (übersetzt von Wikipedia). Nichtsdestotrotz können sie grosse Schäden anrichten. \cite{ScriptkiWikipedia:online}
+
+\subsection*{Sprach-Disclaimer}
+Es finden sich englische Begriffe in dieser Arbeit. Da Computerwissenschaften normalerweise nur in englischer Sprache praktiziert werden, existieren für einige Begriffe keine passende deutsche Übersetzungen. In diesem Falle wird auf den englischen Begriff zurückgegriffen.
+
+
+\section{Grundlagen der Informatik}
+
+\subsection{Funktionsweise eines Netzwerkes}
+
+\subsection{Funktionsweise eines Betriebssystems}
+
+\subsection{Grundlegende Sicherheitskonzepte}
+
+
+\section{Hackingmethoden}
+
+\subsection{Social Engineering}
+
+\subsection{Password-Angriffe}
+
+\subsection{Malware}
+\label{chapter_malware}
+
+\subsection{Ausnutzung von Sicherheitslücken}
+
+\subsection{Netzwerkangriffe}
+
+
+\section{Analyse bekannter Hackerangriffen}
+
+\subsection{Russische Einflussnahme auf die Präsidentschaftswahlen (2016)}
+
+\subsection{Angriff auf das ukrainische Stromnetz (2015)}
+
+\subsection{WannaCry Ransomware (2017)}
+
+
+\section{Das Dark Web}
+
+\subsection{Grundlagen}
+
+\subsection{Zugangsmechanismen und Tools}
+
+\subsection{Sicherheitsrisiken}
+
+
+
+\section{Rechtliche Aspekte}
+
+\subsection{Internationale Gesetze}
+
+\subsection{Datenschutz}
+
+
+\section{KI und Hacking}
+
+\subsection{Automatische Schwachstellenerkennung}
+
+\subsection{Password-Cracking}
+
+\subsection{Umgehungsmethoden}
+
+\subsection{KI-basierte Abwehr}
+
+\section*{Danksagung}
+
+
+\newpage
+\printbibliography
+\end{document}
