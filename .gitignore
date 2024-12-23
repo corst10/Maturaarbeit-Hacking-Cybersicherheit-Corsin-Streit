@@ -9,3 +9,11 @@
 *.lot
 *.toc
 *.out
+*.acn
+*.acr
+*.alg
+*.glg
+*.gls
+*.glsdefs
+*.ist
+*.glo
