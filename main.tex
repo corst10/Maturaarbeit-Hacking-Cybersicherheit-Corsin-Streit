@@ -202,18 +202,18 @@ Ein weiterer oft verwendeter Begriff ist ``Script Kiddies''. Dies sind ungeschul
 
 \newpage
 \section{Grundlagen der Informatik}
-Die zum Verständnis des Kapitel \ref{methoden-und-techniken} \nameref{methoden-und-techniken} nötigen Grundkenntnisse der Informatik, werden in diesem Kapitel erarbeitet. 
+Zum Verständnis des Kapitel \ref{methoden-und-techniken} \nameref{methoden-und-techniken} sind Grundkenntnisse der Informatik nötig. Diese werden in diesem Kapitel erarbeitet. 
 \subsection{Hardwaretechnische Grundlagen}
-Ein Computer besteht aus verschiedenen Bestandteilen. In diesem Kapitel werden diejenigen erläutert, die die Ausführung eines Programms ermöglichen.
+Ein Computer besteht aus verschiedenen Bestandteilen, die im Zusammenspiel Verarbeitung von Informationen ermöglichen. Folgende Komponenten sind zur Ausführung eines Programms wichtig.
 \subsubsection{CPU}
 Die \gls{cpu} beschreibt den wichtigsten Prozessor eines Computers. Mithilfe einer komplexen Platinenstruktur führt er, den Anweisungen eines Programms folgend, Berechnungen durch. 
 \paragraph{Register}
 Wichtig für die Ausführung eines Programms sind Register. Register sind ``Speicherbereiche für Daten, auf die der Prozessor besonders schnell zugreifen kann''. \cite{RegisterWikipedia:online} Sie speichern zum Beispiel den Fortschritt der Ausführung eines Programms. Einige der wichtigsten Register sind folgende:
 \begin{itemize}
-	\item \gls{eip} Befehlszeiger für die jetzige Instruktions-Adresse \cite{UsefulRe7:online}
-	\item \gls{esp} Stapelzeiger für die vorherige Adresse \cite{UsefulRe7:online}
-	\item \gls{ebp} Basiszeiger bei Funktionsaufruf, dient zur Referenzierung lokaler Variablen im Stack \cite{UsefulRe7:online}
-	\item \gls{sfp} Gesicherter Basiszeiger für das vorherige Stack Frame, dient zur Wiederherstellung des ursprünglichen Stack-Zustands \cite{UsefulRe7:online}
+	\item \textbf{\gls{eip}}: Befehlszeiger für die jetzige Instruktions-Adresse \cite{UsefulRe7:online}
+	\item \textbf{\gls{esp}}: Stapelzeiger für die vorherige Adresse \cite{UsefulRe7:online}
+	\item \textbf{\gls{ebp}}: Basiszeiger bei Funktionsaufruf, dient zur Referenzierung lokaler Variablen im Stack \cite{UsefulRe7:online}
+	\item \textbf{\gls{sfp}}: Gesicherter Basiszeiger für das vorherige Stack Frame, dient zur Wiederherstellung des ursprünglichen Stack-Zustands \cite{UsefulRe7:online}
 \end{itemize}
 
 Die Bedeutung dieser Funktionen wird im Kapitel \ref{funktionsweise-eines-programmes} \nameref{funktionsweise-eines-programmes} genauer erklärt.
@@ -232,9 +232,73 @@ Jedes \gls{bit} im \gls{ram} ist einzeln adressierbar. Heutzutage arbeiten die m
 Speichermedien, wie hauptsächlich \gls{hdd} und \gls{ssd}, dienen der permanenten Speicherung von Daten, also auch über den Neustart eines Systems hinaus. Ihr Lese- und Schreibzugriff ist langsamer als bei \gls{ram}. Oft wird ein Vergleich zum menschlichen Langzeitgedächtnis hergestellt. 
 
 \subsection{Funktionsweise eines Programms}\label{funktionsweise-eines-programmes}
-
+Hacker schreiben Code, nutzen ihn aber auch aus. Ein Verständnis grundlegender Programmierkonzepten ist deshalb notwendig.
 \subsubsection{Einführung}
+``Ein Programm ist nichts anderes als eine Reihe von Anweisungen, die in einer bestimmten Sprache geschrieben sind.'' \textit{(Erickson, 2008, S. 20, übersetzt mit DeepL)} \cite{erickson2008hacking} Es ist vergleichbar mit einem Küchenrezept. Genauso wie das Küchenrezept Menschen sagt, was sie tun sollen, sagt ein Programm dem Computer, was er zu tun hat. Im Gegensatz zu Menschen hat ein Computer aber keinen eigenen Willen und muss sich an die gegebenen Instruktionen halten. In dieser Arbeit liegt der Fokus exemplarisch auf der Programmiersprache C, da damit verbundene Hacking-Methoden beschrieben werden, die grundlegenden Konzepte können aber auf viele Programmiersprachen übertragen werden.
 \subsubsection{Grundlagen}
+Ein Programm besteht aus verschiedenen Elementen. Die Wichtigsten Elemente werden im Folgenden beschreiben.
+
+\paragraph{Kontrollstrukturen}
+Kontrollstrukturen steuern den Ablauf eines Programms.
+\subparagraph{If-then-else}
+If-then-else-Strukturen erlauben die Ausführung eines Programmteiles nur unter bestimmten Bedingungen. Falls die Bedingung nicht erfüllt ist, wird der Programmteil übersprungen oder, wenn angegeben, ein alternativer Programmteil ausegführt.
+\subparagraph{While-Schleifen}
+While-Schleifen wiederholen einen bestimmten Programmteil solange, bis eine Bedingung erfüllt ist. 
+\subparagraph{For-Schleifen}
+For-Schleifen werden normalerweise gebraucht, um einen bestimmten Programmteil eine definierte Anzahl mal zu durchlaufen.
+
+\paragraph{Variablen und Konstanen}
+Variablen und Konstanten speichern Daten. Variablen sind veränderbar, während Konstanten über die Laufzeit eines Programmes unverändert bleiben. Im Folgenden wird einfachheitshalber von Variablen gesprochen, die beschriebenen Eigenschaften sind aber auch auf Konstanten übertragbar.
+\subparagraph{Datentypen}
+Bei Variablen wird zwischen verschiedenen Typen unterschieden. Einige Programmiersprachen sind bei der Handhabung flexibel und erlauben Veränderungen des Datentyps einer Variable, während andere Variablen bestimmte Datentypen zuordnen. Die Liste bietet eine Auflistung der wichtigsten Datentypen
+\begin{itemize}
+	\item \textbf{String}: Text (``Hello'', ``World'')
+	\item \textbf{Int}: Ganzzahl (2, 37)
+	\item \textbf{Float}: Gleitkommazahl (3.1415, 2.7182)
+	\item \textbf{Boolean}: Wahrheitswert (True, False)
+	\item \textbf{Array}: Geordnete Liste mit festem Datentyp ([1, 3, 2, 8])
+	\item \textbf{List}: Geordnete Liste mit gemischten Datentypen ([2, ``Hello'', True])
+	\item \textbf{Dict}: Liste mit Schlüssel-Wert-Paaren ([``Mehl'': 500, ``Zucker'': 200, ``Zitrone'': False])
+\end{itemize}
+\subparagraph{Gültigkeitsbereich und Lebensdauer}
+Variablen sind je nach Initialisierung (Erstellung) nur für bestimmte Teile eines Programms zugänglich. Wird eine Variable beispielsweise in einer Funktion initialisiert, existiert sie nur während der Funktionsausführung. Variablen besitzen folgende Zugänglichkeiten:
+\begin{itemize}
+	\item \textbf{Globale Variablen}: Zugänglich vom gesamten Programm
+	\item \textbf{Lokale Variablen}: Zugänglichkeit auf Funktion oder Programmteil limitiert
+	\item \textbf{Statische Variablen}: Zugänglichkeit auf Funktion limitiert, behalten jedoch Wert bei erneutem Funktionsaufruf
+\end{itemize}
+Die verschiedenen Gültigkeitsbereiche führen dazu, dass gleichnamige Variablen mehrere Speicheradressen haben können. In einigen Programmiersprachen müssen Variablen vor der ersten Verwendung initialisiert, also angekündigt, werden.
+
+\paragraph{Arithmetische Operatoren}
+Arithmetische Operatoren werden verwendet, um mathematische Operationen durchzuführen. In C stehen die unten aufgelisteten Operatoren zur Verfügung:
+\begin{itemize}
+	\item \textbf{Addition (+)}: 2 + 3 = 5
+	\item \textbf{Subtraktion (-)}: 5 - 3 = 2
+	\item \textbf{Multiplikation (*)}: 5 * 3 = 15
+	\item \textbf{Division (/)}: 15 / 3 = 5
+	\item \textbf{Modulus (\%)}: 15 \% 4 = 3 (Rest der Division)
+	\item \textbf{Inkrement (++)}: a++ = a + 1
+	\item \textbf{Dekrement (--)}: a-- = a - 1
+	\item \textbf{Exponentiation (pow())}: pow(a, 3) = $a^3$
+\end{itemize}
+
+\paragraph{Vergleichsoperatoren}
+Vergleichsoperatoren dienen dem Vergleich von Variablen oder Werten. Sie geben jeweils True oder False aus. Folgende Operatoren können verwendet werden:
+\begin{itemize}
+	\item \textbf{Gleichheit (==)}: 5 == 5 $\rightarrow$ True
+	\item \textbf{Ungleichheit (!=)}: 5 != 3 $\rightarrow$ True
+	\item \textbf{Größer als (>) }: 5 > 3 $\rightarrow$ True
+	\item \textbf{Kleiner als (<)}: 5 < 3 $\rightarrow$ False
+	\item \textbf{Größer oder gleich (>=)}: 5 >= 5 $\rightarrow$ True
+	\item \textbf{Kleiner oder gleich (<=)}: 3 <= 5 $\rightarrow$ True
+\end{itemize}
+
+\paragraph{Funktionen}
+
+\paragraph{Dateizugriff}
+
+\paragraph{Pseudo-Zufallszahlen}
+
 \subsubsection{Abstraktions-Ebenen}
 \subsubsection{Ablauf}
 \subsubsection{Speichersegmentierung in C}
