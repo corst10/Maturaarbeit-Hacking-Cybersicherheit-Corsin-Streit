@@ -23,7 +23,7 @@
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 \usepackage{comment}
-\usepackage{xcolor}
+\usepackage[dvipsnames]{xcolor}
 \usepackage{lipsum} 
 \usepackage{mdframed}  
 \usepackage[backend=biber]{biblatex}
@@ -33,9 +33,43 @@
 \usepackage{parskip}
 \onehalfspacing
 
+\usepackage{nameref}
 \usepackage[]{hyperref}
 \usepackage[acronym, nomain]{glossaries}
 \usepackage{chngcntr}
+
+\usepackage{lstautogobble}
+\usepackage{listings}
+\lstdefinestyle{CBaselineStyle}
+{
+	commentstyle=\color{Blue},
+	keywordstyle=\color{Green},
+	numberstyle=\tiny\color{gray},
+	stringstyle=\color{Fuchsia},
+	basicstyle=\ttfamily,
+	columns=flexible,
+	breakatwhitespace=false,
+	breaklines=true,
+	captionpos=b, % sets the caption position 
+	keepspaces=true, % keeps spaces in text, keeping indentation of code
+	keywordstyle=\color{blue},
+	numbersep=5pt,
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	tabsize=2,
+	% might be adding: stepnummer=2, to have only have every other line numbered
+	xleftmargin=1.5em,
+	frame=single,
+	numbers=left,
+	framexleftmargin=1.5em,
+	autogobble=true, 
+	language=C
+}
+
+\lstset{style=CBaselineStyle}
+
+\setcounter{tocdepth}{3}
 
 \usepackage{titling}
 \usepackage{fancyhdr}
@@ -145,38 +179,74 @@ Hacking ist ein riesiges Themenfeld, dessen tiefgründiges Verständnis Kenntnis
 Ich bin grundsätzlich an Computern und dem Programmieren interessiert. Meistens finde ich in meinen durch Sporttrainings ausgefüllten Alltag aber keine Zeit, mich mit dieser Leidenschaft auseinanderzusetzen. Die Maturitätsarbeit schien mir als passende Gelegenheit, mir Wissen in einem computerbezogenen Themengebiet anzueignen. Das Thema Hacking und Cybersicherheit interessiert mich besonders, da ich gerne die Limiten von in diesem Fall Computersystemen teste und ausreize und es ein Themengebiet ist, das kreatives Denken und logische Schlussfolgerungen voraussetzt und fördert.
 
 \subsection{Methodik}
-Es gibt viele verschiedene Methoden, sich mit dem Thema Hacking auseinanderzusetzen. Einsteigern werden oft Videokurse oder Bücher empfohlen, die Themenbereiche, auf die sie einen Fokus setzten, sind aber oft sehr unterschiedlich. Ich habe mich entschieden, meine Arbeit hauptsächlich auf Literatur zu basieren und das Werk "Hacking - The Art of Exploitation" von Jon Erickson als Hauptinformationsquelle zu gebrauchen. Unterstützend arbeite ich mit wissenschaftlichen Arbeiten und weiteren, weniger umfangreichen Büchern. Es fällt mir leichter, Informationen anhand von Geschriebenem zu erarbeiten. Ausserdem ist es bei Büchern tendenziell einfacher einzuschätzen, welches Wissen erwartet werden kann. Das Buch "Hacking - The Art of Exploitation" ist relativ alt (2008), dies passt aber gut zu meiner Zielsetzung, da die Komplexität des Thema seither exponentiell zugenommen hat und ich eine tiefgründige, verständliche Analyse von einfachen Hackerattacken gegenüber einer oberflächlichen Analyse einer komplexen Attacke bevorzuge. Die Themen weisen aber dennoch einen Bezug zur aktuellen Zeit auf.
+Es gibt viele verschiedene Methoden, sich mit dem Thema Hacking auseinanderzusetzen. Einsteigern werden oft Videokurse oder Bücher empfohlen, die Themenbereiche, auf die sie einen Fokus setzten, sind aber oft sehr unterschiedlich. Ich habe mich entschieden, meine Arbeit hauptsächlich auf Literatur zu basieren und das Werk ``Hacking - The Art of Exploitation'' von Jon Erickson als Hauptinformationsquelle zu gebrauchen. Unterstützend arbeite ich mit wissenschaftlichen Arbeiten und weiteren, weniger umfangreichen Büchern. Es fällt mir leichter, Informationen anhand von Geschriebenem zu erarbeiten. Ausserdem ist es bei Büchern tendenziell einfacher einzuschätzen, welches Wissen erwartet werden kann. Das Buch ``Hacking - The Art of Exploitation'' ist relativ alt (2008), dies passt aber gut zu meiner Zielsetzung, da die Komplexität des Thema seither exponentiell zugenommen hat und ich eine tiefgründige, verständliche Analyse von einfachen Hackerattacken gegenüber einer oberflächlichen Analyse einer komplexen Attacke bevorzuge. Die Themen weisen aber dennoch einen Bezug zur aktuellen Zeit auf.
 
 \subsection*{Sprach-und Gender-Disclaimer}
 Es finden sich englische Begriffe in dieser Arbeit. Da Computerwissenschaften normalerweise in englischer Sprache praktiziert werden, existieren für einige Begriffe keine passende deutsche Übersetzungen. In diesem Falle wird auf den englischen Begriff zurückgegriffen. \\ Teilweise wird nur die männliche Form verwendet. Dies hat zwei Gründe: Zum einen ist die überwiegende Mehrheit der Personen, die in diesem Themenfeld arbeiten und gearbeitet haben, männlich, zum anderen ist die Einbeziehung beider Geschlechter layouttechnisch schwierig ansprechend umzusetzen. In den meisten Fällen sind jedoch beide Geschlechter gemeint, es sei denn, es wird explizit darauf hingewiesen.
 
 \newpage
 \section{Ursprung und Bedeutung}
-Der Stereotyp ist schlecht wegzudenken. Schwarzer Kapuzenpulli, abgedunkelter Raum und ein Bildschirm mit kryptografischen Zeichen. Auf dem Computer laufen bösartige Programme, die Schwachstellen von anderen ausnutzen und dabei Unheil anrichten. Die Handlung ist kriminell und bestrafbar. Auch wenn diese stereotypische Beschreibung wohl auf eine sehr kleine Gruppe von Personen zutreffen mag, sieht die Realität bedeutend anders aus. Jon Erickson formulierte folgenden Satz: "Beim Hacken geht es eher darum, das Gesetz zu befolgen als es zu brechen. Das Wesen des Hackens besteht darin, unbeabsichtigte oder übersehene Anwendungen für die Gesetze und Eigenschaften einer gegebenen Situation zu finden und sie dann auf neue und erfinderische Weise anzuwenden, um ein Problem zu lösen - was auch immer es sein mag." \textit{(Erickson, 2008, S. 1, übersetzt mit DeepL)} \cite{erickson2008hacking}
+Der Stereotyp ist schlecht wegzudenken. Schwarzer Kapuzenpulli, abgedunkelter Raum und ein Bildschirm mit kryptografischen Zeichen. Auf dem Computer laufen bösartige Programme, die Schwachstellen von anderen ausnutzen und dabei Unheil anrichten. Die Handlung ist kriminell und bestrafbar. Auch wenn diese stereotypische Beschreibung wohl auf eine sehr kleine Gruppe von Personen zutreffen mag, sieht die Realität bedeutend anders aus. Jon Erickson formulierte folgenden Satz: ``Beim Hacken geht es eher darum, das Gesetz zu befolgen als es zu brechen. Das Wesen des Hackens besteht darin, unbeabsichtigte oder übersehene Anwendungen für die Gesetze und Eigenschaften einer gegebenen Situation zu finden und sie dann auf neue und erfinderische Weise anzuwenden, um ein Problem zu lösen - was auch immer es sein mag.'' \textit{(Erickson, 2008, S. 1, übersetzt mit DeepL)} \cite{erickson2008hacking}
 
 
 
 \subsection{Bedeutung und Urpsrung des Begriffes}
-Im Grunde genommen ist ein «Hack» nichts mehr als eine «von Innovation, Stil und technischem Können durchdrungene» Lösung zu einem Problem, das nicht einmal einen Bezug zu Computern aufweisen muss. Den Ursprung nahm der Begriff im Modelleisenbahnclub des \gls{mit}. Aus geschenkten Elektronikbauteilen bauten die Clubmitglieder die Steuerung ihrer Modellzüge. Durch verschiedene Optimierung, Hacks, versuchten sie, diese so elegant wie möglich zu gestalten. Ihr Ziel war nicht das simple Funktionieren. Es war nicht einmal wichtig, dass die Lösung einen grossen Nutzen zeigte. Was zählte, war die technische Eleganz, die hinter der Lösung steckte. \\Mit dem Erscheinen erster Computer und der Gründung eines Computerclubs im \gls{mit} wurde die Bedeutung auf die technische Welt ausgeweitet. Als Steven Levy 1984 die Leiterprinzipen des Hackings zu einer «Hackerethik» zusammenfasste, formulierte er folgenden Satz: «Du kannst mit Computern Kunst und Schönheit schaffen.» \cite{bpbKleineGeschichte:online}
+Im Grunde genommen ist ein ``Hack'' nichts mehr als eine ``von Innovation, Stil und technischem Können durchdrungene'' Lösung zu einem Problem, das nicht einmal einen Bezug zu Computern aufweisen muss. Den Ursprung nahm der Begriff im Modelleisenbahnclub des \gls{mit}. Aus geschenkten Elektronikbauteilen bauten die Clubmitglieder die Steuerung ihrer Modellzüge. Durch verschiedene Optimierung, Hacks, versuchten sie, diese so elegant wie möglich zu gestalten. Ihr Ziel war nicht das simple Funktionieren. Es war nicht einmal wichtig, dass die Lösung einen grossen Nutzen zeigte. Was zählte, war die technische Eleganz, die hinter der Lösung steckte. \\Mit dem Erscheinen erster Computer und der Gründung eines Computerclubs im \gls{mit} wurde die Bedeutung auf die technische Welt ausgeweitet. Als Steven Levy 1984 die Leiterprinzipen des Hackings zu einer ``Hackerethik'' zusammenfasste, formulierte er folgenden Satz: ``Du kannst mit Computern Kunst und Schönheit schaffen.'' \cite{bpbKleineGeschichte:online}
 
-Das Negative, das viele Personen heute mit dem Hacking assoziieren, wurde erst nach und nach dem Bedeutungskonzept hinzugefügt. Nach weiteren Grundsätzen der Hackerethik sollten sich Hacker für freie Informationszugänglichkeit, Dezentralisierung und unlimitierten Zugriff auf alles, was einen etwas über die Welt lehren kann, einsetzen. Mit den gesetzlichen Richtlinien nahmen sie es nicht genau. Die Neugier, Wissensbegierde und allgemein das technische Interesse führte zur Entdeckung und Erkundung neuer «Spielwiesen», was in den 1960er-Jahre zum ersten «modernen» Hack führten. Findige Hacker fanden heraus, dass sich durch das Abspielen einer ganz bestimmten Frequenz das Telefonnetz so manipulieren liess, dass Anrufe nicht verrechnet wurden. Sogar Tech-Legenden wie die späteren Apple-Gründer Steve Jobs und Steve Wozniak beteiligten sich an dem sogenannten Blue-Boxing und verdienten Geld durch das Verkaufen von Frequenzgeneratoren, den Blue-Boxes. \\Zeitungsartikel und Filme, insbesondere der 1983 veröffentlichte Titel War Games, trugen in grossem Masse zur heutigen Auffassung des Hackers bei.  Ein Hacker ist «jemand, der ohne Erlaubnis in die Computersysteme anderer Leute eindringt, um Informationen herauszufinden oder etwas Illegales zu tun.» \textit{(Cambridge University Press, Oktober 2024, übersetzt mit DeepL)} \cite{bpbKleineGeschichte:online, CambridgeHacker:online}
+Das Negative, das viele Personen heute mit dem Hacking assoziieren, wurde erst nach und nach dem Bedeutungskonzept hinzugefügt. Nach weiteren Grundsätzen der Hackerethik sollten sich Hacker für freie Informationszugänglichkeit, Dezentralisierung und unlimitierten Zugriff auf alles, was einen etwas über die Welt lehren kann, einsetzen. Mit den gesetzlichen Richtlinien nahmen sie es nicht genau. Die Neugier, Wissensbegierde und allgemein das technische Interesse führte zur Entdeckung und Erkundung neuer ``Spielwiesen'', was in den 1960er-Jahre zum ersten ``modernen'' Hack führten. Findige Hacker fanden heraus, dass sich durch das Abspielen einer ganz bestimmten Frequenz das Telefonnetz so manipulieren liess, dass Anrufe nicht verrechnet wurden. Sogar Tech-Legenden wie die späteren Apple-Gründer Steve Jobs und Steve Wozniak beteiligten sich an dem sogenannten Blue-Boxing und verdienten Geld durch das Verkaufen von Frequenzgeneratoren, den Blue-Boxes. \\Zeitungsartikel und Filme, insbesondere der 1983 veröffentlichte Titel War Games, trugen in grossem Masse zur heutigen Auffassung des Hackers bei.  Ein Hacker ist ``jemand, der ohne Erlaubnis in die Computersysteme anderer Leute eindringt, um Informationen herauszufinden oder etwas Illegales zu tun.'' \textit{(Cambridge University Press, Oktober 2024, übersetzt mit DeepL)} \cite{bpbKleineGeschichte:online, CambridgeHacker:online}
 
 \subsection{Motivation, Ethik und Begriffserklärung}
-Die Motivationen und Ethiken, die Hacker verfolgen, fallen sehr unterschiedlich aus. Grob kann man sie in zwei Kategorien einteilen: die «Black Hats» (auch «Cracker» genannt) und die «White Hats» (auch «Penetration Tester» genannt). \\Black Hat Hacker verfolgen kriminelle Ziele, die (umwelt-)politisch, monetär oder egoistisch motiviert sein können. Oftmals verbreiten sie Malware (Schadsoftware). Dabei ignorieren sie legale und ethische Grundsätze. \\Ihre Gegenspieler sind die White Hat Hacker. Diese benutzen dieselben Methoden, arbeiten aber im Rahmen der Gesetze und halten sich an ethische Grundsätze. Ihre Aufgabe ist es, Privatpersonen, Firmen oder ganz allgemein gefährdete Computer vor den Black Hats zu schützen. Um dies zu bewerkstelligen, hacken sie sich nach vorheriger Absprache mit den Besitzer in Computersysteme ein, um mögliche Sicherheitslücken zu finden und zu beheben. \\ Das Resultat dieses Wettkampfes ist  gewinnbringend. "Das Endergebnis dieser Interaktion ist positiv, denn es führt zu intelligenteren Menschen, verbesserter Sicherheit, stabilerer Software, erfinderischen Problemlösungstechniken und sogar zu einer neuen Wirtschaft." \textit{(Erickson, 2008, S. 4, übersetzt mit DeepL)} \cite{erickson2008hacking}\\Zwischen den beiden Extremen liegen die Grey Hat Hacker, die zwar oftmals illegal vorgehen, dabei aber keine negativen Absichten verfolgen. Beispielsweise hacken sie sich unberechtigt in ein Firmensystem ein, kommunizieren aber danach die gefunden Schwachstellen. \cite{WhiteHatBlackHat:paper, BlackHat34:online}
+Die Motivationen und Ethiken, die Hacker verfolgen, fallen sehr unterschiedlich aus. Grob kann man sie in zwei Kategorien einteilen: die ``Black Hats'' (auch ``Cracker'' genannt) und die ``White Hats'' (auch ``Penetration Tester'' genannt). \\Black Hat Hacker verfolgen kriminelle Ziele, die (umwelt-)politisch, monetär oder egoistisch motiviert sein können. Oftmals verbreiten sie Malware (Schadsoftware). Dabei ignorieren sie legale und ethische Grundsätze. \\Ihre Gegenspieler sind die White Hat Hacker. Diese benutzen dieselben Methoden, arbeiten aber im Rahmen der Gesetze und halten sich an ethische Grundsätze. Ihre Aufgabe ist es, Privatpersonen, Firmen oder ganz allgemein gefährdete Computer vor den Black Hats zu schützen. Um dies zu bewerkstelligen, hacken sie sich nach vorheriger Absprache mit den Besitzer in Computersysteme ein, um mögliche Sicherheitslücken zu finden und zu beheben. \\ Das Resultat dieses Wettkampfes ist  gewinnbringend. ``Das Endergebnis dieser Interaktion ist positiv, denn es führt zu intelligenteren Menschen, verbesserter Sicherheit, stabilerer Software, erfinderischen Problemlösungstechniken und sogar zu einer neuen Wirtschaft.'' \textit{(Erickson, 2008, S. 4, übersetzt mit DeepL)} \cite{erickson2008hacking}\\Zwischen den beiden Extremen liegen die Grey Hat Hacker, die zwar oftmals illegal vorgehen, dabei aber keine negativen Absichten verfolgen. Beispielsweise hacken sie sich unberechtigt in ein Firmensystem ein, kommunizieren aber danach die gefunden Schwachstellen. \cite{WhiteHatBlackHat:paper, BlackHat34:online}
 
-Ein weiterer oft verwendeter Begriff ist «Script Kiddies». Dies sind ungeschulte (meist junge) Person ohne tiefgründige Hacking-Kenntnisse, die «von anderen entwickelten Skripts oder Programme für hauptsächlich böswillige Zwecke verwenden» \textit{(Wikipedia, Oktober 2024, übersetzt mit DeepL)}. Nichtsdestotrotz können sie grosse Schäden anrichten. \cite{ScriptkiWikipedia:online}
+Ein weiterer oft verwendeter Begriff ist ``Script Kiddies''. Dies sind ungeschulte (meist junge) Person ohne tiefgründige Hacking-Kenntnisse, die ``von anderen entwickelten Skripts oder Programme für hauptsächlich böswillige Zwecke verwenden'' \textit{(Wikipedia, Oktober 2024, übersetzt mit DeepL)}. Nichtsdestotrotz können sie grosse Schäden anrichten. \cite{ScriptkiWikipedia:online}
 
-
+\newpage
 \section{Grundlagen der Informatik}
+Die zum Verständnis des Kapitel \ref{methoden-und-techniken} \nameref{methoden-und-techniken} nötigen Grundkenntnisse der Informatik, werden in diesem Kapitel erarbeitet. 
+\subsection{Hardwaretechnische Grundlagen}
+Ein Computer besteht aus verschiedenen Bestandteilen. In diesem Kapitel werden diejenigen erläutert, die die Ausführung eines Programms ermöglichen.
+\subsubsection{CPU}
+Die \gls{cpu} beschreibt den wichtigsten Prozessor eines Computers. Mithilfe einer komplexen Platinenstruktur führt er, den Anweisungen eines Programms folgend, Berechnungen durch. 
+\paragraph{Register}
+Wichtig für die Ausführung eines Programms sind Register. Register sind ``Speicherbereiche für Daten, auf die der Prozessor besonders schnell zugreifen kann''. \cite{RegisterWikipedia:online} Sie speichern zum Beispiel den Fortschritt der Ausführung eines Programms. Einige der wichtigsten Register sind folgende:
+\begin{itemize}
+	\item \gls{eip} Befehlszeiger für die jetzige Instruktions-Adresse \cite{UsefulRe7:online}
+	\item \gls{esp} Stapelzeiger für die vorherige Adresse \cite{UsefulRe7:online}
+	\item \gls{ebp} Basiszeiger bei Funktionsaufruf, dient zur Referenzierung lokaler Variablen im Stack \cite{UsefulRe7:online}
+	\item \gls{sfp} Gesicherter Basiszeiger für das vorherige Stack Frame, dient zur Wiederherstellung des ursprünglichen Stack-Zustands \cite{UsefulRe7:online}
+\end{itemize}
 
-\subsection{Funktionsweise eines Programms}
+Die Bedeutung dieser Funktionen wird im Kapitel \ref{funktionsweise-eines-programmes} \nameref{funktionsweise-eines-programmes} genauer erklärt.
+\subsubsection{RAM (Arbeitsspeicher)}
+Das \gls{ram} ist ein elektronischer Computerspeicher, dessen Daten sehr schnell und in beliebiger Reihenfolge gelesen und geändert werden können. Er wird deshalb für Daten aktuell laufender Programme verwendet. Oft wird ein Vergleich zum menschlichen Kurzzeitgedächtnis hergestellt. 
+\paragraph{Bit und Binärzahlen}
+Computer sind nur imstande, Nullen (0) und Einsen (1) zu speichern, sie arbeiten also nur mit zwei Zuständen. Ein \gls{bit} beschreibt einen einzelnen solchen Zustand. Werden mehrere \glspl{bit} zur Datenspeicherung verwendet, steigt die Anzahl möglicher Kombinationen exponentiell auf \( 2^n \), wenn n die Anzahl \glspl{bit} beschreibt. Zahlen werden folgendermassen gespeichert: Die Stelle in der Binärzahl von hinten (also rechts) beginnend dient als Exponent (startend bei null ) zur Basis 2. Bei einer 1 wird die Zahl zur Gesamtzahl addiert, bei 0 nicht. Die (dezimale) Zahl 21 zum Beispiel entspricht der Binärzahl 10101, da sie sich durch (von rechts nach links) \(1 \times 2^0 + 0 \times 2^1 + 1 \times 2^2 + 0 \times 2^3 + 1 \times 2^4 = 21\) zusammensetzt. Zur Konversion können Online-Rechner wie zum Beispiel \url{https://www.rapidtables.com/convert/number/} verwendet werden.
+
+\paragraph{Big and Little Endian Byte Order}
+Ein Byte umfasst vier Bits. Zur Ordnung von Bytes existieren zwei Strukturen: Big und Little Endian. Big Endian speichert das wichtigste, also signifikanteste Byte zuerst, während Little Endian dieses zuletzt speichert. Das signifikanteste Byte ist dasjenige, das den grössten Einfluss auf die Gesamtzahl hat, daher normalerweise das am weitesten links stehende.
+
+\paragraph{Speicheradressen}
+Jedes \gls{bit} im \gls{ram} ist einzeln adressierbar. Heutzutage arbeiten die meisten Computer mit 32bit oder 64bit Systemen. Dies entspricht der Adresslänge der Speicheradressen und limitiert somit die Anzahl adressierbarer \glspl{bit}. Bei 32bit ist die Ansteuerung von \(2^32 = 4 294 967 296\) \glspl{bit} möglich, bei 64bit \(2^64 = 18 446 744 073 709 551 616\). In der Praxis wird dies nur selten ausgereizt. Einfachheitshalber erfolgt die Angabe der Speicheradresse normalerweise im hexadezimalen Format (Basis 16). Dazu werden die Zeichen 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E und F verwendet. Ein Hexadezimalzeichen entspricht vier \glspl{bit} (da \(2^4 = 16\)), eine 32bit Adresse setzt sich also aus acht Hexadezimalstellen zusammen. Hexadezimalzahlen werden üblicherweise mit dem Präfix ``0x'' angekündet. Eine 32bit Speicheradresse könnte also folgendermassen aussehen: 0xb7ec819b. \cite{BitWiki31:online}
+
+\subsubsection{HDD/SSD}
+Speichermedien, wie hauptsächlich \gls{hdd} und \gls{ssd}, dienen der permanenten Speicherung von Daten, also auch über den Neustart eines Systems hinaus. Ihr Lese- und Schreibzugriff ist langsamer als bei \gls{ram}. Oft wird ein Vergleich zum menschlichen Langzeitgedächtnis hergestellt. 
+
+\subsection{Funktionsweise eines Programms}\label{funktionsweise-eines-programmes}
+
+\subsubsection{Einführung}
+\subsubsection{Grundlagen}
+\subsubsection{Abstraktions-Ebenen}
+\subsubsection{Ablauf}
+\subsubsection{Speichersegmentierung in C}
 
 \subsection{Funktionsweise eines Netzwerks}
+\subsubsection{Einführung}
+\subsubsection{OSI-Model}
+\subsubsection{Netzwerkprotokolle}
+\subsubsection{Sockets}
 
-\subsection{Grundlegende Sicherheitskonzepte}
 
-
-\section{Methoden und Techniken}
+\section{Methoden und Techniken}\label{methoden-und-techniken}
 
 \subsection{Social Engineering}
 
@@ -220,8 +290,14 @@ was hätte man noch machen können?
 \counterwithin{figure}{subsection}
 \counterwithin{table}{subsection}
 \pagebreak
+
 \section{Appendix}
 \subsection{Code}
+\subsubsection{exploit\_notesearch.c}
+\label{exploit_notesearch.c}
+\lstinputlisting{code_files/buffer-overflow/exploit-notesearch.c}
+
+
 
 \newpage
 \printbibliography
