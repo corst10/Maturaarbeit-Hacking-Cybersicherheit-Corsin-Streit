@@ -202,10 +202,10 @@ Ein weiterer oft verwendeter Begriff ist ``Script Kiddies''. Dies sind ungeschul
 
 \newpage
 \section{Grundlagen der Informatik}
-Zum Verständnis des Kapitel \ref{methoden-und-techniken} \nameref{methoden-und-techniken} sind Grundkenntnisse der Informatik nötig. Diese werden in diesem Kapitel erarbeitet. 
+Zum Verständnis des Kapitel \nameref{sec:methoden-und-techniken} sind Grundkenntnisse der Informatik nötig. Diese werden in diesem Kapitel erarbeitet. 
 \subsection{Hardwaretechnische Grundlagen}
 Ein Computer besteht aus verschiedenen Bestandteilen, die im Zusammenspiel Verarbeitung von Informationen ermöglichen. Folgende Komponenten sind zur Ausführung eines Programms wichtig.
-\subsubsection{CPU}
+\subsubsection{CPU}\label{subsubsec:cpu}
 Die \gls{cpu} beschreibt den wichtigsten Prozessor eines Computers. Mithilfe einer komplexen Platinenstruktur führt er, den Anweisungen eines Programms folgend, Berechnungen durch. 
 \paragraph{Register}
 Wichtig für die Ausführung eines Programms sind Register. Register sind ``Speicherbereiche für Daten, auf die der Prozessor besonders schnell zugreifen kann''. \cite{RegisterWikipedia:online} Sie speichern zum Beispiel den Fortschritt der Ausführung eines Programms. Einige der wichtigsten Register sind folgende:
@@ -216,27 +216,27 @@ Wichtig für die Ausführung eines Programms sind Register. Register sind ``Spei
 	\item \textbf{\gls{sfp}}: Gesicherter Basiszeiger für das vorherige Stack Frame, dient zur Wiederherstellung des ursprünglichen Stack-Zustands \cite{UsefulRe7:online}
 \end{itemize}
 
-Die Bedeutung dieser Funktionen wird im Kapitel \ref{funktionsweise-eines-programmes} \nameref{funktionsweise-eines-programmes} genauer erklärt.
+Die Bedeutung dieser Funktionen wird im Kapitel \nameref{subsec:funktionsweise-eines-programmes} genauer erklärt.
 \subsubsection{RAM (Arbeitsspeicher)}
 Das \gls{ram} ist ein elektronischer Computerspeicher, dessen Daten sehr schnell und in beliebiger Reihenfolge gelesen und geändert werden können. Er wird deshalb für Daten aktuell laufender Programme verwendet. Oft wird ein Vergleich zum menschlichen Kurzzeitgedächtnis hergestellt. 
 \paragraph{Bit und Binärzahlen}
-Computer sind nur imstande, Nullen (0) und Einsen (1) zu speichern, sie arbeiten also nur mit zwei Zuständen. Ein \gls{bit} beschreibt einen einzelnen solchen Zustand. Werden mehrere \glspl{bit} zur Datenspeicherung verwendet, steigt die Anzahl möglicher Kombinationen exponentiell auf \( 2^n \), wenn n die Anzahl \glspl{bit} beschreibt. Zahlen werden folgendermassen gespeichert: Die Stelle in der Binärzahl von hinten (also rechts) beginnend dient als Exponent (startend bei null ) zur Basis 2. Bei einer 1 wird die Zahl zur Gesamtzahl addiert, bei 0 nicht. Die (dezimale) Zahl 21 zum Beispiel entspricht der Binärzahl 10101, da sie sich durch (von rechts nach links) \(1 \times 2^0 + 0 \times 2^1 + 1 \times 2^2 + 0 \times 2^3 + 1 \times 2^4 = 21\) zusammensetzt. Zur Konversion können Online-Rechner wie zum Beispiel \url{https://www.rapidtables.com/convert/number/} verwendet werden.
+Computer sind nur imstande, Nullen (0) und Einsen (1) zu speichern, sie arbeiten also nur mit zwei Zuständen. Ein \gls{bit} beschreibt einen einzelnen solchen Zustand. Werden mehrere \glspl{bit} zur Datenspeicherung verwendet, steigt die Anzahl möglicher Kombinationen exponentiell auf \( 2^n \) (bei \(n = Anzahl~\glspl{bit}\)) \glspl{bit}. Zahlen werden folgendermassen gespeichert: Die Stelle in der Binärzahl von hinten (also rechts) beginnend dient als Exponent (startend bei null ) zur Basis 2. Bei einer 1 wird die Zahl zur Gesamtzahl addiert, bei 0 nicht. Die (dezimale) Zahl 21 zum Beispiel entspricht der Binärzahl 10101, da sie sich durch (von rechts nach links) \(1 \times 2^0 + 0 \times 2^1 + 1 \times 2^2 + 0 \times 2^3 + 1 \times 2^4 = 21\) zusammensetzt. Zur Konversion können Online-Rechner wie zum Beispiel \url{https://www.rapidtables.com/convert/number/} verwendet werden.
 
 \paragraph{Big and Little Endian Byte Order}
 Ein Byte umfasst vier Bits. Zur Ordnung von Bytes existieren zwei Strukturen: Big und Little Endian. Big Endian speichert das wichtigste, also signifikanteste Byte zuerst, während Little Endian dieses zuletzt speichert. Das signifikanteste Byte ist dasjenige, das den grössten Einfluss auf die Gesamtzahl hat, daher normalerweise das am weitesten links stehende.
 
 \paragraph{Speicheradressen}
-Jedes \gls{bit} im \gls{ram} ist einzeln adressierbar. Heutzutage arbeiten die meisten Computer mit 32bit oder 64bit Systemen. Dies entspricht der Adresslänge der Speicheradressen und limitiert somit die Anzahl adressierbarer \glspl{bit}. Bei 32bit ist die Ansteuerung von \(2^32 = 4 294 967 296\) \glspl{bit} möglich, bei 64bit \(2^64 = 18 446 744 073 709 551 616\). In der Praxis wird dies nur selten ausgereizt. Einfachheitshalber erfolgt die Angabe der Speicheradresse normalerweise im hexadezimalen Format (Basis 16). Dazu werden die Zeichen 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E und F verwendet. Ein Hexadezimalzeichen entspricht vier \glspl{bit} (da \(2^4 = 16\)), eine 32bit Adresse setzt sich also aus acht Hexadezimalstellen zusammen. Hexadezimalzahlen werden üblicherweise mit dem Präfix ``0x'' angekündet. Eine 32bit Speicheradresse könnte also folgendermassen aussehen: 0xb7ec819b. \cite{BitWiki31:online}
+Jedes \gls{bit} im \gls{ram} ist einzeln adressierbar. Heutzutage arbeiten die meisten Computer mit 32bit oder 64bit Systemen. Dies entspricht der Adresslänge der Speicheradressen und limitiert somit die Anzahl adressierbarer \glspl{bit}. Bei 32bit ist die Ansteuerung von \(2^{32} = 4 294 967 296\) \glspl{bit} möglich, bei 64bit \(2^{64} = 18 446 744 073 709 551 616\). In der Praxis wird dies nur selten ausgereizt. Einfachheitshalber erfolgt die Angabe der Speicheradresse normalerweise im hexadezimalen Format (Basis 16). Dazu werden die Zeichen 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E und F verwendet. Ein Hexadezimalzeichen entspricht vier \glspl{bit} (da \(2^4 = 16\)), eine 32bit Adresse setzt sich also aus acht Hexadezimalstellen zusammen. Hexadezimalzahlen werden üblicherweise mit dem Präfix ``0x'' angekündet. Eine 32bit Speicheradresse könnte folgendermassen aussehen: 0xb7ec819b. \cite{BitWiki31:online}
 
 \subsubsection{HDD/SSD}
-Speichermedien, wie hauptsächlich \gls{hdd} und \gls{ssd}, dienen der permanenten Speicherung von Daten, also auch über den Neustart eines Systems hinaus. Ihr Lese- und Schreibzugriff ist langsamer als bei \gls{ram}. Oft wird ein Vergleich zum menschlichen Langzeitgedächtnis hergestellt. 
+Speichermedien, wie hauptsächlich \gls{hdd} und \gls{ssd}, dienen der permanenten Speicherung von Daten, also auch über den Neustart eines Systems hinaus. Ihr Lese- und Schreibzugriff ist langsamer als bei \gls{ram}, die Speicherkapazität dafür meist höher. Oft wird ein Vergleich zum menschlichen Langzeitgedächtnis hergestellt. 
 
-\subsection{Funktionsweise eines Programms}\label{funktionsweise-eines-programmes}
+\subsection{Funktionsweise eines Programms}\label{subsec:funktionsweise-eines-programmes}
 Hacker schreiben Code, nutzen ihn aber auch aus. Ein Verständnis grundlegender Programmierkonzepten ist deshalb notwendig.
 \subsubsection{Einführung}
 ``Ein Programm ist nichts anderes als eine Reihe von Anweisungen, die in einer bestimmten Sprache geschrieben sind.'' \textit{(Erickson, 2008, S. 20, übersetzt mit DeepL)} \cite{erickson2008hacking} Es ist vergleichbar mit einem Küchenrezept. Genauso wie das Küchenrezept Menschen sagt, was sie tun sollen, sagt ein Programm dem Computer, was er zu tun hat. Im Gegensatz zu Menschen hat ein Computer aber keinen eigenen Willen und muss sich an die gegebenen Instruktionen halten. In dieser Arbeit liegt der Fokus exemplarisch auf der Programmiersprache C, da damit verbundene Hacking-Methoden beschrieben werden, die grundlegenden Konzepte können aber auf viele Programmiersprachen übertragen werden.
 \subsubsection{Grundlagen}
-Ein Programm besteht aus verschiedenen Elementen. Die Wichtigsten Elemente werden im Folgenden beschreiben.
+Ein Programm besteht aus verschiedenen Elementen. Die wichtigsten Elemente werden im Folgenden beschrieben.
 
 \paragraph{Kontrollstrukturen}
 Kontrollstrukturen steuern den Ablauf eines Programms.
@@ -250,7 +250,7 @@ For-Schleifen werden normalerweise gebraucht, um einen bestimmten Programmteil e
 \paragraph{Variablen und Konstanen}
 Variablen und Konstanten speichern Daten. Variablen sind veränderbar, während Konstanten über die Laufzeit eines Programmes unverändert bleiben. Im Folgenden wird einfachheitshalber von Variablen gesprochen, die beschriebenen Eigenschaften sind aber auch auf Konstanten übertragbar.
 \subparagraph{Datentypen}
-Bei Variablen wird zwischen verschiedenen Typen unterschieden. Einige Programmiersprachen sind bei der Handhabung flexibel und erlauben Veränderungen des Datentyps einer Variable, während andere Variablen bestimmte Datentypen zuordnen. Die Liste bietet eine Auflistung der wichtigsten Datentypen
+Bei Variablen wird zwischen verschiedenen Datentypen unterschieden. Einige Programmiersprachen sind bei der Handhabung flexibel und erlauben Veränderungen des Datentyps einer Variable, während andere Variablen bestimmte Datentypen zuordnen. Die Liste bietet eine Auflistung der wichtigsten Datentypen:
 \begin{itemize}
 	\item \textbf{String}: Text (``Hello'', ``World'')
 	\item \textbf{Int}: Ganzzahl (2, 37)
@@ -261,7 +261,7 @@ Bei Variablen wird zwischen verschiedenen Typen unterschieden. Einige Programmie
 	\item \textbf{Dict}: Liste mit Schlüssel-Wert-Paaren ([``Mehl'': 500, ``Zucker'': 200, ``Zitrone'': False])
 \end{itemize}
 \subparagraph{Gültigkeitsbereich und Lebensdauer}
-Variablen sind je nach Initialisierung (Erstellung) nur für bestimmte Teile eines Programms zugänglich. Wird eine Variable beispielsweise in einer Funktion initialisiert, existiert sie nur während der Funktionsausführung. Variablen besitzen folgende Zugänglichkeiten:
+Variablen sind je nach Initialisierung (Erstellung) nur für bestimmte Teile eines Programms zugänglich. Wird eine Variable beispielsweise in einer Funktion initialisiert, existiert sie nur während der Funktionsausführung. Variablen besitzen folgende Gültigkeitsbereiche:
 \begin{itemize}
 	\item \textbf{Globale Variablen}: Zugänglich vom gesamten Programm
 	\item \textbf{Lokale Variablen}: Zugänglichkeit auf Funktion oder Programmteil limitiert
@@ -294,14 +294,64 @@ Vergleichsoperatoren dienen dem Vergleich von Variablen oder Werten. Sie geben j
 \end{itemize}
 
 \paragraph{Funktionen}
+Funktionen dienen zur Wiederholung bestimmter Programmteile. Sie erlauben einen In- und Output. Der arithmetische Operator pow() ist beispielsweise eine Funktion. Sie erlaubt einen Input \textit{base} und \textit{exponent} und gibt die Potenz der beiden Zahlen zurück. Eine Potenz-Funktion für Ganzzahlen könnte so aussehen:
+\begin{lstlisting}
+	int pow(double base, int exponent) {
+		int result = 1; // Startwert für die Multiplikation
+		for (int i = 0; i < exponent; i++) {
+			result *= base; // Multiplikation
+		}
+		return result;
+	}
+\end{lstlisting}
 
 \paragraph{Dateizugriff}
+Dateien, die permanent auf einem Speichermedium gespeichert sind, können gelesen, bearbeitet und ausgeführt werden. Ein Benutzer kann dabei aber nur diejenigen Operationen verwenden, deren Rechte er besitzt. Die Identifikation des Benutzers erfolgt über eine ID (beispielsweise 999).
 
 \paragraph{Pseudo-Zufallszahlen}
+Bei bestimmten Anwendungen, wie zum Beispiel der Simulation eines Wettermodells oder einem Computerspiel, werden Zufallszahlen benötigt. Computer sind nicht in der Lage, zufällige Zahlen zu generieren. Hauptsächlich wird deshalb auf zwei Alternativen zurückgegriffen. Zum einen werden mathematische Operationen verwendet, die zufällig aussehen. Eine bekannte Methode ist beispielsweise das Quadrieren zehnstelliger Dezimalzahlen. Vom Resultat werden die mittleren zehn Ziffern als neue Zufallszahl angesehen. Eine zweite Möglichkeit ist die Verwendung unvorhersehbarer Prozesse. Computerchips analysieren zum Beispiel das atmosphärische Rauschen und generieren daraus eine Zufallszahl.~\cite{Mathemat11:online}
 
 \subsubsection{Abstraktions-Ebenen}
-\subsubsection{Ablauf}
+Computer können nur mit aus Einsen und Nullen bestehender Maschinensprache umgehen. Da die Programmierung in Maschinensprache aber sehr aufwendig und unintuitiv ist, wurden verschiedene Abstraktions-Ebenen erfunden.
+
+\paragraph{Höhere Programmiersprache (High Level Language)}
+Höhere Programmiersprache liegt nahe bei Englisch und ist (zumindest in Grundzügen) intuitiv verständlich. Normalerweise wird in höherer Programmiersprache programmiert. Das Beispiel der pow() Funktion ist beispielsweise in höherer Programmiersprache angegeben.
+\paragraph{Maschinensprache (Machine Language)}
+Maschinensprache besteht nur aus Einsen und Nullen und ist deshalb auch für die meisten professionellen Programmierer unverständlich. Der Code \(x = 3 + 5\) könnte so aussehen: 
+b8 05 00 00 00
+83 c0 03 
+(Angabe im hexadezimalen Format)
+\paragraph{Assemblersprache (Assembly Language)}
+Assemblersprache kann als die Verbalisierung der Maschinensprache angesehen werden und wird teilweise zur Programmierung verwendet. Dies aber nur sehr systemnahen Anwendungen. Derselbe Code \(x = 3 + 5\) könnte in Assemblersprache so aussehen: 
+mov eax, 5
+add eax, 3
+Hier werden auch die in Kapitel~\ref{subsubsec:cpu} erwähnten Register ersichtlich.
+
+Zur Übersetzung zwischen den Abstraktionsebenen dienen der Compiler und Assembler. Der Compiler transformiert höhere Programmiersprache in Maschinensprache, der Assembler Assemblersprache in Maschinensprache.
+
+\subsubsection{Ablauf zur Ausführung}
+Die Ausführung eines Programms folgt folgendem Grundprinzip:
+\begin{enumerate}
+	\item Der Code wird kompiliert (oder assembliert) und als Maschinencode im RAM gespeichert.
+	\item Die Instruktion, zu der das \gls{eip}-Register zeigt, wird gelesen.
+	\item Die Bitlänge der Instruktion wird zum \gls{eip} addiert, der \gls{eip} zeigt jetzt also zur nächsten Instruktion.
+	\item Die Instruktion wird ausgeführt.
+	\item Neustart bei Schritt 2.
+\end{enumerate}
+
 \subsubsection{Speichersegmentierung in C}
+Die Datenanordnung im RAM folgt einer bestimmten Struktur. Bei C wird sie in fünf Segmente aufgeteilt.
+\begin{itemize}
+	\item \textbf{Text Segment}: Speichert Code (in Maschinensprache), unveränderlich
+	\item \textbf{Initialized Data}: Speichert initialisierte globale und statische Variablen
+	\item \textbf{Uninitialized Data}: Speichert uninitialisierte Variablen
+	\item \textbf{Heap Segment}: Kontrollierbar durch den Programmierer, wächst von niedrigen zu hohen Adressen~\cite{StackHeapYoutube:online}
+	\item \textbf{Stack Segment}: Speichert Kontext und lokale Variablen bei Funktionsaufrufen, funktioniert nach LIFO-Prinzip (last-in-first-out): wächst von hohen zu niedrigen Adressen und wird umgekehrt abgearbeitet~\cite{StackHeapYoutube:online}
+\end{itemize}
+Unter dem Stack werden Umgebungsvariablen und Befehlszeilenargumente gespeichert. Umgebungsvariablen enthalten Information zur Umgebung des Systemes und Befehlszeilenargumente sind vom Benutzer beim Programmstart eingegebene Daten.
+
+\paragraph{Stack Frame}
+Ein Stack Frame ist ``ein Abschnitt des Stacks, der einem bestimmten Funktionsaufruf gewidmet ist.''~\textit{(NordVPN, Dezember 2024, übersetzt mit DeepL)}\cite{StackFrameNordVPN:online} Das Stack Frame der aufgerufenen Funktion wird oberhalb des Stack Frame der aktuellen Funktion erstellt und enthält alle wichtigen Informationen. Dazu gehören unter Anderem Variablen, der \gls{ebp} und die Rückkehradresse. Die Rückkehradresse wird benötigt, um an der richtigen Stelle zur ursprünglichen Funktion zurückzukehren.
 
 \subsection{Funktionsweise eines Netzwerks}
 \subsubsection{Einführung}
@@ -310,7 +360,7 @@ Vergleichsoperatoren dienen dem Vergleich von Variablen oder Werten. Sie geben j
 \subsubsection{Sockets}
 
 
-\section{Methoden und Techniken}\label{methoden-und-techniken}
+\section{Methoden und Techniken}\label{sec:methoden-und-techniken}
 
 \subsection{Social Engineering}
 
