@@ -412,19 +412,81 @@ Drei Typen von Sockets existieren: Stream Sockets, Datagram Sockets und raw sock
 Das Protokoll spezifiziert, welches Protokoll auf Ebene vier verwendet werden sollte. Im Normalfall muss dies nicht explizit angegeben werden, da das System standardmässig das zum Typ des Sockets passende Protokoll auswählt.
 
 
-
+\newpage
 \section{Methoden und Techniken}\label{sec:methoden-und-techniken}
+Hacking-Attacken sind sehr unterschiedlich und fokussieren sich auf verschiedene Bereiche eines Computersystems. Einige erfordern physischen Zugriff auf ein System während andere über ein Netzwerk erfolgen. Dieses Kapitel zeigt exemplarisch einige gut verständliche Hacking-Methoden und Techniken auf. Die Kapitel folgen derselben Struktur: Zuerst wird die allgemeine Funktionsweise einer Attacke beschrieben und danach auf die Abwehrmechanismen eingegangen. In einigen Kapiteln findet sich auch ein konkretes Beispiel mit Code. Zuletzt folgt ein Kapitel mit Erklärungen zu bekannten Begriffen, die bis dahin noch nicht vorgekommen sind.
 
-\subsection{Social Engineering}
+\subsection{Buffer-overflow}
+Ein Buffer beschreibt einen reservierten Speicherbereich, um Daten temporär zu speichern. Ein Buffer-overflow tritt auf, wenn mehr Daten in diesen Bereich geschrieben werden, als die Kapazität erlaubt. Dies kann dazu führen, dass zur Ausführung des Programms wichtige Daten überschrieben werden und das Programm anders abläuft, als vom Programmierer ursprünglich geplant. Programmiersprachen wie C, bei denen sich \gls{ram} sehr direkt kontrollieren lässt, sind besonders anfällig für Attacken dieser Art. Moderne Programmiersprachen besitzen oft eine automatische Speicherverwaltung, die die direkte Kontrolle des \gls{ram} erschweren oder sogar verunmöglichen.
 
-\subsection{Password-Angriffe}
+\subsubsection{Allgemeine Funktionsweise}
+Voraussetzung dieser Attacke ist ein Programm, das Daten (zum Beispiel Text) als Input annimmt und diese in das \gls{ram} kopiert, ohne vorher zu überprüfen, ob ausreichend Platz reserviert wurde. Der Angreifer kann den Input nun bewusst zu lange und mit ganz bestimmten Zeichenfolgen wählen. Ziel ist oft die Überschreibung der Rückkehradresse einer Funktion, so dass das Programm dann auf eigens im \gls{ram} platzierten Code (Shellcode) umgelenkt wird. Dies ist besonders kritisch, wenn das Programm mit Root-, also Administrationsrechten ausgeführt wird, da der Angreifer dann die Kontrolle über das gesamte System erlangen kann. \\Zur Ausführung der Attacke muss also ein Input gewählt werden, der eine neue Rückkehradresse und den Shellcode enthält. Die neue Rückkehradresse zeigt auf den Shellcode und lässt diesen bei Funktionsende ausführen. Dabei stösst man jedoch auf zwei Probleme:
+\begin{enumerate}
+	\item Meist ist es schwer abzuschätzen, wo genau die neue Rückkehradresse im Input platziert werden muss, damit sie genau die originale Rückkehradresse trifft. Die Speichersegmentierung kann zwischen Programmausführungen variieren und lässt nur schwer eine exakte Vorhersage zu. Dieses Problem lässt sich jedoch einfach durch das wiederholte speichern der Rückkehradresse lösen. Wenn man statt nur eine einen ganzen Bereich mit Rückkehradressen füllt, erhöht sich die Wahrscheinlichkeit, die Rückkehradresse zu treffen, massiv.
+	\item Das zweite Problem bezieht sich auf die Vorhersage der Speicheradresse des Shellcodes. Da eine exakte Rückkehradresse angegeben werden muss, die genau auf den Start des Shellcodes zeigen muss, lässt sich das Problem nicht durch Wiederholung lösen. Stattdessen greift man auf einen \gls{nop} sled zurück.
+	\paragraph{NOP sled}
+	Ein \gls{nop} sled beschreibt eine Reihe von \gls{nop}-Instruktionen. Diese Instruktionen tun nichts, ausser zur nächsten Instruktion zu springen, bis schliesslich der finale Code (in diesem Fall Shellcode) erreicht wird.
+	
+	Die Platzierung eines langen \gls{nop} sled vor dem Shellcode macht eine genaue Vorhersage der Speicheradresse des Shellcodes überflüssig. Es reicht, wenn die Rückkehradresse den \gls{nop} sled trifft.
+\end{enumerate}
 
-\subsection{Malware}
+Der finale Input hat dementsprechend folgendes Format:
+\newline
+\begin{center}
+	\centerline{| NOP | NOP | NOP | SHELLCODE | RET | RET | RET |}
+\end{center}
+
+\subsubsection{Abwehrmechanismen}
+
+\subsubsection{Konkretes Beispiel}
 
 
-\subsection{Ausnutzung von Sicherheitslücken}
+\subsection{Format String exploitation}
 
-\subsection{Netzwerkangriffe}
+\subsubsection{Allgemeine Funktionsweise}
+
+\subsubsection{Abwehrmechanismen}
+
+\subsubsection{Konkretes Beispiel}
+
+
+\subsection{Network Sniffing}
+
+\subsubsection{Allgemeine Funktionsweise}
+
+\subsubsection{Abwehrmechanismen}
+
+\subsubsection{Konkretes Beispiel}
+
+
+\subsection{Man-in-the-Middle}
+
+\subsubsection{Allgemeine Funktionsweise}
+
+\subsubsection{Abwehrmechanismen}
+
+\subsubsection{evtl. Konkretes Beispiel}
+
+
+\subsection{Denial of Service}
+
+\subsubsection{Allgemeine Funktionsweise}
+
+\subsubsection{Abwehrmechanismen}
+
+\subsubsection{evtl. Konkretes Beispiel}
+
+
+\subsection{Erklärung weiterer Begriffe}
+\begin{itemize}
+	\item Phishing
+	\item Passwort-Attacken
+	\item Ransomware
+	\item Viren
+	\item Würmer
+	\item Trojaner
+	\item Malware
+\end{itemize}
 
 
 \section{Analyse bekannter Hackerangriffen}
