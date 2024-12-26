@@ -67,7 +67,10 @@
 	language=C
 }
 
-\lstset{style=CBaselineStyle}
+\lstset{
+	style=CBaselineStyle, 
+	escapeinside={(*@}{@*)}
+}
 
 \setcounter{tocdepth}{3}
 
@@ -181,7 +184,10 @@ Ich bin grundsätzlich an Computern und dem Programmieren interessiert. Meistens
 \subsection{Methodik}
 Es gibt viele verschiedene Methoden, sich mit dem Thema Hacking auseinanderzusetzen. Einsteigern werden oft Videokurse oder Bücher empfohlen, die Themenbereiche, auf die sie einen Fokus setzten, sind aber oft sehr unterschiedlich. Ich habe mich entschieden, meine Arbeit hauptsächlich auf Literatur zu basieren und das Werk ``Hacking - The Art of Exploitation'' von Jon Erickson als Hauptinformationsquelle zu gebrauchen. Unterstützend arbeite ich mit wissenschaftlichen Arbeiten und weiteren, weniger umfangreichen Büchern. Es fällt mir leichter, Informationen anhand von Geschriebenem zu erarbeiten. Ausserdem ist es bei Büchern tendenziell einfacher einzuschätzen, welcher Inhalt erwartet werden kann. Das Buch ``Hacking - The Art of Exploitation'' ist relativ alt (2008), dies passt aber gut zu meiner Zielsetzung, da die Komplexität des Hackings seither exponentiell zugenommen hat und ich eine tiefgründige, verständliche Analyse einer einfachen Hacking-Attacke gegenüber einer oberflächlichen Analyse einer komplexen Attacke bevorzuge. Die Themen weisen aber dennoch einen Bezug zur aktuellen Zeit auf.
 
-\subsection*{Sprach-und Gender-Disclaimer}
+\subsection*{Quellenangabe}
+Der Hauptteil des Wissens in Kapitel \ref{sec:grundlagen-der-informatik} und \ref{sec:methoden-und-techniken} wurde mit Hilfe des Buches ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} erarbeitet. Zur besseren Übersichtlichkeit wurden deshalb die Quellenangaben dieses Buches auf eine am Anfang der Kapitel beschränkt. Explizite Zitate werden immer gekennzeichnet.
+
+\subsection*{Disclaimer}
 \paragraph{Sprache}
 Es finden sich englische Begriffe in dieser Arbeit. Da Computerwissenschaften normalerweise in englischer Sprache praktiziert werden, existieren für einige Begriffe keine passende deutsche Übersetzungen. In diesem Falle wird auf die englische Form zurückgegriffen.
 \paragraph{Gender}
@@ -204,8 +210,8 @@ Die Motivationen und Ethiken, die Hacker verfolgen, fallen sehr unterschiedlich 
 Ein weiterer oft verwendeter Begriff ist ``Script Kiddies''. Dies sind ungeschulte (meist junge) Person ohne tiefgründige Hacking-Kenntnisse, die ``von anderen entwickelten Skripts oder Programme für hauptsächlich böswillige Zwecke verwenden'' \texttt{(Wikipedia, Oktober 2024, übersetzt mit DeepL)}. Nichtsdestotrotz können sie grosse Schäden anrichten. \cite{ScriptkiWikipedia:online}
 
 \newpage
-\section{Grundlagen der Informatik}
-Zum Verständnis des Kapitel \nameref{sec:methoden-und-techniken} sind Grundkenntnisse der Informatik nötig. Diese werden in diesem Kapitel erarbeitet. 
+\section{Grundlagen der Informatik}\label{sec:grundlagen-der-informatik}
+Zum Verständnis des Kapitel \nameref{sec:methoden-und-techniken} sind Grundkenntnisse der Informatik nötig. Diese werden in diesem Kapitel erarbeitet. Wie am Anfang bereits erwähnt diente, sofern keine andere Quelle angegeben wurde, das Buch ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} als Hauptquelle dieses Kapitels.
 \subsection{Hardwaretechnische Grundlagen}
 Ein Computer besteht aus verschiedenen Bestandteilen, die im Zusammenspiel Verarbeitung von Informationen ermöglichen. Folgende Komponenten sind zur Ausführung eines Programms wichtig.
 \subsubsection{CPU}\label{subsubsec:cpu}
@@ -226,7 +232,7 @@ Das \gls{ram} ist ein elektronischer Computerspeicher, dessen Daten sehr schnell
 Computer sind nur imstande, Nullen (0) und Einsen (1) zu speichern, sie arbeiten also nur mit zwei Zuständen. Ein \gls{bit} beschreibt einen einzelnen solchen Zustand. Werden mehrere \glspl{bit} zur Datenspeicherung verwendet, steigt die Anzahl möglicher Kombinationen exponentiell auf \( 2^n \) (bei \(n = Anzahl~\glspl{bit}\)) \glspl{bit}. Zahlen werden folgendermassen gespeichert: Die Stelle in der Binärzahl von hinten (also rechts) beginnend dient als Exponent (startend bei null ) zur Basis 2. Bei einer 1 wird die Zahl zur Gesamtzahl addiert, bei 0 nicht. Die (dezimale) Zahl 21 zum Beispiel entspricht der Binärzahl 10101, da sie sich durch (von rechts nach links) \(1 \times 2^0 + 0 \times 2^1 + 1 \times 2^2 + 0 \times 2^3 + 1 \times 2^4 = 21\) zusammensetzt. Zur Konversion können Online-Rechner wie zum Beispiel \url{https://www.rapidtables.com/convert/number/} verwendet werden.
 
 \paragraph{Big and Little Endian Byte Order}
-Ein Byte umfasst vier Bits. Zur Ordnung von Bytes existieren zwei Strukturen: Big und Little Endian. Big Endian speichert das wichtigste, also signifikanteste Byte zuerst, während Little Endian dieses zuletzt speichert. Das signifikanteste Byte ist dasjenige, das den grössten Einfluss auf die Gesamtzahl hat, daher normalerweise das am weitesten links stehende.
+Ein Byte umfasst acht Bits. Zur Ordnung von Bytes existieren zwei Strukturen: Big und Little Endian. Big Endian speichert das wichtigste, also signifikanteste Byte zuerst, während Little Endian dieses zuletzt speichert. Das signifikanteste Byte ist dasjenige, das den grössten Einfluss auf die Gesamtzahl hat, daher normalerweise das am weitesten links stehende.
 
 \paragraph{Speicheradressen}
 Jedes \gls{bit} im \gls{ram} ist einzeln adressierbar. Heutzutage arbeiten die meisten Computer mit 32bit oder 64bit Systemen. Dies entspricht der Adresslänge der Speicheradressen und limitiert somit die Anzahl adressierbarer \glspl{bit}. Bei 32bit ist die Ansteuerung von \(2^{32} = 4 294 967 296\) \glspl{bit} möglich, bei 64bit \(2^{64} = 18 446 744 073 709 551 616\). In der Praxis wird dies nur selten ausgereizt. Einfachheitshalber erfolgt die Angabe der Speicheradresse normalerweise im hexadezimalen Format (Basis 16). Dazu werden die Zeichen 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E und F verwendet. Ein Hexadezimalzeichen entspricht vier \glspl{bit} (da \(2^4 = 16\)), eine 32bit Adresse setzt sich also aus acht Hexadezimalstellen zusammen. Hexadezimalzahlen werden üblicherweise mit dem Präfix ``0x'' angekündet. Eine 32bit Speicheradresse könnte folgendermassen aussehen: 0xb7ec819b. \cite{BitWiki31:online}
@@ -414,31 +420,59 @@ Das Protokoll spezifiziert, welches Protokoll auf Ebene vier verwendet werden so
 
 \newpage
 \section{Methoden und Techniken}\label{sec:methoden-und-techniken}
-Hacking-Attacken sind sehr unterschiedlich und fokussieren sich auf verschiedene Bereiche eines Computersystems. Einige erfordern physischen Zugriff auf ein System während andere über ein Netzwerk erfolgen. Dieses Kapitel zeigt exemplarisch einige gut verständliche Hacking-Methoden und Techniken auf. Die Kapitel folgen derselben Struktur: Zuerst wird die allgemeine Funktionsweise einer Attacke beschrieben und danach auf die Abwehrmechanismen eingegangen. In einigen Kapiteln findet sich auch ein konkretes Beispiel mit Code. Zuletzt folgt ein Kapitel mit Erklärungen zu bekannten Begriffen, die bis dahin noch nicht vorgekommen sind.
+Hacking-Attacken sind sehr unterschiedlich und fokussieren sich auf verschiedene Bereiche eines Computersystems. Einige erfordern physischen Zugriff auf ein System während andere über ein Netzwerk erfolgen. Dieses Kapitel zeigt exemplarisch einige gut verständliche Hacking-Methoden und Techniken auf. Die Kapitel folgen derselben Struktur: Zuerst wird die allgemeine Funktionsweise einer Attacke beschrieben und danach auf die Abwehrmechanismen eingegangen. In einigen Kapiteln findet sich auch ein konkretes Beispiel mit Code. Zuletzt folgt ein Kapitel mit Erklärungen zu bekannten Begriffen, die bis dahin noch nicht vorgekommen sind. \\Wie am Anfang bereits erwähnt diente, sofern keine andere Quelle angegeben wurde, das Buch ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} als Hauptquelle und Inspiration dieses Kapitels. Einige Beispiele wurden direkt aus dem Buch übernommen. Diese sind so gekennzeichnet.
 
 \subsection{Buffer-overflow}
-Ein Buffer beschreibt einen reservierten Speicherbereich, um Daten temporär zu speichern. Ein Buffer-overflow tritt auf, wenn mehr Daten in diesen Bereich geschrieben werden, als die Kapazität erlaubt. Dies kann dazu führen, dass zur Ausführung des Programms wichtige Daten überschrieben werden und das Programm anders abläuft, als vom Programmierer ursprünglich geplant. Programmiersprachen wie C, bei denen sich \gls{ram} sehr direkt kontrollieren lässt, sind besonders anfällig für Attacken dieser Art. Moderne Programmiersprachen besitzen oft eine automatische Speicherverwaltung, die die direkte Kontrolle des \gls{ram} erschweren oder sogar verunmöglichen.
+Ein Buffer beschreibt einen reservierten Speicherbereich, um Daten temporär zu speichern. Ein Buffer-overflow tritt auf, wenn mehr Daten in diesen Bereich geschrieben werden, als die Kapazität erlaubt. Dies kann dazu führen, dass zur Ausführung des Programms wichtige Daten überschrieben werden und das Programm anders abläuft, als vom Programmierer ursprünglich geplant. Dies ist besonders kritisch, wenn das Programm mit Root-, also Administrationsrechten ausgeführt wird, da der Angreifer dann die Kontrolle über das gesamte System erlangen kann. Programmiersprachen wie C, bei denen sich \gls{ram} sehr direkt kontrollieren lässt, sind besonders anfällig für Attacken dieser Art. Moderne Programmiersprachen besitzen oft eine automatische Speicherverwaltung, die die direkte Kontrolle des \gls{ram} erschweren oder sogar verunmöglichen.
 
 \subsubsection{Allgemeine Funktionsweise}
-Voraussetzung dieser Attacke ist ein Programm, das Daten (zum Beispiel Text) als Input annimmt und diese in das \gls{ram} kopiert, ohne vorher zu überprüfen, ob ausreichend Platz reserviert wurde. Der Angreifer kann den Input nun bewusst zu lange und mit ganz bestimmten Zeichenfolgen wählen. Ziel ist oft die Überschreibung der Rückkehradresse einer Funktion, so dass das Programm dann auf eigens im \gls{ram} platzierten Code (Shellcode) umgelenkt wird. Dies ist besonders kritisch, wenn das Programm mit Root-, also Administrationsrechten ausgeführt wird, da der Angreifer dann die Kontrolle über das gesamte System erlangen kann. \\Zur Ausführung der Attacke muss also ein Input gewählt werden, der eine neue Rückkehradresse und den Shellcode enthält. Die neue Rückkehradresse zeigt auf den Shellcode und lässt diesen bei Funktionsende ausführen. Dabei stösst man jedoch auf zwei Probleme:
+Voraussetzung dieser Attacke ist ein Programm, das Daten (zum Beispiel Text) als Input annimmt und diese in das \gls{ram} kopiert, ohne vorher zu überprüfen, ob ausreichend Platz reserviert wurde. Der Angreifer kann den Input nun bewusst zu lange und mit ganz bestimmten Zeichenfolgen wählen. Ziel ist oft die Überschreibung der Rückkehradresse einer Funktion. Diese liegt unterhalb des Buffers im Stack Frame. Da Daten im Stack in Richtung tiefer Adressen gespeichert werden, wird die Rückkehradresse ab einer bestimmten Inputlänge überschrieben. Bei geschickter Anwendung wird sie mit einer neuen Speicheradresse überschrieben, die auf einen eigens im \gls{ram} platzierten Code zeigt. Dieser oft bösartige Code wird als Shellcode bezeichnet. Er muss in Assembler- oder Maschinensprache angegeben werden. Zur Platzierung des Shellcodes im \gls{ram} können verschiedene Methoden verwendet werden. In diesem Fall wird er als Input eingegeben, die Platzierung in Umgebungsvariablen ist beispielsweise aber auch möglich. \\Zur Ausführung der Attacke ist also ein Input nötig, der eine neue Rückkehradresse und den Shellcode enthält. Die neue Rückkehradresse zeigt auf den Shellcode und lässt diesen bei Funktionsende ausführen. Dabei stösst man auf zwei Probleme:
 \begin{enumerate}
-	\item Meist ist es schwer abzuschätzen, wo genau die neue Rückkehradresse im Input platziert werden muss, damit sie genau die originale Rückkehradresse trifft. Die Speichersegmentierung kann zwischen Programmausführungen variieren und lässt nur schwer eine exakte Vorhersage zu. Dieses Problem lässt sich jedoch einfach durch das wiederholte speichern der Rückkehradresse lösen. Wenn man statt nur eine einen ganzen Bereich mit Rückkehradressen füllt, erhöht sich die Wahrscheinlichkeit, die Rückkehradresse zu treffen, massiv.
-	\item Das zweite Problem bezieht sich auf die Vorhersage der Speicheradresse des Shellcodes. Da eine exakte Rückkehradresse angegeben werden muss, die genau auf den Start des Shellcodes zeigen muss, lässt sich das Problem nicht durch Wiederholung lösen. Stattdessen greift man auf einen \gls{nop} sled zurück.
+	\item Meist ist es schwer vorherzusagen, wo genau die neue Rückkehradresse im Input platziert werden muss, damit sie genau die originale Rückkehradresse trifft. Die Speichersegmentierung kann zwischen Programmausführungen variieren und lässt eine exakte Vorhersage nur schwer zu. Dieses Problem kann einfach durch die wiederholte Angabe der neuen Rückkehradresse gelöst werden. Wenn man statt nur eine anzugeben einen ganzen Bereich mit Rückkehradressen füllt, erhöht sich die Wahrscheinlichkeit, die originale Rückkehradresse zu treffen, massiv.
+	\item Das zweite Problem bezieht sich auf die Vorhersage der Speicheradresse des Shellcodes. Da eine exakte, genau auf den Start des Shellcodes zeigende Rückkehradresse angegeben werden muss, kann das Problem nicht durch wiederholte Angabe gelöst werden. Stattdessen greift man auf einen \gls{nop} sled zurück.
 	\paragraph{NOP sled}
 	Ein \gls{nop} sled beschreibt eine Reihe von \gls{nop}-Instruktionen. Diese Instruktionen tun nichts, ausser zur nächsten Instruktion zu springen, bis schliesslich der finale Code (in diesem Fall Shellcode) erreicht wird.
 	
 	Die Platzierung eines langen \gls{nop} sled vor dem Shellcode macht eine genaue Vorhersage der Speicheradresse des Shellcodes überflüssig. Es reicht, wenn die Rückkehradresse den \gls{nop} sled trifft.
 \end{enumerate}
 
-Der finale Input hat dementsprechend folgendes Format:
+Der finale Input hat dementsprechend folgendes Format (RET für Rückkehradresse):
 \newline
 \begin{center}
 	\centerline{| NOP | NOP | NOP | SHELLCODE | RET | RET | RET |}
 \end{center}
+Die Eingabe dieses Input führt zur Ausführung des Shellcodes.
 
 \subsubsection{Abwehrmechanismen}
+Diese Art von Attacke ist bei modernen Computersystemen wegen verschiedener Sicherheitsmechanismen relativ schwierig durchzuführen.
+
+\begin{itemize}
+	\item \textbf{Bound-Checking}: Die simpelste Abwehrmethode ist das Bound-Checking. Sie verhindert das Schreiben von Daten bei Überschreitung der Kapazität eines Buffers.
+	\item \textbf{Stack Canaries}: Bei modernen Computersystemen werden Prüfdaten bewusst an bestimmte Stellen in den Stack gesetzt, die nicht zur Veränderung gedacht sind. Bei Veränderung dieser Daten wird das System alarmiert.~\cite{StackCan84:online}
+	\item \textbf{\gls{aslr}}: \gls{aslr} ordnet ausführbarem Code zufällige Adressen zu. Dies erschwert auch die ungefähre Vorhersage von Datenplatzierung im \gls{ram}.~\cite{Whatisad68:online}
+	\item \textbf{Non-Executable Memory}: Gewisse Speicherbereiche im \gls{ram} werden als nicht ausführbar markiert. Sie sind für Daten reserviert. Wird der Shellcode in einem dieser Bereiche platziert, ist er unnütz.
+\end{itemize}
+
 
 \subsubsection{Konkretes Beispiel}
+Dieses Beispiel inklusive Code wurde direkt aus dem Buch ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} übernommen. Es kann selbst nachgestellt werden. Zur Handhabung der Beispiele und Links zum Code siehe Kapitel \nameref{subsec:beispiele}.
+
+Voraussetzung für die Durchführung dieses Beispiels ist ein 32bit Linux System, bei welchem die oben angegebenen Abwehrmechanismen entweder nicht vorhanden oder deaktiviert sind. Für das Beispiel werden folgende Programme verwendet:
+
+\begin{itemize}
+	\item \textbf{notetaker.c}: Ein Notizprogramm, das Notizen in einer Datei (var/notes) speichert. Da das Programm von mehreren Benutzern benutzt werden können soll, gehört es root.
+	\item \textbf{notesearch.c}: Ein Programm, das die Notizen einer bestimmten Person wiedergibt und einen Suchinput zulässt. Es gehört ebenfalls root. Das Programm hat eine Sicherheitslücke (unten in Linie 5). Es kopiert den Suchstring, der als erstes Befehlszeilenargument eingegeben werden kann, ohne Überprüfung der Länge in den auf 100 Bytes limitierten Buffer.
+	\begin{lstlisting}
+		int main(int argc, char *argv[]) {
+			int userid, printing=1, fd; // file descriptor
+			char searchstring[100];
+			if(argc > 1)                        // If there is an arg
+			(*@\textbf{strcpy(searchstring, argv[1]);}@*)   //   that is the search string
+			else                                // otherwise
+			searchstring[0] = 0;             //   search string is empty
+		\end{lstlisting}
+	\item \textbf{exploit\_notesearch.c}: Dieses Programm wird zur Erstellung des präparierten Suchstrings verwendet. Es wird im folgenden genauer erläutert. Das Programm ist im Anhang abgedruckt.
+\end{itemize}
 
 
 \subsection{Format String exploitation}
@@ -521,10 +555,7 @@ was hätte man noch machen können?
 \pagebreak
 
 \section{Appendix}
-\subsection{Code}
-\subsubsection{exploit\_notesearch.c}
-\label{exploit_notesearch.c}
-\lstinputlisting{code_files/buffer-overflow/exploit-notesearch.c}
+\subsection{Beispiele aus ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking}}\label{subsec:beispiele}
 
 
 
