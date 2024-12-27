@@ -67,6 +67,21 @@
 	language=C
 }
 
+\definecolor{lightgray}{rgb}{0.95, 0.95, 0.95}
+
+\lstdefinestyle{COutputStyle}
+{
+	language=C,
+	backgroundcolor=\color{lightgray},
+	frame=single,
+	rulecolor=\color{lightgray},
+	numbers=none,
+	xleftmargin=1.5em,
+	xrightmargin=0em,
+	belowskip=0pt
+}
+
+
 \lstset{
 	style=CBaselineStyle, 
 	escapeinside={(*@}{@*)}
@@ -420,16 +435,16 @@ Das Protokoll spezifiziert, welches Protokoll auf Ebene vier verwendet werden so
 
 \newpage
 \section{Methoden und Techniken}\label{sec:methoden-und-techniken}
-Hacking-Attacken sind sehr unterschiedlich und fokussieren sich auf verschiedene Bereiche eines Computersystems. Einige erfordern physischen Zugriff auf ein System während andere über ein Netzwerk erfolgen. Dieses Kapitel zeigt exemplarisch einige gut verständliche Hacking-Methoden und Techniken auf. Die Kapitel folgen derselben Struktur: Zuerst wird die allgemeine Funktionsweise einer Attacke beschrieben und danach auf die Abwehrmechanismen eingegangen. In einigen Kapiteln findet sich auch ein konkretes Beispiel mit Code. Zuletzt folgt ein Kapitel mit Erklärungen zu bekannten Begriffen, die bis dahin noch nicht vorgekommen sind. \\Wie am Anfang bereits erwähnt diente, sofern keine andere Quelle angegeben wurde, das Buch ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} als Hauptquelle und Inspiration dieses Kapitels. Einige Beispiele wurden direkt aus dem Buch übernommen. Diese sind so gekennzeichnet.
+Hacking-Attacken sind sehr unterschiedlich und fokussieren sich auf verschiedene Bereiche eines Computersystems. Einige erfordern physischen Zugriff auf ein System während andere über ein Netzwerk erfolgen. Dieses Kapitel zeigt exemplarisch einige gut verständliche Hacking-Methoden und Techniken auf. Die Kapitel folgen jeweils derselben Struktur: Zuerst wird die allgemeine Funktionsweise einer Attacke beschrieben und danach auf die Abwehrmechanismen eingegangen. In einigen Kapiteln findet sich auch ein konkretes Beispiel mit Code. Zuletzt folgt ein Kapitel mit Erklärungen zu bekannten Begriffen, die bis dahin noch nicht erklärt wurden. \\Wie am Anfang bereits erwähnt, diente, sofern keine andere Quelle angegeben wurde, das Buch ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} als Hauptquelle und Inspiration dieses Kapitels. Einige Beispiele wurden direkt aus dem Buch übernommen. Diese sind so gekennzeichnet.
 
-\subsection{Buffer-overflow}
+\subsection{Buffer-overflow}\label{subsec:buffer-overflow}
 Ein Buffer beschreibt einen reservierten Speicherbereich, um Daten temporär zu speichern. Ein Buffer-overflow tritt auf, wenn mehr Daten in diesen Bereich geschrieben werden, als die Kapazität erlaubt. Dies kann dazu führen, dass zur Ausführung des Programms wichtige Daten überschrieben werden und das Programm anders abläuft, als vom Programmierer ursprünglich geplant. Dies ist besonders kritisch, wenn das Programm mit Root-, also Administrationsrechten ausgeführt wird, da der Angreifer dann die Kontrolle über das gesamte System erlangen kann. Programmiersprachen wie C, bei denen sich \gls{ram} sehr direkt kontrollieren lässt, sind besonders anfällig für Attacken dieser Art. Moderne Programmiersprachen besitzen oft eine automatische Speicherverwaltung, die die direkte Kontrolle des \gls{ram} erschweren oder sogar verunmöglichen.
 
 \subsubsection{Allgemeine Funktionsweise}
-Voraussetzung dieser Attacke ist ein Programm, das Daten (zum Beispiel Text) als Input annimmt und diese in das \gls{ram} kopiert, ohne vorher zu überprüfen, ob ausreichend Platz reserviert wurde. Der Angreifer kann den Input nun bewusst zu lange und mit ganz bestimmten Zeichenfolgen wählen. Ziel ist oft die Überschreibung der Rückkehradresse einer Funktion. Diese liegt unterhalb des Buffers im Stack Frame. Da Daten im Stack in Richtung tiefer Adressen gespeichert werden, wird die Rückkehradresse ab einer bestimmten Inputlänge überschrieben. Bei geschickter Anwendung wird sie mit einer neuen Speicheradresse überschrieben, die auf einen eigens im \gls{ram} platzierten Code zeigt. Dieser oft bösartige Code wird als Shellcode bezeichnet. Er muss in Assembler- oder Maschinensprache angegeben werden. Zur Platzierung des Shellcodes im \gls{ram} können verschiedene Methoden verwendet werden. In diesem Fall wird er als Input eingegeben, die Platzierung in Umgebungsvariablen ist beispielsweise aber auch möglich. \\Zur Ausführung der Attacke ist also ein Input nötig, der eine neue Rückkehradresse und den Shellcode enthält. Die neue Rückkehradresse zeigt auf den Shellcode und lässt diesen bei Funktionsende ausführen. Dabei stösst man auf zwei Probleme:
+Voraussetzung dieser Attacke ist ein Programm, das Daten (zum Beispiel Text) als Input annimmt und diese in das \gls{ram} kopiert, ohne vorher zu überprüfen, ob ausreichend Platz reserviert wurde. Der Angreifer kann den Input dann bewusst zu lange wählen, so dass er die Kapazität des buffers überschreitet. Ziel ist oft die Überschreibung der Rückkehradresse einer Funktion. Diese liegt unterhalb des Buffers im Stack Frame. Da Daten im Stack in Richtung tiefer Adressen gespeichert werden, wird die Rückkehradresse ab einer bestimmten Inputlänge überschrieben. Bei geschickter Zeichenfolge wird sie durch eine neue Speicheradresse ersetzt, die auf einen eigens im \gls{ram} platzierten Code zeigt. Dieser oft bösartige Code wird als Shellcode bezeichnet. Er muss in Assembler- oder Maschinensprache angegeben werden. Zur Platzierung des Shellcodes im \gls{ram} können verschiedene Methoden verwendet werden. In diesem Fall wird er als Input eingegeben, die Platzierung in Umgebungsvariablen ist beispielsweise aber auch möglich, erfordert aber deren Zugriff. \\Der zur Ausführung dieser Attacke nötige Input enthält also eine neue Rückkehradresse und den Shellcode. Die Rückkehradresse zeigt dabei zur Speicheradresse des Shellcodes und lässt diesen bei Funktionsende ausführen. Zwei Probleme treten auf:
 \begin{enumerate}
-	\item Meist ist es schwer vorherzusagen, wo genau die neue Rückkehradresse im Input platziert werden muss, damit sie genau die originale Rückkehradresse trifft. Die Speichersegmentierung kann zwischen Programmausführungen variieren und lässt eine exakte Vorhersage nur schwer zu. Dieses Problem kann einfach durch die wiederholte Angabe der neuen Rückkehradresse gelöst werden. Wenn man statt nur eine anzugeben einen ganzen Bereich mit Rückkehradressen füllt, erhöht sich die Wahrscheinlichkeit, die originale Rückkehradresse zu treffen, massiv.
-	\item Das zweite Problem bezieht sich auf die Vorhersage der Speicheradresse des Shellcodes. Da eine exakte, genau auf den Start des Shellcodes zeigende Rückkehradresse angegeben werden muss, kann das Problem nicht durch wiederholte Angabe gelöst werden. Stattdessen greift man auf einen \gls{nop} sled zurück.
+	\item Meist ist es schwer vorherzusagen, wo genau die neue Rückkehradresse im Input platziert werden muss, damit sie die originale Rückkehradresse trifft. Die Speichersegmentierung kann zwischen Programmausführungen variieren und lässt eine exakte Vorhersage nur schwer zu. Dieses Problem kann einfach durch die wiederholte Angabe der neuen Rückkehradresse gelöst werden. Wenn man statt nur eine anzugeben einen ganzen Bereich mit Rückkehradressen füllt, erhöht sich die Wahrscheinlichkeit, die originale Rückkehradresse zu treffen, massiv.
+	\item Das zweite Problem bezieht sich auf die Vorhersage der Speicheradresse des Shellcodes. Da eine exakte, genau auf den Start des Shellcodes zeigende Rückkehradresse angegeben werden muss, kann das Problem nicht durch wiederholte Angabe gelöst werden. Hier greift man auf einen \gls{nop} sled zurück.
 	\paragraph{NOP sled}
 	Ein \gls{nop} sled beschreibt eine Reihe von \gls{nop}-Instruktionen. Diese Instruktionen tun nichts, ausser zur nächsten Instruktion zu springen, bis schliesslich der finale Code (in diesem Fall Shellcode) erreicht wird.
 	
@@ -441,49 +456,116 @@ Der finale Input hat dementsprechend folgendes Format (RET für Rückkehradresse
 \begin{center}
 	\centerline{| NOP | NOP | NOP | SHELLCODE | RET | RET | RET |}
 \end{center}
-Die Eingabe dieses Input führt zur Ausführung des Shellcodes.
+Er führt zur Ausführung des Shellcodes.
 
-\subsubsection{Abwehrmechanismen}
-Diese Art von Attacke ist bei modernen Computersystemen wegen verschiedener Sicherheitsmechanismen relativ schwierig durchzuführen.
+\subsubsection{Abwehrmechanismen}\label{subsubsec:abwehrbuffer-overflow}
+Bei modernen Computersystem ist diese Attacke wegen verschiedener Sicherheitsmechanismen relativ schwierig durchzuführen.
 
 \begin{itemize}
 	\item \textbf{Bound-Checking}: Die simpelste Abwehrmethode ist das Bound-Checking. Sie verhindert das Schreiben von Daten bei Überschreitung der Kapazität eines Buffers.
-	\item \textbf{Stack Canaries}: Bei modernen Computersystemen werden Prüfdaten bewusst an bestimmte Stellen in den Stack gesetzt, die nicht zur Veränderung gedacht sind. Bei Veränderung dieser Daten wird das System alarmiert.~\cite{StackCan84:online}
+	\item \textbf{Stack Canaries}: Stack Canaries beschreiben eine Methode, bei der bewusst Prüfdaten im \gls{ram} platziert werden, die nicht zur Veränderung gedacht sind. Eine Veränderung dieser Daten hat eine Alarmierung des Systems zur Folge.~\cite{StackCan84:online}
 	\item \textbf{\gls{aslr}}: \gls{aslr} ordnet ausführbarem Code zufällige Adressen zu. Dies erschwert auch die ungefähre Vorhersage von Datenplatzierung im \gls{ram}.~\cite{Whatisad68:online}
-	\item \textbf{Non-Executable Memory}: Gewisse Speicherbereiche im \gls{ram} werden als nicht ausführbar markiert. Sie sind für Daten reserviert. Wird der Shellcode in einem dieser Bereiche platziert, ist er unnütz.
+	\item \textbf{Non-Executable Memory}: Gewisse Speicherbereiche im \gls{ram} werden als nicht ausführbar markiert. Wird der Shellcode in einem dieser Bereiche platziert, ist er nutzlos.
 \end{itemize}
 
 
-\subsubsection{Konkretes Beispiel}
-Dieses Beispiel inklusive Code wurde direkt aus dem Buch ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} übernommen. Es kann selbst nachgestellt werden. Zur Handhabung der Beispiele und Links zum Code siehe Kapitel \nameref{subsec:beispiele}.
+\subsubsection{Konkretes Beispiel}\label{subsubsec:bspbuffer-overflow}
+Dieses Beispiel inklusive Code wurde direkt aus dem Buch ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} übernommen. Es kann selbst nachgestellt werden. Zur Handhabung der Beispiele und Links zum Code siehe Kapitel \nameref{subsec:beispiele}. Zum besseren Verständnis wurde als zusätzlich zum Buch ein Stack Overflow-Eintrag verwendet.~\cite{stacko:online}
 
-Voraussetzung für die Durchführung dieses Beispiels ist ein 32bit Linux System, bei welchem die oben angegebenen Abwehrmechanismen entweder nicht vorhanden oder deaktiviert sind. Für das Beispiel werden folgende Programme verwendet:
+Voraussetzung für die Durchführung dieses Beispiels ist ein 32bit Linux System, bei welchem die oben angegebenen Abwehrmechanismen nicht vorhanden oder deaktiviert sind. Für das Beispiel werden folgende Programme verwendet:
 
 \begin{itemize}
 	\item \textbf{notetaker.c}: Ein Notizprogramm, das Notizen in einer Datei (var/notes) speichert. Da das Programm von mehreren Benutzern benutzt werden können soll, gehört es root.
-	\item \textbf{notesearch.c}: Ein Programm, das die Notizen einer bestimmten Person wiedergibt und einen Suchinput zulässt. Es gehört ebenfalls root. Das Programm hat eine Sicherheitslücke (unten in Linie 5). Es kopiert den Suchstring, der als erstes Befehlszeilenargument eingegeben werden kann, ohne Überprüfung der Länge in den auf 100 Bytes limitierten Buffer.
+	\item \textbf{notesearch.c}: Ein Programm, das die Notizen einer bestimmten Person wiedergibt und einen Suchinput zulässt. Es gehört ebenfalls root. Das Programm hat eine Sicherheitslücke (im Programmausschnitt unten in Linie 5). Es kopiert den Suchstring, der als erstes Befehlszeilenargument eingegeben werden kann, ohne Überprüfung der Länge in den auf 100 Bytes limitierten Buffer. Dies geschieht durch die Funktion \texttt{strcpy()}.
 	\begin{lstlisting}
 		int main(int argc, char *argv[]) {
-			int userid, printing=1, fd; // file descriptor
+			int userid, printing=1, fd;
 			char searchstring[100];
-			if(argc > 1)                        // If there is an arg
-			(*@\textbf{strcpy(searchstring, argv[1]);}@*)   //   that is the search string
-			else                                // otherwise
-			searchstring[0] = 0;             //   search string is empty
+			if(argc > 1)
+				(*@\textbf{strcpy(searchstring, argv[1]);}@*)
+			else
+				searchstring[0] = 0;
 		\end{lstlisting}
-	\item \textbf{exploit\_notesearch.c}: Dieses Programm wird zur Erstellung des präparierten Suchstrings verwendet. Es wird im folgenden genauer erläutert. Das Programm ist im Anhang abgedruckt.
+	\item \textbf{exploit\_notesearch.c}: Dieses Programm wird zur Erstellung des präparierten Suchstrings verwendet. Die Funktionsweise wird im Folgenden genauer erläutert. Das Programm ist im Anhang abgedruckt.
 \end{itemize}
 
+\paragraph{Erstellung des Suchstrings}
+Zur ungefähren Abschätzung der Speicheradresse der Speicheradresse des Suchstring-Buffers wird eine Variable des \textbf{exploit\_notesearch.c}-Programmes zur Hilfe genommen, dessen Adresse sich während der Ausführung abfragen lässt. Es kann davon ausgegangen werden, dass \textbf{notesearch.c}-Programm ähnliche Speicheradressen verwendet, da der Prozess ungefähr an derselben Stelle gestartet wird. Experimentieren ist aber nötig, weshalb ein \texttt{offset}-Wert definiert wird, der eine Verschiebung der Speicheradressen ermöglicht. Anhand dieser Daten wird ein Suchstring nach obigem Format erstellt. Der Shellcode öffnet in diesem Fall eine Root-Kommandozeile.
 
-\subsection{Format String exploitation}
+\paragraph{Ausführung von notesearch.c}
+Das Programm wird mit dem präparierten Suchstring gestartet. Dabei wird ein Skript verwendetet, welches systematisch verschiedene \texttt{offset}-Werte ausprobiert. Falsche \texttt{offset}-Werte bringen das \textbf{notesearch.c}-Programm in den meisten Fällen zum Absturz. Sobald der richtige \texttt{offset}-Wert gefunden wurde, wird die Attacke erfolgreich durchgeführt und eine Kommandozeile geöffnet. Durch das Kommando \texttt{whoami} lässt sich überprüfen, dass die Kommandozeile Root-Berechtigungen besitzt. 
+
+
+\subsection{Format String Exploitation}
+In den meisten Programmiersprachen gibt es Möglichkeiten, Text in die Kommandozeile zu drucken. Um variablen Input zu drucken, werden in C Format Specifiers gebraucht. Format Specifiers geben an, welcher Datentyp erwartet werden soll. Der Format Specifier \texttt{\%d} für Ganzzahlen kann auf diese Weise eingesetzt werden: 
+\begin{lstlisting}
+	int main() {
+		int zahl = 42;
+		printf("Ganzzahl: %d", zahl);  
+	}
+\end{lstlisting}
+Die Ausgabe des Programms lautet:
+\begin{lstlisting}[style=COutputStyle]
+	Ganzzahl: 42
+\end{lstlisting}
+
+Eine fehlerhafte Implementierung von Format Specifiers kann ausgenutzt werden, um unerwünschte Speicherzugriffe oder -manipulationen durchzuführen. 
 
 \subsubsection{Allgemeine Funktionsweise}
+Voraussetzung dieser Attacke ist ein Programm, welches eine Angabefunktion wie \texttt{prinf()} verwendet, um vom Benutzer gegebenen Input zu drucken. Dabei wird der Input aber nicht explizit als String, sondern direkt gedruckt. Der Programmteil unten zeigt den Unterschied.
+\begin{lstlisting}
+	printf("%s", text); // korrekte Art
+	printf(text);  // falsche Art
+\end{lstlisting}
+
+Die falsche Implementation erlaubt dem Angreifer die Benutzung von eigenen Format Specifiers. Zum Verständnis der Attacke muss die Speichersegmentierung bei einem \texttt{printf()}-Funktionsaufruf bekannt sein. 
+
+\paragraph{Speichersegmentierung bei printf()}
+Bei Funktionsaufruf einer \texttt{printf()}-Funktion wird eine Rückkehradresse zur Ursprungsfunktion, die Speicheradresse des zu druckenden Textes und die Argumente der \texttt{printf()}-Funktion in dieser Reihenfolge auf den Stack gelegt. Die Argumente stehen jeweils direkt hintereinander. Je nach Datentyp der variablen Argumente werden die Werte direkt, also nicht als Referenzierung durch Speicheradressen, auf den Stack gelegt. Beim Format Specifier \texttt{\%x}, der Hexadezimale Zahlen in den Text einbettet, ist dies der Fall. 
+
+
+Die Benutzung eigener Format Specifier kann auf zwei Arten ausgenutzt werden:
+\begin{enumerate}
+	\item \textbf{Speicherlesen}: Format Specifier wie \texttt{\%x} erwarten Argumente. Werden keine Argumente angegeben, lesen sie die Daten an der Stelle aus, an der die Argumente erwarten werden. Durch Wiederholung von \texttt{\%x} lassen sich also ab der Stelle, bei der die \texttt{printf()}-Argumente im \gls{ram} erwartet werden, Daten in die Kommandozeile drucken. Dies erlaubt möglicherweise das vom Programmierer unerwünschte Auslesen von Daten.
+	\item \textbf{Speichermanipulation}: Bedeutend schlimmer ist die unerwünschte Veränderung von Daten im \gls{ram}. Dazu kann der Format Specifier \texttt{\%n} genutzt werden. Er schreibt die bisherige Anzahl gedruckter Zeichen an eine, als Argument angegebene Speicheradresse. Das Beispiel zeigt die Funktionalität von \textit{\%n}:
+	\begin{lstlisting}
+		int main() {
+			int count;
+			printf("Hallo, Welt!%n", &count);
+			printf("\nAnzahl der ausgegebenen Zeichen: %d", count); 
+		}
+	\end{lstlisting}
+	Die Ausgabe des Programms lautet:
+	\begin{lstlisting}[style=COutputStyle]
+		Hallo, Welt!
+		Anzahl der ausgegebenen Zeichen: 12
+	\end{lstlisting}
+	
+	Der Referenzoperator \texttt{\&} referenziert eine Variable, gibt also ihre Speicheradresse zurück.\\ Diese Attacke wird speziell kritisch, wenn der gedruckte Text weiter unten im Stack gespeichert wird und sich selbst verwenden kann. Dadurch können gezielt Speicheradressen manipuliert und durch geschickte Wahl des Input mit eigenen Daten gefüllt werden. Das Beisiel in Kapitel \ref{subsubsec:bspprintf} demonstriert das Schreiben einer eigenen Speicheradresse an einen bestimmten Punkt im \gls{ram}. Mithilfe eines Shellcodes kann dies dieselben Konsequenzen wie eine \ref{subsec:buffer-overflow}-Attacke von sich tragen.
+\end{enumerate}
 
 \subsubsection{Abwehrmechanismen}
+Erneut ist die Attacke bei modernen Computersystemen wegen verschiedenen Abwehrsystemen nur schwer durchzuführen.
 
-\subsubsection{Konkretes Beispiel}
+\begin{itemize}
+	\item \textbf{Drucken als String}: Wird der Input mit dem Format Specifier \textit{\%s} als String gedruckt, werden in ihm enthaltene Format Specifier ignoriert. 
+	\item \textbf{Stack Canaries, \gls{aslr} und Non-Executable Memory}: Die Sicherheitsmechanismen, die bereits in Kapitel \ref{subsubsec:abwehrbuffer-overflow} beschrieben wurden, schützen auch in diesem Fall vor ungewollten Änderungen im \gls{ram} oder der Ausführung des Shellcodes.
+\end{itemize} 
 
+\subsubsection{Konkretes Beispiel}\label{subsubsec:bspprintf}
+Dieses Beispiel inklusive Code wurde direkt aus dem Buch ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} übernommen. Es kann selbst nachgestellt werden. Zur Handhabung der Beispiele und Links zum Code siehe Kapitel \nameref{subsec:beispiele}.
 
+Voraussetzung für die Durchführung dieses Beispiels ist ein 32bit Linux System, bei welchem die oben angegebenen Abwehrmechanismen nicht vorhanden oder deaktiviert sind. Für das Beispiel wird das Programm \textbf{fmt\_vuln.c} verwendet. 
+
+\paragraph{fmt\_vuln.c}
+Das Programm \textbf{fmt\_vuln.c} druckt einen vom Benutzer als Kommandozeilenargument gegebenen Input in die Kommandozeile. Die Sicherheitslücke besteht darin, dass das Programm den Text nicht explizit als String druckt, sondern direkt. Die zwei wichtigen Zeilen sind unten abgedruckt.
+
+\begin{lstlisting}
+	strcpy(text, argv[1]);
+	prinft(text);
+\end{lstlisting} 
+
+Zu Demonstrationszwecken wird nur der Wert einer Variable \texttt{test\_val} verändert. Analog zu Kapitel \ref{subsubsec:bspbuffer-overflow} kann die in diesem Kapitel beschriebene Technik aber zur Überschreibung einer Rückkehradresse und Ausführung von Shellcode verwendet werden. Eine gekürzte Version des Programm \textbf{fmt\_vuln.c} ist im Anhang abgedruckt. 
 \subsection{Network Sniffing}
 
 \subsubsection{Allgemeine Funktionsweise}
@@ -499,16 +581,12 @@ Voraussetzung für die Durchführung dieses Beispiels ist ein 32bit Linux System
 
 \subsubsection{Abwehrmechanismen}
 
-\subsubsection{evtl. Konkretes Beispiel}
-
 
 \subsection{Denial of Service}
 
 \subsubsection{Allgemeine Funktionsweise}
 
 \subsubsection{Abwehrmechanismen}
-
-\subsubsection{evtl. Konkretes Beispiel}
 
 
 \subsection{Erklärung weiterer Begriffe}
