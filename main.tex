@@ -470,7 +470,7 @@ Bei modernen Computersystem ist diese Attacke wegen verschiedener Sicherheitsmec
 
 
 \subsubsection{Konkretes Beispiel}\label{subsubsec:bspbuffer-overflow}
-Dieses Beispiel inklusive Code wurde direkt aus dem Buch ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} übernommen. Es kann selbst nachgestellt werden. Zur Handhabung der Beispiele und Links zum Code siehe Kapitel \nameref{subsec:beispiele}. Zum besseren Verständnis wurde als zusätzlich zum Buch ein Stack Overflow-Eintrag verwendet.~\cite{stacko:online}
+\textit{Dieses Beispiel inklusive Code wurde direkt aus dem Buch ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} übernommen. Es kann selbst nachgestellt werden. Zur Handhabung der Beispiele und Links zum Code siehe Kapitel \nameref{subsec:beispiele}. Zum besseren Verständnis wurde als zusätzlich zum Buch ein Stack Overflow-Eintrag verwendet.~\cite{stacko:online}}
 
 Voraussetzung für die Durchführung dieses Beispiels ist ein 32bit Linux System, bei welchem die oben angegebenen Abwehrmechanismen nicht vorhanden oder deaktiviert sind. Für das Beispiel werden folgende Programme verwendet:
 
@@ -497,7 +497,7 @@ Das Programm wird mit dem präparierten Suchstring gestartet. Dabei wird ein Skr
 
 
 \subsection{Format String Exploitation}
-In den meisten Programmiersprachen gibt es Möglichkeiten, Text in die Kommandozeile zu drucken. Um variablen Input zu drucken, werden in C Format Specifiers gebraucht. Format Specifiers geben an, welcher Datentyp erwartet werden soll. Der Format Specifier \texttt{\%d} für Ganzzahlen kann auf diese Weise eingesetzt werden: 
+In den meisten Programmiersprachen gibt es Möglichkeiten, Text in die Kommandozeile zu drucken. Für variablen Input werden in C Format Specifiers gebraucht. Format Specifiers geben an, welcher Datentyp erwartet werden soll. Beispielsweise kann der Format Specifier \texttt{\%d} für Ganzzahlen auf diese Weise eingesetzt werden: 
 \begin{lstlisting}
 	int main() {
 		int zahl = 42;
@@ -512,22 +512,21 @@ Die Ausgabe des Programms lautet:
 Eine fehlerhafte Implementierung von Format Specifiers kann ausgenutzt werden, um unerwünschte Speicherzugriffe oder -manipulationen durchzuführen. 
 
 \subsubsection{Allgemeine Funktionsweise}
-Voraussetzung dieser Attacke ist ein Programm, welches eine Angabefunktion wie \texttt{prinf()} verwendet, um vom Benutzer gegebenen Input zu drucken. Dabei wird der Input aber nicht explizit als String, sondern direkt gedruckt. Der Programmteil unten zeigt den Unterschied.
+Voraussetzung dieser Attacke ist ein Programm, welches eine Angabefunktion wie \texttt{prinf()} verwendet, um vom Benutzer gegebenen Input zu drucken. Dabei wird der Input aber nicht explizit als String, sondern direkt gedruckt (siehe Code unten).
 \begin{lstlisting}
 	printf("%s", text); // korrekte Art
 	printf(text);  // falsche Art
 \end{lstlisting}
 
-Die falsche Implementation erlaubt dem Angreifer die Benutzung von eigenen Format Specifiers. Zum Verständnis der Attacke muss die Speichersegmentierung bei einem \texttt{printf()}-Funktionsaufruf bekannt sein. 
+Die falsche Implementierung erlaubt dem Angreifer die Benutzung von eigenen Format Specifiers. Zum Verständnis der Attacke muss die Speichersegmentierung bei einem \texttt{printf()}-Funktionsaufruf bekannt sein. 
 
 \paragraph{Speichersegmentierung bei printf()}
-Bei Funktionsaufruf einer \texttt{printf()}-Funktion wird eine Rückkehradresse zur Ursprungsfunktion, die Speicheradresse des zu druckenden Textes und die Argumente der \texttt{printf()}-Funktion in dieser Reihenfolge auf den Stack gelegt. Die Argumente stehen jeweils direkt hintereinander. Je nach Datentyp der variablen Argumente werden die Werte direkt, also nicht als Referenzierung durch Speicheradressen, auf den Stack gelegt. Beim Format Specifier \texttt{\%x}, der Hexadezimale Zahlen in den Text einbettet, ist dies der Fall. 
+Bei Funktionsaufruf einer \texttt{printf()}-Funktion wird eine Rückkehradresse zur Ursprungsfunktion, die Speicheradresse im Text Segment des zu druckenden Textes und die Argumente der \texttt{printf()}-Funktion in dieser Reihenfolge auf den Stack gelegt. Die Argumente stehen jeweils direkt hintereinander. Je nach Datentyp werden die Werte direkt, also nicht als Referenzierung durch Speicheradressen, auf den Stack gelegt. Beim Format Specifier \texttt{\%x}, der aus vier Bytes bestehende hexadezimale Zahlen in den Text einbettet, ist dies der Fall. 
 
-
-Die Benutzung eigener Format Specifier kann auf zwei Arten ausgenutzt werden:
+Die Falsche Implementierung der \texttt{printf()}-Funktion kann auf zwei Arten ausgenutzt werden:
 \begin{enumerate}
-	\item \textbf{Speicherlesen}: Format Specifier wie \texttt{\%x} erwarten Argumente. Werden keine Argumente angegeben, lesen sie die Daten an der Stelle aus, an der die Argumente erwarten werden. Durch Wiederholung von \texttt{\%x} lassen sich also ab der Stelle, bei der die \texttt{printf()}-Argumente im \gls{ram} erwartet werden, Daten in die Kommandozeile drucken. Dies erlaubt möglicherweise das vom Programmierer unerwünschte Auslesen von Daten.
-	\item \textbf{Speichermanipulation}: Bedeutend schlimmer ist die unerwünschte Veränderung von Daten im \gls{ram}. Dazu kann der Format Specifier \texttt{\%n} genutzt werden. Er schreibt die bisherige Anzahl gedruckter Zeichen an eine, als Argument angegebene Speicheradresse. Das Beispiel zeigt die Funktionalität von \textit{\%n}:
+	\item \textbf{Speicherlesen}: Format Specifier wie beispielsweise \texttt{\%x} erwarten Argumente. Werden keine Argumente angegeben, lesen sie die Daten an der Stelle aus, an der die Argumente erwarten werden. Durch Wiederholung von \texttt{\%x} lassen sich so ab der Stelle, bei der die \texttt{printf()}-Funktion Argumente im \gls{ram} erwartet, Daten in die Kommandozeile drucken. Dies erlaubt das vom Programmierer möglicherweise unerwünschte Auslesen von Daten.
+	\item \textbf{Speichermanipulation}: Bedeutend schlimmer ist die unerwünschte Veränderung von Daten im \gls{ram}. Dazu kann der Format Specifier \texttt{\%n} genutzt werden. Er schreibt die bisherige Anzahl gedruckter Zeichen als Binärzahl an eine als Argument angegebene Speicheradresse. Das Beispiel unten zeigt die Funktionalität von \textit{\%n}. Der Referenzoperator \texttt{\&} wird benötigt, um die Variable \texttt{count} zu referenzieren. Dies ist erforderlich, da \texttt{\%n} eine Speicheradresse erwartet.
 	\begin{lstlisting}
 		int main() {
 			int count;
@@ -540,8 +539,7 @@ Die Benutzung eigener Format Specifier kann auf zwei Arten ausgenutzt werden:
 		Hallo, Welt!
 		Anzahl der ausgegebenen Zeichen: 12
 	\end{lstlisting}
-	
-	Der Referenzoperator \texttt{\&} referenziert eine Variable, gibt also ihre Speicheradresse zurück.\\ Diese Attacke wird speziell kritisch, wenn der gedruckte Text weiter unten im Stack gespeichert wird und sich selbst verwenden kann. Dadurch können gezielt Speicheradressen manipuliert und durch geschickte Wahl des Input mit eigenen Daten gefüllt werden. Das Beisiel in Kapitel \ref{subsubsec:bspprintf} demonstriert das Schreiben einer eigenen Speicheradresse an einen bestimmten Punkt im \gls{ram}. Mithilfe eines Shellcodes kann dies dieselben Konsequenzen wie eine \ref{subsec:buffer-overflow}-Attacke von sich tragen.
+	Diese Attacke ist speziell kritisch, wenn der gedruckte Text weiter unten im Stack gespeichert wird und so auf sich selbst referenzieren kann, denn dadurch können gezielt Speicheradressen manipuliert und durch geschickte Wahl des Input mit eigenen Daten gefüllt werden. Das Beisiel in Kapitel \ref{subsubsec:bspprintf} demonstriert das Schreiben einer eigenen Speicheradresse an einen bestimmten Punkt im \gls{ram}. Mithilfe eines Shellcodes kann dies dieselben Konsequenzen wie eine \nameref{subsec:buffer-overflow}-Attacke von sich tragen.
 \end{enumerate}
 
 \subsubsection{Abwehrmechanismen}
@@ -553,19 +551,42 @@ Erneut ist die Attacke bei modernen Computersystemen wegen verschiedenen Abwehrs
 \end{itemize} 
 
 \subsubsection{Konkretes Beispiel}\label{subsubsec:bspprintf}
-Dieses Beispiel inklusive Code wurde direkt aus dem Buch ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} übernommen. Es kann selbst nachgestellt werden. Zur Handhabung der Beispiele und Links zum Code siehe Kapitel \nameref{subsec:beispiele}.
+\textit{Dieses Beispiel inklusive Code wurde direkt aus dem Buch ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} übernommen. Es kann selbst nachgestellt werden. Zur Handhabung der Beispiele und Links zum Code siehe Kapitel \nameref{subsec:beispiele}.}
 
 Voraussetzung für die Durchführung dieses Beispiels ist ein 32bit Linux System, bei welchem die oben angegebenen Abwehrmechanismen nicht vorhanden oder deaktiviert sind. Für das Beispiel wird das Programm \textbf{fmt\_vuln.c} verwendet. 
 
 \paragraph{fmt\_vuln.c}
-Das Programm \textbf{fmt\_vuln.c} druckt einen vom Benutzer als Kommandozeilenargument gegebenen Input in die Kommandozeile. Die Sicherheitslücke besteht darin, dass das Programm den Text nicht explizit als String druckt, sondern direkt. Die zwei wichtigen Zeilen sind unten abgedruckt.
+Das Programm \textbf{fmt\_vuln.c} druckt einen vom Benutzer als Kommandozeilenargument gegebenen Input in die Kommandozeile. Die Sicherheitslücke besteht darin, dass das Programm den Text nicht explizit als String, sondern direkt druckt. Die zwei wichtigsten Zeilen sind unten abgedruckt.
 
 \begin{lstlisting}
 	strcpy(text, argv[1]);
 	prinft(text);
 \end{lstlisting} 
+Eine weitere wichtige Eigenschaft des Programms ist, dass der \texttt{text}-Buffer, der den vom Benutzer gegebenen Input speichert, unterhalb (bei höheren Speicheradressen) des \texttt{printf()}-Stack Frame im Stack gespeichert ist. Die Angabefunktion muss auf dem höchsten Stack Frame sein, die Speicherung des \texttt{text}-Buffers muss also unterhalb geschehen. Dies macht eine Selbstreferenzierung möglich.
 
-Zu Demonstrationszwecken wird nur der Wert einer Variable \texttt{test\_val} verändert. Analog zu Kapitel \ref{subsubsec:bspbuffer-overflow} kann die in diesem Kapitel beschriebene Technik aber zur Überschreibung einer Rückkehradresse und Ausführung von Shellcode verwendet werden. Eine gekürzte Version des Programm \textbf{fmt\_vuln.c} ist im Anhang abgedruckt. 
+Zu Demonstrationszwecken wird der Wert einer Variable \texttt{test\_val} mit einer Speicheradresse überschrieben. Analog zu Kapitel \ref{subsubsec:bspbuffer-overflow} kann die in diesem Kapitel beschriebene Technik aber zur Überschreibung einer Rückkehradresse und Ausführung von Shellcode verwendet werden. Eine gekürzte Version des Programm \textbf{fmt\_vuln.c} ist im Anhang abgedruckt. 
+
+Zur Ausführung der Attacke sind folgende Schritte notwendig:
+\begin{enumerate}
+	\item Durch Ausprobieren mit wiederholter Angabe des Format Specifiers \texttt{\%x} lässt sich herausfinden, das wievielte Argument dem Beginn des \texttt{text}-Buffer entspricht. In diesem Fall ist es das vierte. 
+	\item Ein geschickter Input wird eingegeben. Dieser hat folgendes Format:
+	\newline
+	\begin{center}
+		\centerline{| S1 | JUNK | S2 | JUNK | S3 | JUNK | S4 | \%x | \%x | \%125x | \%n | \%201x | \%n | \%15x | \%n | \%175x | \%n |}
+	\end{center}
+	\begin{itemize}
+		\item \textbf{Speicheradressen (S)}: S1, S2, S3 und S4 stehen für die vier einzelnen Bytes der \texttt{test\_val}-Variable. S1 zeigt zum ersten Byte, S4 zum letzten.
+		\textbf{JUNK}: Das Wort JUNK wird als Platzhalter verwendet, von dem die \texttt{\%x} Format Specifier lesen können. Die Zeichenfolge ist nicht von Bedeutung und kann ersetzt werden, das Wort muss jedoch eine Länge von vier Bytes aufweisen.
+		\item \textbf{\%x}: Die \texttt{\%x} Format Specifier lesen hexadezimale Wörter der Länge vier Bytes und betten diese in den Text ein. Eine Zahl vor dem \texttt{x} gibt die Mindestlänge der zu lesenden Daten an. Mithilfe der Mindestlänge kann die Anzahl der bisher geschriebenen Zeichen auf die gewünschte Länge erhöht werden.
+		\item \textbf{\%n}: Die \texttt{\%n} Format Specifier schreiben die Anzahl bisher geschriebenen Zeichen als Integer der Länge vier Bytes an die als Argumente angegebenen Speicheradressen. Bei korrekter Anpassung des Inputs verwenden sie S1, S2, S3 und S4. 
+	\end{itemize}
+	Die ersten drei \texttt{\%x} Format Specifier werden gebraucht um die Distanz zum \texttt{text}-Buffer zu überwinden. Der dritte Format Specifier erhöht die Anzahl gedruckter Zeichen um 125. Diese Anzahl wird dann durch den \texttt{\%n} Format Specifier an die Speicheradresse S1 geschrieben. Da das am wenigsten signifikante Byte wegen der Little Endian Architektur zuerst gespeichert wird, wird das Byte an Stelle S1 mit der Anzahl gespeicherter Zeichen überschrieben. Der nächste Format Specifier erhöht die Anzahl gedruckter Zeichen erneut um die gewünschte Anzahl, in diesem Fall um 201. Sollte das zweite Byte der Speicheradresse tiefer sein als das erste ergibt sich ein Problem, da nur Erhöhung, nicht aber Vertiefung der bisher gedruckten Zeichen möglich ist. Dies lässt sich durch das Wrapping Around-Prinzip lösen. 
+	\paragraph{Wrapping Around}
+	Ein Byte entspricht einem Zeichen bestehend aus acht \gls{bit}. Die Binärzahl \texttt{11111111} entspricht der Dezimalzahl \(255\). Bei Erhöhung um eins bekommt die Binärzahl ein neuntes Zeichen und sieht wie folgt aus: \texttt{100000000}. In diesem Fall sind nur die letzten acht \glspl{bit} von Bedeutung. Diese bleiben bei einer Erhöhung der Zahl um die Dezimalzahl \(256\) gleich. Dadurch lässt sich das Problem der bereits zu hohen Anzahl gedruckter Zeichen eifach lösen, indem statt der ursprünglichen Zahl die nächsthöhere Zahl in Schritten von 256 verwendet wird. 
+	
+	\item Bei Ausführung des Programms wird dieses Verfahren insgesamt viermal angewendet und dadurch eine ganze Speicheradresse an die Adresse der \texttt{test\_val} geschrieben. Eine Veränderung der nächsten drei Bytes hinter der \texttt{test\_val}-Variable lässt sich nicht verhindern, dies ist aber nicht weiter störend. 
+\end{enumerate}
+
 \subsection{Network Sniffing}
 
 \subsubsection{Allgemeine Funktionsweise}
