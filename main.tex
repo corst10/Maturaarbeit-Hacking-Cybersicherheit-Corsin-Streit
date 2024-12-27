@@ -23,7 +23,7 @@
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 \usepackage{comment}
-\usepackage[dvipsnames]{xcolor}
+\usepackage[dvipsnames, x11names]{xcolor}
 \usepackage{lipsum} 
 \usepackage{mdframed}  
 \usepackage[backend=biber]{biblatex}
@@ -76,6 +76,19 @@
 	frame=single,
 	rulecolor=\color{lightgray},
 	numbers=none,
+	xleftmargin=1.5em,
+	xrightmargin=0em,
+	belowskip=0pt
+}
+
+\lstdefinestyle{LowLevelStyle}
+{
+	language=[x86masm]Assembler,
+	basicstyle=\ttfamily,
+	keywordstyle=\color{blue},
+	backgroundcolor=\color{lightgray},
+	frame=single,
+	rulecolor=\color{lightgray},
 	xleftmargin=1.5em,
 	xrightmargin=0em,
 	belowskip=0pt
@@ -164,7 +177,7 @@
 
 \hypersetup{
 	colorlinks=true,
-	linkcolor=black,
+	linkcolor=green,
 	citecolor=black,
 	urlcolor=black,
 }
@@ -186,7 +199,9 @@ Das Ziel dieser Arbeit besteht darin, durch Literaturrecherche und selbstständi
 \keywords{Hacking, Cybersicherheit, Hacking-Methoden, Dark Web}
 
 \newpage
+\hypersetup{linkcolor=black}
 \tableofcontents
+\hypersetup{linkcolor=RoyalBlue}
 \newpage
 
 \section{Einführung}
@@ -264,34 +279,34 @@ Ein Programm besteht aus verschiedenen Elementen. Die wichtigsten Elemente werde
 
 \paragraph{Kontrollstrukturen}
 Kontrollstrukturen steuern den Ablauf eines Programms.
-\subparagraph{If-then-else}
-If-then-else-Strukturen erlauben die Ausführung eines Programmteiles nur unter bestimmten Bedingungen. Falls die Bedingung nicht erfüllt ist, wird der Programmteil übersprungen oder, wenn angegeben, ein alternativer Programmteil ausegführt.
-\subparagraph{While-Schleifen}
-While-Schleifen wiederholen einen bestimmten Programmteil solange, bis eine Bedingung erfüllt ist. 
-\subparagraph{For-Schleifen}
-For-Schleifen werden normalerweise gebraucht, um einen bestimmten Programmteil eine definierte Anzahl mal zu durchlaufen.
+\begin{itemize}
+	\item \textbf{If-then-else}: If-then-else-Strukturen erlauben die Ausführung eines Programmteiles nur unter bestimmten Bedingungen. Falls die Bedingung nicht erfüllt ist, wird der Programmteil übersprungen oder, wenn angegeben, ein alternativer Programmteil ausegführt.
+	\item \textbf{While-Schleifen}: While-Schleifen wiederholen einen bestimmten Programmteil solange, bis eine Bedingung erfüllt ist. 
+	\item \textbf{For-Schleifen}: For-Schleifen werden normalerweise gebraucht, um einen bestimmten Programmteil eine definierte Anzahl mal zu durchlaufen.
+\end{itemize}
 
 \paragraph{Variablen und Konstanen}
 Variablen und Konstanten speichern Daten. Variablen sind veränderbar, während Konstanten über die Laufzeit eines Programmes unverändert bleiben. Im Folgenden wird einfachheitshalber von Variablen gesprochen, die beschriebenen Eigenschaften sind aber auch auf Konstanten übertragbar.
-\subparagraph{Datentypen}
-Bei Variablen wird zwischen verschiedenen Datentypen unterschieden. Einige Programmiersprachen sind bei der Handhabung flexibel und erlauben Veränderungen des Datentyps einer Variable, während andere Variablen bestimmte Datentypen zuordnen. Die Liste bietet eine Auflistung der wichtigsten Datentypen:
+
 \begin{itemize}
-	\item \textbf{String}: Text (``Hello'', ``World'')
-	\item \textbf{Int}: Ganzzahl (2, 37)
-	\item \textbf{Float}: Gleitkommazahl (3.1415, 2.7182)
-	\item \textbf{Boolean}: Wahrheitswert (True, False)
-	\item \textbf{Array}: Geordnete Liste mit festem Datentyp ([1, 3, 2, 8])
-	\item \textbf{List}: Geordnete Liste mit gemischten Datentypen ([2, ``Hello'', True])
-	\item \textbf{Dict}: Liste mit Schlüssel-Wert-Paaren ([``Mehl'': 500, ``Zucker'': 200, ``Zitrone'': False])
+	\item \textbf{Datentypen}: Bei Variablen wird zwischen verschiedenen Datentypen unterschieden. Einige Programmiersprachen sind bei der Handhabung flexibel und erlauben Veränderungen des Datentyps einer Variable, während andere Variablen bestimmte Datentypen zuordnen. Die Liste wichtigsten Datentypen:
+	\begin{itemize}
+		\item \textbf{String}: Text (``Hello'', ``World'')
+		\item \textbf{Int}: Ganzzahl (2, 37)
+		\item \textbf{Float}: Gleitkommazahl (3.1415, 2.7182)
+		\item \textbf{Boolean}: Wahrheitswert (True, False)
+		\item \textbf{Array}: Geordnete Liste mit festem Datentyp ([1, 3, 2, 8])
+		\item \textbf{List}: Geordnete Liste mit gemischten Datentypen ([2, ``Hello'', True])
+		\item \textbf{Dict}: Liste mit Schlüssel-Wert-Paaren ([``Mehl'': 500, ``Zitrone'': False])
+	\end{itemize}
+	\item \textbf{Gültigkeitsbereich und Lebensdauer}: Variablen sind je nach Initialisierung (Erstellung) nur für bestimmte Teile eines Programms zugänglich. Wird eine Variable beispielsweise in einer Funktion initialisiert, existiert sie nur während der Funktionsausführung. Variablen besitzen folgende Gültigkeitsbereiche:
+	\begin{itemize}
+		\item \textbf{Globale Variablen}: Zugänglich vom gesamten Programm
+		\item \textbf{Lokale Variablen}: Zugänglichkeit auf Funktion oder Programmteil limitiert
+		\item \textbf{Statische Variablen}: Zugänglichkeit auf Funktion limitiert, behalten jedoch Wert bei erneutem Funktionsaufruf
+	\end{itemize}
+	Die verschiedenen Gültigkeitsbereiche führen dazu, dass gleichnamige Variablen mehrere Speicheradressen haben können. In einigen Programmiersprachen müssen Variablen vor der ersten Verwendung initialisiert, also angekündigt, werden. 
 \end{itemize}
-\subparagraph{Gültigkeitsbereich und Lebensdauer}
-Variablen sind je nach Initialisierung (Erstellung) nur für bestimmte Teile eines Programms zugänglich. Wird eine Variable beispielsweise in einer Funktion initialisiert, existiert sie nur während der Funktionsausführung. Variablen besitzen folgende Gültigkeitsbereiche:
-\begin{itemize}
-	\item \textbf{Globale Variablen}: Zugänglich vom gesamten Programm
-	\item \textbf{Lokale Variablen}: Zugänglichkeit auf Funktion oder Programmteil limitiert
-	\item \textbf{Statische Variablen}: Zugänglichkeit auf Funktion limitiert, behalten jedoch Wert bei erneutem Funktionsaufruf
-\end{itemize}
-Die verschiedenen Gültigkeitsbereiche führen dazu, dass gleichnamige Variablen mehrere Speicheradressen haben können. In einigen Programmiersprachen müssen Variablen vor der ersten Verwendung initialisiert, also angekündigt, werden.
 
 \paragraph{Arithmetische Operatoren}
 Arithmetische Operatoren werden verwendet, um mathematische Operationen durchzuführen. In C stehen die unten aufgelisteten Operatoren zur Verfügung:
@@ -342,15 +357,19 @@ Computer können nur mit aus Einsen und Nullen bestehender Maschinensprache umge
 \paragraph{Höhere Programmiersprache (High Level Language)}
 Höhere Programmiersprache liegt nahe bei der englischen Sprache und ist (zumindest in Grundzügen) für die meisten Leute intuitiv verständlich. Normalerweise wird in höherer Programmiersprache programmiert. Das Beispiel der Potenz-Funktion oben ist in höherer Programmiersprache angegeben.
 \paragraph{Maschinensprache (Machine Language)}
-Maschinensprache besteht nur aus Einsen und Nullen und ist auch für die meisten professionellen Programmierer unverständlich. Der Code \(x = 3 + 5\) könnte so aussehen: 
-b8 05 00 00 00
-83 c0 03 
-. (Angabe im hexadezimalen Format)
+Maschinensprache besteht nur aus Einsen und Nullen und ist auch für die meisten professionellen Programmierer unverständlich. Der Code \(x = 3 + 5\) könnte (bei Angabe im hexadezimalen Format) so aussehen: 
+\begin{lstlisting}[style=LowLevelStyle]
+	b8 05 00 00 00
+	83 c0 03 
+\end{lstlisting}
 \paragraph{Assemblersprache (Assembly Language)}
 Assemblersprache kann als die Verbalisierung der Maschinensprache angesehen werden und wird teilweise zur Programmierung verwendet. Dies aber nur bei sehr systemnahen Anwendungen. Derselbe Code \(x = 3 + 5\) könnte in Assemblersprache so aussehen: 
-mov eax, 5
-add eax, 3
-. Hier werden auch die in Kapitel~\ref{subsubsec:cpu} erwähnten Register ersichtlich.
+\begin{lstlisting}[style=LowLevelStyle]
+	mov 	eax, 5
+	add 	eax, 3
+\end{lstlisting}
+
+Hier werden auch die in Kapitel~\ref{subsubsec:cpu} erwähnten Register ersichtlich.
 
 Zur Übersetzung zwischen den Abstraktionsebenen dienen der Compiler und Assembler. Der Compiler transformiert höhere Programmiersprache in Maschinensprache, der Assembler Assemblersprache in Maschinensprache.
 
@@ -584,7 +603,7 @@ Zur Ausführung der Attacke sind folgende Schritte notwendig:
 	\paragraph{Wrapping Around}
 	Ein Byte entspricht einem Zeichen bestehend aus acht \gls{bit}. Die Binärzahl \texttt{11111111} entspricht der Dezimalzahl \(255\). Bei Erhöhung um eins bekommt die Binärzahl ein neuntes Zeichen und sieht wie folgt aus: \texttt{100000000}. In diesem Fall sind nur die letzten acht \glspl{bit} von Bedeutung. Diese bleiben bei einer Erhöhung der Zahl um die Dezimalzahl \(256\) gleich. Dadurch lässt sich das Problem der bereits zu hohen Anzahl gedruckter Zeichen eifach lösen, indem statt der ursprünglichen Zahl die nächsthöhere Zahl in Schritten von 256 verwendet wird. 
 	
-	\item Bei Ausführung des Programms wird dieses Verfahren insgesamt viermal angewendet und dadurch eine ganze Speicheradresse an die Adresse der \texttt{test\_val} geschrieben. Eine Veränderung der nächsten drei Bytes hinter der \texttt{test\_val}-Variable lässt sich nicht verhindern, dies ist aber nicht weiter störend. 
+	\item Bei Ausführung des Programms wird dieses Verfahren insgesamt viermal angewendet und dadurch eine ganze Speicheradresse an die Adresse der \texttt{test\_val} geschrieben. Eine Veränderung der nächsten drei Bytes hinter der \texttt{test\_val}-Variable lässt sich nicht vermeiden, dies ist aber nicht weiter störend. 
 \end{enumerate}
 
 \subsection{Network Sniffing}
