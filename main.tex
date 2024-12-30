@@ -196,7 +196,7 @@
 Das Ziel dieser Arbeit besteht darin, durch Literaturrecherche und selbstständiger Nachforschung einen für die Allgemeinheit verständlichen Überblick über das Thema Hacking und Cybersicherheit zu schaffen. Dazu werden technische Grundlagen und Hacking-Methoden erläutert und anhand von konkreten Beispielen anschaulich dargestellt. Ferner wird auf das Thema Dark Web eingegangen.
 \end{abstract}
 
-\keywords{Hacking, Cybersicherheit, Hacking-Methoden, Dark Web}
+\keywords{Hacking, Cybersicherheit, Programmieren, Netzwerk Hacking-Methoden}
 
 \newpage
 \hypersetup{linkcolor=black}
@@ -212,10 +212,10 @@ Hacking ist ein riesiges Themenfeld, dessen tiefgründiges Verständnis Kenntnis
 Ich bin grundsätzlich an Computern und dem Programmieren interessiert. Meistens finde ich in meinem durch Sporttrainings ausgefüllten Alltag aber keine Zeit, mich mit dieser Leidenschaft auseinanderzusetzen. Die Maturitätsarbeit schien mir als passende Gelegenheit, mir Wissen in einem computerbezogenen Themengebiet anzueignen. Das Thema Hacking und Cybersicherheit interessiert mich besonders, da ich gerne die Limiten von in diesem Fall Computersystemen teste und es ein Themengebiet ist, das kreatives Denken und logische Schlussfolgerungen voraussetzt und fördert.
 
 \subsection{Methodik}
-Es gibt viele verschiedene Methoden, sich mit dem Thema Hacking auseinanderzusetzen. Einsteigern werden oft Videokurse oder Bücher empfohlen, die Themenbereiche, auf die sie einen Fokus setzten, sind aber oft sehr unterschiedlich. Ich habe mich entschieden, meine Arbeit hauptsächlich auf Literatur zu basieren und das Werk ``Hacking - The Art of Exploitation'' von Jon Erickson als Hauptinformationsquelle zu gebrauchen. Unterstützend arbeite ich mit wissenschaftlichen Arbeiten und weiteren, weniger umfangreichen Büchern. Es fällt mir leichter, Informationen anhand von Geschriebenem zu erarbeiten. Ausserdem ist es bei Büchern tendenziell einfacher einzuschätzen, welcher Inhalt erwartet werden kann. Das Buch ``Hacking - The Art of Exploitation'' ist relativ alt (2008), dies passt aber gut zu meiner Zielsetzung, da die Komplexität des Hackings seither exponentiell zugenommen hat und ich eine tiefgründige, verständliche Analyse einer einfachen Hacking-Attacke gegenüber einer oberflächlichen Analyse einer komplexen Attacke bevorzuge. Die Themen weisen aber dennoch einen Bezug zur aktuellen Zeit auf.
+Es gibt viele verschiedene Methoden, sich mit dem Thema Hacking auseinanderzusetzen. Einsteigern werden oft Videokurse oder Bücher empfohlen, die Themenbereiche, auf die sie einen Fokus setzten, sind aber oft sehr unterschiedlich. Ich habe mich entschieden, meine Arbeit hauptsächlich auf Literatur zu basieren und das Werk ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} von Jon Erickson als Hauptinformationsquelle zu gebrauchen. Unterstützend arbeite ich mit wissenschaftlichen Arbeiten und weiteren, weniger umfangreichen Büchern. Es fällt mir leichter, Informationen anhand von Geschriebenem zu erarbeiten. Ausserdem ist es bei Büchern tendenziell einfacher einzuschätzen, welcher Inhalt erwartet werden kann. Das Buch ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} ist relativ alt (2008), dies passt aber gut zu meiner Zielsetzung, da die Komplexität des Hackings seither exponentiell zugenommen hat und ich eine tiefgründige, verständliche Analyse einer einfachen Hacking-Attacke gegenüber einer oberflächlichen Analyse einer komplexen Attacke bevorzuge. Die Themen weisen aber dennoch einen Bezug zur aktuellen Zeit auf.
 
 \subsection*{Quellenangabe}
-Der Hauptteil des Wissens in Kapitel \ref{sec:grundlagen-der-informatik} und \ref{sec:methoden-und-techniken} wurde mit Hilfe des Buches ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} erarbeitet. Zur besseren Übersichtlichkeit wurden deshalb die Quellenangaben dieses Buches auf eine am Anfang der Kapitel beschränkt. Explizite Zitate werden immer gekennzeichnet.
+Der Hauptteil des Wissens in den Kapiteln \nameref{sec:grundlagen-der-informatik} (\ref{sec:grundlagen-der-informatik}) und \nameref{sec:methoden-und-techniken} (\ref{sec:methoden-und-techniken}) wurde mit Hilfe des Buches ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} erarbeitet. Zur besseren Übersichtlichkeit wurden deshalb die Quellenangaben dieses Buches auf eine am Anfang der Kapitel beschränkt. Explizite Zitate werden immer gekennzeichnet.
 
 \subsection*{Disclaimer}
 \paragraph{Sprache}
@@ -241,7 +241,7 @@ Ein weiterer oft verwendeter Begriff ist ``Script Kiddies''. Dies sind ungeschul
 
 \newpage
 \section{Grundlagen der Informatik}\label{sec:grundlagen-der-informatik}
-Zum Verständnis des Kapitel \nameref{sec:methoden-und-techniken} sind Grundkenntnisse der Informatik nötig. Diese werden in diesem Kapitel erarbeitet. Wie am Anfang bereits erwähnt diente, sofern keine andere Quelle angegeben wurde, das Buch ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} als Hauptquelle dieses Kapitels.
+Zum Verständnis des Kapitel \nameref{sec:methoden-und-techniken} (\ref{sec:methoden-und-techniken}) sind Grundkenntnisse der Informatik nötig. Diese werden in diesem Kapitel erarbeitet. Wie am Anfang bereits erwähnt diente, sofern keine andere Quelle angegeben wurde, das Buch ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} als Hauptquelle dieses Kapitels.
 \subsection{Hardwaretechnische Grundlagen}
 Ein Computer besteht aus verschiedenen Bestandteilen, die im Zusammenspiel Verarbeitung von Informationen ermöglichen. Folgende Komponenten sind zur Ausführung eines Programms wichtig.
 \subsubsection{CPU}\label{subsubsec:cpu}
@@ -255,7 +255,7 @@ Wichtig für die Ausführung eines Programms sind Register. Register sind ``Spei
 	\item \textbf{\gls{sfp}}: Gesicherter Basiszeiger für das vorherige Stack Frame, dient zur Wiederherstellung des ursprünglichen Stack-Zustands \cite{UsefulRe7:online}
 \end{itemize}
 
-Die Bedeutung dieser Funktionen wird im Kapitel \nameref{subsec:funktionsweise-eines-programmes} genauer erklärt.
+Die Bedeutung dieser Funktionen wird im Kapitel \nameref{subsec:funktionsweise-eines-programmes} (\ref{subsec:funktionsweise-eines-programmes}) genauer erklärt.
 \subsubsection{RAM (Arbeitsspeicher)}
 Das \gls{ram} ist ein elektronischer Computerspeicher, dessen Daten sehr schnell und in beliebiger Reihenfolge gelesen und geändert werden können. Er wird deshalb für Daten aktuell laufender Programme verwendet. Oft wird ein Vergleich zum menschlichen Kurzzeitgedächtnis hergestellt. 
 \paragraph{Bit und Binärzahlen}
@@ -402,12 +402,12 @@ Viele Hacking-Attacken nutzen Schwachstellen in Netzwerken aus. Für Hacker sind
 \subsubsection{Einführung}
 Ein Netzwerk ist ein ``großes System, das aus vielen ähnlichen Teilen besteht, die miteinander verbunden sind, um eine Bewegung oder Kommunikation zwischen den Teilen oder zwischen den Teilen und einem Kontrollzentrum zu ermöglichen.''~\texttt{(Cambridge University Press, Dezember 2024, übersetzt mit DeepL)} Anwendungen wie das \gls{www} oder WhatsApp-Nachrichten basieren auf einer Netzwerkstruktur. Ein Netzwerk ist aber nicht dem Internet gleichzusetzen und kann auch lokal existieren. naja
 
-\subsubsection{OSI-Modell}
+\subsubsection{OSI-Modell}\label{subsubsec:osimodell}
 Das \gls{osi}-Modell standardisiert den Netzwerkverkehr und bietet damit die Grundlage der Datenübertragung. Das Modell wurde in in den 1980er-Jahren von der \gls{iso} entwickelt und ist heute mehrheitlich von dem \gls{tcp}/\gls{ip}-Modell abgelöst, wird wegen besserer Übersichtlichkeit aber oft zu Unterrichtszwecken verwendet.~\cite{OSImodelWikipedia:online}
 \paragraph{Einführung}
 Das \gls{osi}-Modell ist in sieben Ebenen mit jeweils spezifischen Funktionen zum Datentransport organisiert. Ebene sieben ist dabei am nächsten bei der Anwendung, während Ebene eins am nächsten bei der physischen Hardware liegt. Bevor Daten transportiert werden, werden sie bei Ebene sieben beginnend in alle Ebenen verpackt. Beim Erhalt werden sie wieder entpackt. Zwischengeräte wie Router, die für die Weiterleitung der Datenpakete verantwortlich sind, packen die Daten nur soweit, wie für die Weiterleitung nötig, aus. Meist entspricht dies Ebene drei. Datenpakete bestehen aus einem Header und Daten. Der Header enthält wichtige Informationen zum Datentransport, so zum Beispiel die Datenlänge oder die Senderadresse. 
 \paragraph{Netzwerkprotokolle}
-Netzwerkprotokolle standardisieren die Struktur eines Datenpaketes. Sie sind für die korrekte Formatierung der Daten verantwortlich und bestimmen den Inhalt des Headers. Damit ermöglichen sie verschiedenen Geräten eine einheitliche Kommunikationsbasis. Die Auflistung der sieben Ebenen weiter unten bietet einige Beispiele.
+Netzwerkprotokolle standardisieren die Struktur eines Datenpaketes. Sie sind für die korrekte Formatierung der Daten verantwortlich und bestimmen den Inhalt des Headers. Damit ermöglichen sie verschiedenen Geräten eine einheitliche Kommunikationsbasis. Jedem Netzwerkprotokoll ist ein Port zugewiesen. Ein Port ist eine ``softwaredefinierte Nummer, die einem Netzwerkprotokoll zugeordnet ist und Kommunikation für einen bestimmten Dienst empfängt oder überträgt.''~\cite{WasistPo:online} Die Auflistung der sieben Ebenen weiter unten bietet einige Beispiele verschiedener Netzwerkprotokolle.
 \paragraph{Die sieben Ebenen}
 Im Anschluss findet sich eine Auflistung der sieben Ebenen. Wichtige Eigenschaften oder Protokolle einer Ebene werden untergeordnet angegeben.
 \begin{itemize}
@@ -452,12 +452,14 @@ Drei Typen von Sockets existieren: Stream Sockets, Datagram Sockets und raw sock
 Das Protokoll spezifiziert, welches Protokoll auf Ebene vier verwendet werden sollte. Im Normalfall muss dies nicht explizit angegeben werden, da das System standardmässig das zum Typ des Sockets passende Protokoll auswählt.
 
 
+
+
 \newpage
 \section{Methoden und Techniken}\label{sec:methoden-und-techniken}
-Hacking-Attacken sind sehr unterschiedlich und fokussieren sich auf verschiedene Bereiche eines Computersystems. Einige erfordern physischen Zugriff auf ein System während andere über ein Netzwerk erfolgen. Dieses Kapitel zeigt exemplarisch einige gut verständliche Hacking-Methoden und Techniken auf. Die Kapitel folgen jeweils derselben Struktur: Zuerst wird die allgemeine Funktionsweise einer Attacke beschrieben und danach auf die Abwehrmechanismen eingegangen. In einigen Kapiteln findet sich auch ein konkretes Beispiel mit Code. Zuletzt folgt ein Kapitel mit Erklärungen zu bekannten Begriffen, die bis dahin noch nicht erklärt wurden. \\Wie am Anfang bereits erwähnt, diente, sofern keine andere Quelle angegeben wurde, das Buch ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} als Hauptquelle und Inspiration dieses Kapitels. Einige Beispiele wurden direkt aus dem Buch übernommen. Diese sind so gekennzeichnet.
+Hacking-Attacken sind sehr unterschiedlich und fokussieren sich auf verschiedene Bereiche eines Computersystems. Einige erfordern physischen Zugriff auf ein System während andere über ein Netzwerk erfolgen. Dieses Kapitel zeigt exemplarisch einige gut verständliche Hacking-Methoden und Techniken auf. Die Kapitel folgen jeweils derselben Struktur: Zuerst wird die allgemeine Funktionsweise einer Attacke beschrieben und danach auf die Abwehrmechanismen eingegangen. In einigen Kapiteln findet sich auch ein konkretes Beispiel mit Code. Zuletzt folgt ein Kapitel mit Erklärungen zu bekannten Begriffen, die bis dahin noch nicht erklärt wurden. \\Wie am Anfang bereits erwähnt, diente, sofern keine andere Quelle angegeben wurde, das Buch ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} als Hauptquelle dieses Kapitels. Einige Beispiele wurden direkt aus dem Buch übernommen. Diese sind so gekennzeichnet.
 
-\subsection{Buffer-overflow}\label{subsec:buffer-overflow}
-Ein Buffer beschreibt einen reservierten Speicherbereich, um Daten temporär zu speichern. Ein Buffer-overflow tritt auf, wenn mehr Daten in diesen Bereich geschrieben werden, als die Kapazität erlaubt. Dies kann dazu führen, dass zur Ausführung des Programms wichtige Daten überschrieben werden und das Programm anders abläuft, als vom Programmierer ursprünglich geplant. Dies ist besonders kritisch, wenn das Programm mit Root-, also Administrationsrechten ausgeführt wird, da der Angreifer dann die Kontrolle über das gesamte System erlangen kann. Programmiersprachen wie C, bei denen sich \gls{ram} sehr direkt kontrollieren lässt, sind besonders anfällig für Attacken dieser Art. Moderne Programmiersprachen besitzen oft eine automatische Speicherverwaltung, die die direkte Kontrolle des \gls{ram} erschweren oder sogar verunmöglichen.
+\subsection{Buffer Overflow}\label{subsec:buffer-overflow}
+Ein Buffer beschreibt einen reservierten Speicherbereich, um Daten temporär zu speichern. Ein Buffer Overflow tritt auf, wenn mehr Daten in diesen Bereich geschrieben werden, als die Kapazität erlaubt. Dies kann dazu führen, dass zur Ausführung des Programms wichtige Daten überschrieben werden und das Programm anders abläuft, als vom Programmierer ursprünglich geplant. Dies ist besonders kritisch, wenn das Programm mit Root-, also Administrationsrechten ausgeführt wird, da der Angreifer dann die Kontrolle über das gesamte System erlangen kann. Programmiersprachen wie C, bei denen sich \gls{ram} sehr direkt kontrollieren lässt, sind besonders anfällig für Attacken dieser Art. Moderne Programmiersprachen besitzen oft eine automatische Speicherverwaltung, die die direkte Kontrolle des \gls{ram} erschweren oder sogar verunmöglichen.
 
 \subsubsection{Allgemeine Funktionsweise}
 Voraussetzung dieser Attacke ist ein Programm, das Daten (zum Beispiel Text) als Input annimmt und diese in das \gls{ram} kopiert, ohne vorher zu überprüfen, ob ausreichend Platz reserviert wurde. Der Angreifer kann den Input dann bewusst zu lange wählen, so dass er die Kapazität des buffers überschreitet. Ziel ist oft die Überschreibung der Rückkehradresse einer Funktion. Diese liegt unterhalb des Buffers im Stack Frame. Da Daten im Stack in Richtung tiefer Adressen gespeichert werden, wird die Rückkehradresse ab einer bestimmten Inputlänge überschrieben. Bei geschickter Zeichenfolge wird sie durch eine neue Speicheradresse ersetzt, die auf einen eigens im \gls{ram} platzierten Code zeigt. Dieser oft bösartige Code wird als Shellcode bezeichnet. Er muss in Assembler- oder Maschinensprache angegeben werden. Zur Platzierung des Shellcodes im \gls{ram} können verschiedene Methoden verwendet werden. In diesem Fall wird er als Input eingegeben, die Platzierung in Umgebungsvariablen ist beispielsweise aber auch möglich, erfordert aber deren Zugriff. \\Der zur Ausführung dieser Attacke nötige Input enthält also eine neue Rückkehradresse und den Shellcode. Die Rückkehradresse zeigt dabei zur Speicheradresse des Shellcodes und lässt diesen bei Funktionsende ausführen. Zwei Probleme treten auf:
@@ -489,7 +491,7 @@ Bei modernen Computersystem ist diese Attacke wegen verschiedener Sicherheitsmec
 
 
 \subsubsection{Konkretes Beispiel}\label{subsubsec:bspbuffer-overflow}
-\textit{Dieses Beispiel inklusive Code wurde direkt aus dem Buch ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} übernommen. Es kann selbst nachgestellt werden. Zur Handhabung der Beispiele und Links zum Code siehe Kapitel \nameref{subsec:beispiele}. Zum besseren Verständnis wurde als zusätzlich zum Buch ein Stack Overflow-Eintrag verwendet.~\cite{stacko:online}}
+\textit{Dieses Beispiel inklusive Code wurde direkt aus dem Buch ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} übernommen. Es kann selbst nachgestellt werden. Zur Handhabung der Beispiele und Links zum Code siehe Kapitel \nameref{subsec:beispiele} im Appendix. Als Ver­ständ­nis­hil­fe wurde zusätzlich zum Buch wurde ein Stack Overflow-Eintrag verwendet.~\cite{stacko:online}}
 
 Voraussetzung für die Durchführung dieses Beispiels ist ein 32bit Linux System, bei welchem die oben angegebenen Abwehrmechanismen nicht vorhanden oder deaktiviert sind. Für das Beispiel werden folgende Programme verwendet:
 
@@ -558,7 +560,7 @@ Die Falsche Implementierung der \texttt{printf()}-Funktion kann auf zwei Arten a
 		Hallo, Welt!
 		Anzahl der ausgegebenen Zeichen: 12
 	\end{lstlisting}
-	Diese Attacke ist speziell kritisch, wenn der gedruckte Text weiter unten im Stack gespeichert wird und so auf sich selbst referenzieren kann, denn dadurch können gezielt Speicheradressen manipuliert und durch geschickte Wahl des Input mit eigenen Daten gefüllt werden. Das Beisiel in Kapitel \ref{subsubsec:bspprintf} demonstriert das Schreiben einer eigenen Speicheradresse an einen bestimmten Punkt im \gls{ram}. Mithilfe eines Shellcodes kann dies dieselben Konsequenzen wie eine \nameref{subsec:buffer-overflow}-Attacke von sich tragen.
+	Diese Attacke ist speziell kritisch, wenn der gedruckte Text weiter unten im Stack gespeichert wird und so auf sich selbst referenzieren kann, denn dadurch können gezielt Speicheradressen manipuliert und durch geschickte Wahl des Input mit eigenen Daten gefüllt werden. Das Beisiel in Kapitel \ref{subsubsec:bspprintf} demonstriert das Schreiben einer eigenen Speicheradresse an einen bestimmten Punkt im \gls{ram}. Mithilfe eines Shellcodes kann dies dieselben Konsequenzen wie eine Buffer Overflow-Attacke (Kapitel \ref{subsec:buffer-overflow}) von sich tragen.
 \end{enumerate}
 
 \subsubsection{Abwehrmechanismen}
@@ -570,7 +572,7 @@ Erneut ist die Attacke bei modernen Computersystemen wegen verschiedenen Abwehrs
 \end{itemize} 
 
 \subsubsection{Konkretes Beispiel}\label{subsubsec:bspprintf}
-\textit{Dieses Beispiel inklusive Code wurde direkt aus dem Buch ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} übernommen. Es kann selbst nachgestellt werden. Zur Handhabung der Beispiele und Links zum Code siehe Kapitel \nameref{subsec:beispiele}.}
+\textit{Dieses Beispiel inklusive Code wurde direkt aus dem Buch ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} übernommen. Es kann selbst nachgestellt werden. Zur Handhabung der Beispiele und Links zum Code siehe Kapitel \nameref{subsec:beispiele} im Appendix.}
 
 Voraussetzung für die Durchführung dieses Beispiels ist ein 32bit Linux System, bei welchem die oben angegebenen Abwehrmechanismen nicht vorhanden oder deaktiviert sind. Für das Beispiel wird das Programm \textbf{fmt\_vuln.c} verwendet. 
 
@@ -606,23 +608,61 @@ Zur Ausführung der Attacke sind folgende Schritte notwendig:
 	\item Bei Ausführung des Programms wird dieses Verfahren insgesamt viermal angewendet und dadurch eine ganze Speicheradresse an die Adresse der \texttt{test\_val} geschrieben. Eine Veränderung der nächsten drei Bytes hinter der \texttt{test\_val}-Variable lässt sich nicht vermeiden, dies ist aber nicht weiter störend. 
 \end{enumerate}
 
-\subsection{Network Sniffing}
-
+\subsection{Network Sniffing}\label{subsec:networksniffing}
+Network Sniffing beschreibt das Abfangen und Auslesen von an andere Geräte adressierten Datenpaketen in einem Netzwerk. Dazu wird ein Network Sniffer verwendet. Network Sniffers analysieren den Datenverkehr in einem Netzwerk. Die Verwendung ist erlaubt und kann Netzwerkadministratoren helfen, die Effizienz eines Netzwerkes durch gezielte Veränderung bestimmter Parameter zu verbessern. Da sie das Auslesen von fremden Daten ermöglichen, werden sie aber oft zu kriminellen Zwecken gebraucht.
 \subsubsection{Allgemeine Funktionsweise}
-
+Die Attacke ist vor Allem bei älteren Netzwerken effektiv. Diese greifen teilweise auf Hubs zurück. Hubs sind Datenverteiler, die keine direkten Verbindungen zwischen Netzwerkgeräten aufbauen, sondern alle Datenpakete an alle im Netzwerk befindlichen Geräte senden. Dabei vertrauen sie darauf, dass nur der eigentliche Empfänger die Daten ausliest. In der Standardkonfiguration ignorieren Betriebssysteme Datenpakete, die an einen anderen Empfänger gerichtet sind, dies lässt sich in den meisten Fällen jedoch leicht ändern. Die dazu benötigten Schritte variieren zwischen verschiedenen Betriebssystem. Die Installation eines Raw Sockets als Network Sniffer ermöglicht das Mitlesen von Datenpaketen. Eine bekannte Software hierfür ist Wireshark. Nach Empfang der Datenpaketen können diese oft, sofern keine verschlüsselte Kommunikation verwendet wird, bis auf Applikationsebene entpackt werden. Dabei werden unter Umständen sensible Daten wie Passwörter offengelegt, die der Angreifer für weitere Angriffe nutzen kann. 
 \subsubsection{Abwehrmechanismen}
-
+Verschiedene Sicherheitssysteme erschweren diese Art von Attacke. Die wichtigsten sind folgende zwei:
+\begin{itemize}
+	\item \textbf{Verschlüsselung}: Während Verschlüsselung der Datenpakete zwar den unerwünschten Empfang nicht verhindert, macht es diese für den Angreifer, sofern er nicht im Besitzt des Schlüssels ist, unbrauchbar. Dazu kann ein \gls{vpn} verwendet werden.
+	\paragraph{VPN}
+	Ein \gls{vpn} verschlüsselt die Kommunikation zwischen zwei Endpunkten. Daten werden beim Benutzer verschlüsselt und erst beim \gls{vpn}-Server wieder entschlüsselt. Der Schlüsselaustausch erfolgt beim Verbindungsaufbau. Endgeräten wird eine neue, interne \gls{ip}-Adresse zugewiesen. Dies ermöglicht die Verschleierung des Aufenthaltsortes des Benutzers, da seine Datenpakete vom \gls{vpn}-Server ausgehen zu scheinen. So kann unter anderem auf örtlich gesperrte Inhalte im Internet zugegriffen werden.~\cite{BSIWasis:online}
+	\item \textbf{Antivirensoftware}: Oft besitzen Antivirensoftware Systeme zur Erkennung von Netzwerkanomalien. Bei Erkennung einer Unregelmässigkeit wird das System analysiert und möglicherweise vom Netzwerk getrennt.
+\end{itemize}
 \subsubsection{Konkretes Beispiel}
+\textit{Dieses Beispiel wurde vom Verfasser dieser Arbeit konzipiert und dient der Veranschaulichung. Es wird ausdrücklich darauf hingewiesen, dass diese Attacke ohne Zustimmung aller involvierten Parteien illegal ist und strafrechtliche Konsequenzen davontragen kann.}
 
+Voraussetzung dieser Attacke ist ein Netzwerk, dass zur Datenverteilung Hubs einsetzt. In diesem Netzwerk müssen Geräte die veraltete, unverschlüsselte Version des \gls{pop3}-Mail-Protokolls verwenden. Diese Situation ist in kleinen Unternehmen mit alter \gls{it}-Infrastruktur denkbar.  Ziel der Attacke ist es, Zugriff auf den Mail-Server eines Benutzers zu erhalten. Zusätzlich zu obig genannten Voraussetzungen muss der Angreifer Zugriff auf das Netzwerk besitzen und im Besitzt eines Network Sniffers sein. In diesem Beispiel wird das Programm Wireshark benutzt, das unter folgendem Link kostenfrei heruntergeladen werden kann: \url{https://www.wireshark.org/}. Folgende Schritte sind nötig:
+
+\begin{enumerate}
+	\item Beim Start des Programms Wireshark muss eine Schnittstelle gewählt werden. Diese hängt von der Verbindungsart des Angreifers zum Netzwerk ab. Handelt es sich um eine \gls{wlan}-Verbindung, muss in meinem Fall die Schnittstelle \gls{wlan} gewählt werden, je nach Netzwerk-Hardware kann die Namensgebung aber unterschiedlich ausfallen.
+	\item Nachdem die Aufzeichnung der Netzwerkverkehrs gestartet wurde, müssen die erhaltenen Daten nach dem \gls{pop3}-Mail-Protokoll gefiltert werden. Die unverschlüsselte \gls{pop3}-Kommunikation erfolgt auf Port 110. In Wireshark wird deshalb der Filter \texttt{tcp.port == 110} festgelegt. Alle angezeigten Datenpakete beziehen sich dann auf \gls{pop3} basierte Kommunikation.
+	\item Der Netzwerkverkehr muss nun so lange aufgezeichnet werden, bis ein Benutzer sich auf den Mail-Server einloggt. Beim Login-Vorgang werden die Benutzerdaten in plaintext, also ohne Verschlüsselung, an den Mail-Server gesendet. Sobald dieses Datenpakete gefunden wurde, kann der Angreifer mithilfe der Benutzerdaten selbst Anfragen an den Mail-Server des Opfers stellen. Damit ist er im Besitz von Lese- und Schreibrechten über den Mail-Account des Opfers und kann somit erhaltene Mails lesen oder selbst Mails verfassen.
+\end{enumerate}
 
 \subsection{Man-in-the-Middle}
+Normalerweise erfolgt die Kommunikation zwischen zwei Geräten in einem Netzwerk auf direktem Weg. Ziel einer \gls{mitm}-Attacke ist es deshalb, sich zwischen eine direkte Verbindung zu setzten und so Zugriff auf die gesendeten Datenpakete zu erlangen. Technisch gesehen handelt es sich dabei um aktives Network Sniffing und könnte so Kapitel \ref{subsec:networksniffing} untergeordnet werden, da die Vorgehensweisen aber sehr unterschiedlich ausfallen, wird die \gls{mitm}-Attacke in dieser Arbeit als eigenes Kapitel behandelt. Bei einer Kommunikation zwischen \texttt{A} und \texttt{B} gibt der Angreifer \texttt{A} vor, \texttt{B} zu sein und \texttt{B} vor, \texttt{A} zu sein. Während \texttt{A} und \texttt{B} weiter glauben, Datenpakte an ihren Kommunikationspartner zu senden, senden sie diese dem Angreifer. Dieser kann so etwa an sensible Informationen gelangen oder durch gezielte Veränderung der Datenpakete bestimmte Reaktionen bei den Empfängern hervorrufen.
 
 \subsubsection{Allgemeine Funktionsweise}
+Zur Einrichtung einer \gls{mitm}-Attacke wird zuerst Network Sniffing \ref{subsec:networksniffing} eingesetzt, um eine bestehende Verbindung zwischen zwei Geräten \texttt{A} und \texttt{B} zu erkennen. Danach kommt eine Technik namens \gls{arp}-Spoofing zum Zug. 
+
+\paragraph{ARP-Spoofing}
+\gls{arp} ist ein simples Netzwerkprotokoll, dass wie bereits in Kapitel \ref{subsubsec:osimodell} \gls{ip}- in \gls{mac}-Adressen umwandelt. Da das Protokoll auf Datenprotokollierung verzichtet, akzeptiert ein Gerät \gls{arp}-Antworten, ohne eine \gls{arp}-Anfrage gestellt zu haben. Dies kann ein Angreifer ausnutzen, um die Kommunikation von Geräten mit gefälschten \gls{arp}-Antworten umzulenken. 
+
+Bei einer \gls{mitm}-Attacke sendet der Angreifer folgende \gls{arp}-Antworten:
+\begin{itemize}
+	\item An A: ``Die \gls{mac}-Adresse von \texttt{B} ist [\gls{mac}-Adresse des Angreifers].''
+	\item An B: ``Die \gls{mac}-Adresse von \texttt{A} ist [\gls{mac}-Adresse des Angreifers].''
+\end{itemize}
+
+Dadurch werden die beiden Kommunikationspartner getäuscht und senden ihre Datenpakte an den Angreifer, anstatt direkt zu kommunizieren. Der Angreifer erhält Zugriff auf die gesendeten Datenpakete und kann diese bei unverschlüsselter Kommunikation bis auf Applikationsebene entpacken. Dabei werden unter Umständen sensible Daten wie Passwörter offengelegt. Um die Täuschung aufrecht zu erhalten, muss der Angreifer die \gls{arp}-Antworten wiederholte senden, da immer wieder echte \gls{arp}-Anfragen zur Verifikation zu erwarten sind. 
+
+Damit die Kommunikation fortzusetzen, leitet der Angreifer die Datenpakte nach Empfang weiter. Die Weiterleitung ermöglicht dem Angreifer weiter Möglichkeiten. Da die Kommunikationspartner der Kommunikation weiterhin vertrauen, können beim Empfänger durch gezielte Veränderung der in den Datenpaketen enthaltenen Daten bestimmte Reaktionen hervorgerufen werden. Die Datenpakete müssen aber auf jeden Fall so modifiziert werden, dass die Kommunikationspartner keinen Verdacht schöpfen. Wird beispielsweise die \gls{mac}-Adresse des Angreifer im Datenpaket verwendet, muss diese vor der Weiterleitung mit der \gls{mac}-Adresse des finalen Empfängers ersetzt werden. 
+
 
 \subsubsection{Abwehrmechanismen}
+Da beide Attacken netzwerkbasiert sind, fallen die Sicherheitsysteme ähnlich aus wie beim Network Sniffing (Kapitel \ref{subsec:networksniffing}). Zusätzlich zur Verschlüsselung und Systeme zur Erkennung von Netzwerkanomalien kommt folgender Aspekt hinzu:
 
+\begin{itemize}
+	\item \textbf{Statische \gls{arp}-Einträge}: Ist eine Verbindung zwischen zwei Geräten einmal etabliert, können sie einen statischen \gls{arp}-Eintrag vornehmen. Dadurch wird die Zuordnung von \gls{ip}- und \gls{mac}-Adresse fixiert und neue, möglicherweise gefälschte \gls{arp}-Antworten ignoriert. 
+\end{itemize}
 
 \subsection{Denial of Service}
+
+\paragraph{Nachrichtentyp}
+
+\paragraph{Verstärkungsmethoden}
 
 \subsubsection{Allgemeine Funktionsweise}
 
@@ -662,7 +702,7 @@ Zur Ausführung der Attacke sind folgende Schritte notwendig:
 was ist rausgekommen?
 
 \section{Ausblick}
-was hätte man noch machen können?
+was hätte man noch machen können? Rechtliche Aspekte, Analyse moderner Hacking-Attacken, Dark Web
 
 
 \appendix
@@ -673,7 +713,8 @@ was hätte man noch machen können?
 \pagebreak
 
 \section{Appendix}
-\subsection{Beispiele aus ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking}}\label{subsec:beispiele}
+\subsection{Beispiele aus ``Hacking - The Art of Exploitation''}\label{subsec:beispiele}
+Einige Beispiele des Buches ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} wurden direkt in diese Arbeit übernommen. Diese sind so gekennzeichnet. Die Beispiele dienen als praktische Veranschaulichung der theoretischen Beschreibung der Hacking-Attacken. Sie können auf eigene Verantwortung nachgestellt werden. Der Autor verweist ausdrücklich darauf hin, dass Attacken dieser Art ohne Zustimmung aller involvierten Parteien unter Umständen illegal und bestrafbar sind. Zur Durchführung wird ein 32bit Linux System ohne den unter \textbf{Abwehrmechanismen} aufgelisteten Sicherheitssystemen benötigt. Unter diesem Github-Link finden sich die benötigten Programme und ein \gls{iso}-Abbild der originalen LiveCD, die zum Buch ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} mitgeliefert wurde: \url{https://github.com/corst10/Maturaarbeit-Hacking-Cybersicherheit-Corsin-Streit/tree/main/code_files}. Das \gls{iso}-Abbild kann mit einer Virtualisierungssoftware wie Oracle VirtualBox virtualisiert werden. Da das System aus dem Jahr 2008 stammt und dementsprechend veraltete Sicherheitssysteme besitzt, ist ihm nur mit äusserster Vorsicht Internetzugriff zu gewähren. Die wichtigsten Programme sind im Folgenden abgedruckt.
 
 
 
