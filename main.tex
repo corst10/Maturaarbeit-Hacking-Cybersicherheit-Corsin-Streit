@@ -26,7 +26,7 @@
 \usepackage[dvipsnames, x11names]{xcolor}
 \usepackage{lipsum} 
 \usepackage{mdframed}  
-\usepackage[backend=biber]{biblatex}
+\usepackage[backend=biber, sorting=none]{biblatex}
 \addbibresource{refs.bib}
 \graphicspath{{image}}
 \usepackage{setspace}
@@ -193,7 +193,7 @@
 
 
 \begin{abstract}
-Das Ziel dieser Arbeit besteht darin, durch Literaturrecherche und selbstständiger Nachforschung einen für die Allgemeinheit verständlichen Überblick über das Thema Hacking und Cybersicherheit zu schaffen. Dazu werden technische Grundlagen und Hacking-Methoden erläutert und anhand von konkreten Beispielen anschaulich dargestellt. Ferner wird auf das Thema Dark Web eingegangen.
+Das Ziel dieser Arbeit besteht darin, durch Literatur- und Onlinerecherche einen für die Allgemeinheit verständlichen Überblick über das Thema Hacking und Cybersicherheit zu schaffen. Dazu werden technische Grundlagen und Hacking-Methoden erläutert und anhand von konkreten Beispielen anschaulich dargestellt. \textcolor{red}{Ferner wird auf das Thema Dark Web eingegangen.}
 \end{abstract}
 
 \keywords{Hacking, Hacking-Methoden, Cybersicherheit, Programmieren, Netzwerk}
@@ -206,78 +206,87 @@ Das Ziel dieser Arbeit besteht darin, durch Literaturrecherche und selbstständi
 
 \section{Einführung}
 \subsection{Zielsetzung}
-Hacking ist ein riesiges Themenfeld, dessen tiefgründiges Verständnis Kenntnisse in vielen Bereichen der Computerwissenschaften voraussetzt. Jede Person, die ein Smartphone, Laptop, Tablet, etc. benutzt, ist den Gefahren des Hackings täglich ausgesetzt, doch nur ein kleiner Bruchteil der Benutzer weiss, was bei einer Hacking-Attacke eigentlich passiert und wie die Konsequenzen aussehen können. Ziel dieser Arbeit ist es, einen Überblick über das Thema Hacking und Cybersicherheit in einer Form zu schaffen, die für die Allgemeinheit verständlich ist. Dabei wird bewusst vor Allem auf leicht verständliche Themenbereiche oder solche, die uns im Alltag am Meisten betreffen eingegangen und die Detailgenauigkeit je nach Thema reduziert. Analysen von modernen Hacking-Attacken sollen dazu beitragen, ein Verständnis der Implementation der Hacking-Methoden zu erlangen und das mögliche Ausmass der Konsequenzen aufzeigen. Zuletzt wird auf das Thema Dark Web eingegangen, da dies als Plattform zur Anonymisierung bei vielen Hacking-Attacken eine Rolle spielt. 
+Hacking ist ein riesiges Themenfeld, dessen tiefgründiges Verständnis Kenntnisse in vielen Bereichen der Computerwissenschaften voraussetzt. Jede Person, die ein Smartphone, Laptop, Tablet, etc. benutzt, ist den Gefahren des Hackings täglich ausgesetzt, doch nur ein kleiner Teil der Benutzer weiss, was bei einer Hacking-Attacke eigentlich passiert und wie die Konsequenzen aussehen können. Ziel dieser Arbeit ist es, einen Überblick über das Thema Hacking und Cybersicherheit in einer Form zu schaffen, die für die Allgemeinheit verständlich ist. Dabei wird bewusst in erster Linie auf leicht verständliche Themenbereiche oder solche, die uns im Alltag am Meisten betreffen, eingegangen und die Detailgenauigkeit je nach Thema reduziert. \textcolor{red}{Analysen von modernen Hacking-Attacken sollen dazu beitragen, weshalb eine Hacking-Methode eingesetzt wurde und das mögliche Ausmass der Konsequenzen aufzeigen. Zuletzt wird auf das Thema Dark Web eingegangen, da dies als Plattform zur Anonymisierung bei vielen Hacking-Attacken eine Rolle spielt.}
 
 \subsection{Motivationserklärung}
-Ich bin grundsätzlich an Computern und dem Programmieren interessiert. Meistens finde ich in meinem durch Sporttrainings ausgefüllten Alltag aber keine Zeit, mich mit dieser Leidenschaft auseinanderzusetzen. Die Maturitätsarbeit schien mir eine passende Gelegenheit zur Aneignung von Wissen in einem computerbezogenen Themengebiet. Das Thema Hacking und Cybersicherheit interessiert mich besonders, da ich gerne die Limiten von Systemen ausreize und es ein Themengebiet ist, das kreatives Denken und logische Schlussfolgerungen voraussetzt und fördert.
+Ich bin grundsätzlich an Computern und dem Programmieren interessiert. Meistens finde ich in meinem durch Sporttrainings ausgefüllten Alltag aber keine Zeit, mich mit dieser Leidenschaft vertieft auseinanderzusetzen. Die Maturitätsarbeit schien mir eine passende Gelegenheit zur Aneignung von Wissen in einem computerbezogenen Themengebiet. Das Thema Hacking und Cybersicherheit interessiert mich besonders, da ich gerne die Limiten von Systemen ausreize und es ein Themengebiet ist, das kreatives Denken und logische Schlussfolgerungen voraussetzt und fördert.
 
 \subsection{Methodik}
-Es gibt viele verschiedene Methoden, sich mit dem Thema Hacking auseinanderzusetzen. Einsteigern werden oft Videokurse oder Bücher empfohlen, die Themenbereiche, auf die sie einen Fokus setzten, sind aber oft sehr unterschiedlich. Ich habe mich entschieden, meine Arbeit hauptsächlich auf Literatur zu basieren und das Werk ``Hacking - The Art of Exploitation'' von Jon Erickson~\cite{erickson2008hacking} als Hauptinformationsquelle zu gebrauchen. Unterstützend arbeite ich mit wissenschaftlichen Arbeiten, weiteren, weniger umfangreichen Büchern und Online-Ressourcen. Es fällt mir leichter, Informationen anhand von Geschriebenem als mit Hilfe von Videokursen zu erarbeiten. Ausserdem ist es bei Büchern tendenziell einfacher einzuschätzen, welcher Inhalt erwartet werden kann. Das Buch ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} ist relativ alt (2008), dies passt aber gut zu meiner Zielsetzung, da die Komplexität des Hackings seither exponentiell zugenommen hat und ich eine tiefgründige, verständliche Analyse einer einfachen Hacking-Attacke gegenüber einer oberflächlichen Analyse einer komplexen Attacke bevorzuge. Die Themen weisen dennoch einen Bezug zur aktuellen Zeit auf.
+Es gibt viele verschiedene Methoden, sich mit dem Thema Hacking auseinanderzusetzen. Einsteigern werden oft Videokurse oder Bücher empfohlen. Die Themenbereiche, auf die sie einen Fokus setzten, sind aber sehr unterschiedlich. Ich habe mich entschieden, meine Arbeit hauptsächlich auf Literatur zu basieren und das Werk ``Hacking - The Art of Exploitation'' von Jon Erickson~\cite{erickson2008hacking} als Hauptinformationsquelle zu gebrauchen. Unterstützend arbeite ich mit wissenschaftlichen Arbeiten, weiteren, weniger umfangreichen Büchern und Online-Ressourcen. Es fällt mir leichter, Informationen anhand von Geschriebenem als mit Hilfe von Videokursen zu erarbeiten. Ausserdem ist es bei Büchern tendenziell einfacher einzuschätzen, welcher Inhalt erwartet werden kann. Das Buch ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} ist relativ alt (2008), dies passt aber gut zu meiner Zielsetzung, da die Komplexität des Hackings seither exponentiell zugenommen hat und ich eine tiefgründige, verständliche Analyse einer einfachen Hacking-Attacke gegenüber einer oberflächlichen Analyse einer komplexen Attacke bevorzuge. Die Themen weisen dennoch einen Bezug zur aktuellen Zeit auf.
 
 \subsection{Quellen}
-Der Hauptteil des Wissens in den Kapiteln \nameref{sec:grundlagen-der-informatik} (\ref{sec:grundlagen-der-informatik}) und \nameref{sec:methoden-und-techniken} (\ref{sec:methoden-und-techniken}) wurde mit Hilfe des Buches ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} erarbeitet. Zur besseren Übersichtlichkeit wurde deshalb die Quellenangabe dieses Buches auf eine am Anfang der Kapitel beschränkt. Explizite Zitate werden immer gekennzeichnet. \\ Als Recherchehilfe wurde das Programm ChatGPT (\url{https://chatgpt.com/}) beigezogen, Antworten wurden aber nie direkt in die Arbeit kopiert und Informationen immer anhand von unabhängigen Quellen verifiziert. \\ Zur Textüberarbeitung wurden die Programme ChatGPT (\url{https://chatgpt.com/}) und DeepL Write (\url{https://www.deepl.com/de/write}) verwendet. Deren Vorschläge wurden vor der Übernahme auf inhaltliche Gleichheit überprüft.
+Der Hauptteil des Wissens in den Kapiteln \nameref{sec:grundlagen-der-informatik} (\ref{sec:grundlagen-der-informatik}) und \nameref{sec:methoden-und-techniken} (\ref{sec:methoden-und-techniken}) wurde mit Hilfe des Buches ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} erarbeitet. Zur besseren Übersichtlichkeit wurde deshalb die Quellenangabe dieses Buches auf eine einzelne am Anfang der Kapitel beschränkt. Explizite Zitate werden immer gekennzeichnet. 
+
+Als Recherchehilfe wurde das Programm ChatGPT (\url{https://chatgpt.com/}) beigezogen. Antworten wurden aber nie direkt in die Arbeit kopiert und Informationen immer anhand von unabhängigen Quellen verifiziert.
+
+Zur Textüberarbeitung wurden die Programme ChatGPT (\url{https://chatgpt.com/}) und DeepL Write (\url{https://www.deepl.com/de/write}) verwendet. Deren Vorschläge wurden vor der Übernahme auf inhaltliche Gleichheit überprüft.
 
 \subsection{Disclaimer}
 \paragraph{Sprache}
-Es finden sich englische Begriffe in dieser Arbeit. Da Computerwissenschaften normalerweise in englischer Sprache praktiziert werden, existieren für einige Begriffe keine passende deutsche Übersetzungen. In diesem Falle wird auf die englische Form zurückgegriffen.
+Es finden sich englische Begriffe in dieser Arbeit. Da Computerwissenschaften in der westlichen Welt normalerweise in englischer Sprache praktiziert werden, existieren für einige Begriffe keine passenden deutschen Übersetzungen. In diesen Fällen wird auf die englische Form zurückgegriffen.
 \paragraph{Gender}
-Teilweise wird nur die männliche Form verwendet, da die Einbeziehung beider Geschlechter layouttechnisch schwierig ansprechend umzusetzen ist. In den meisten Fällen sind jedoch beide Geschlechter gemeint, es sei denn, es wird explizit darauf hingewiesen.
+Teilweise wird nur die männliche Form verwendet, da die Einbeziehung beider Geschlechter layouttechnisch schwierig ansprechend umzusetzen ist. Es sind jeweils alle Geschlechter gemeint.
 
 \newpage
-\section{Ursprung und Bedeutung}
-Stereotypisch werden Hacker oft als Männer in schwarzen Kapuzenpullis beschrieben, die in einem abgedunkelten Raum bösärtige Programme schreiben und ausführen. Diese nutzen Schwachstellen anderer aus und richten dabei Unheil an, sodass ihre Handlungen als kriminell und bestrafbar gelten. Die Realität gestaltet sich jedoch anders: Die überwiegende Mehrheit der Hacker agiert legal und leistet positive Beiträge zur Cybersicherheit. Jon Erickson formulierte folgenden Satz: ``Beim Hacken geht es eher darum, das Gesetz zu befolgen als es zu brechen. Das Wesen des Hackens besteht darin, unbeabsichtigte oder übersehene Anwendungen für die Gesetze und Eigenschaften einer gegebenen Situation zu finden und sie dann auf neue und erfinderische Weise anzuwenden, um ein Problem zu lösen - was auch immer es sein mag.'' \texttt{(Erickson, 2008, S. 1, übersetzt mit DeepL)} \cite{erickson2008hacking}
+\section{Hacking: Allgemeine Informationen}
+Stereotypisch werden Hacker oft als Männer in schwarzen Kapuzenpullis beschrieben, die in einem abgedunkelten Raum bösartige Programme schreiben und ausführen. Die Skripte nutzen Schwachstellen anderer Software aus und richten dabei Unheil an. Die Handlungen gelten als kriminell und bestrafbar. Die Realität gestaltet sich jedoch anders: Die überwiegende Mehrheit der Hacker agiert legal und leistet positive Beiträge zur Cybersicherheit. Jon Erickson formulierte folgenden Satz: ``Beim Hacken geht es eher darum, das Gesetz zu befolgen, als es zu brechen.'' \texttt{(Erickson, 2008, S. 1, übersetzt mit DeepL)} \cite{erickson2008hacking}
 
 
 
 \subsection{Bedeutung und Urpsrung des Begriffes}
-Im Grunde genommen ist ein ``Hack'' nichts mehr als eine ``von Innovation, Stil und technischem Können durchdrungene''~\cite{bpbKleineGeschichte:online} Lösung zu einem Problem, das keinen Bezug zu Computern aufweisen muss. Den Ursprung nahm der Begriff im Modelleisenbahnclub des \gls{mit}. Aus geschenkten Elektronikbauteilen bauten die Clubmitglieder die Steuerung ihrer Modellzüge. Durch verschiedene Optimierung, Hacks, versuchten sie, diese so elegant wie möglich zu gestalten. Das Ziel umfasste mehr als die simple Funktionalität. Wichtig war die technische Eleganz, die der Nützlichkeit übergeordnet wurde. \\Mit dem Erscheinen erster Computer und der Gründung eines Computerclubs im \gls{mit} wurde die Bedeutung auf die technische Welt ausgeweitet. Als Steven Levy 1984 die Leiterprinzipen des Hackings zu einer ``Hackerethik'' zusammenfasste, formulierte er folgenden Satz: ``Du kannst mit Computern Kunst und Schönheit schaffen.''~\cite{bpbKleineGeschichte:online}
+Im Grunde genommen ist ein ``Hack'' nichts mehr als eine ``von Innovation, Stil und technischem Können durchdrungene''~\cite{bpbKleineGeschichte:online} Lösung zu einem Problem, das keinen Bezug zu Computern aufweisen muss. Den Ursprung nahm der Begriff im Modelleisenbahnclub des \gls{mit}. Aus geschenkten Elektronikbauteilen bauten die Clubmitglieder die Steuerung ihrer Modellzüge. Durch verschiedene Optimierungen, Hacks, versuchten sie, diese so elegant wie möglich zu gestalten. Das Ziel umfasste mehr als die simple Funktionalität. Wichtig war die technische Eleganz, die der Nützlichkeit übergeordnet wurde.
 
-Das Negative, das viele Personen heute mit dem Hacking assoziieren, wurde erst nach und nach dem Bedeutungskonzept hinzugefügt. Nach weiteren Grundsätzen der Hackerethik sollten sich Hacker für freie Informationszugänglichkeit, Dezentralisierung und unlimitierten Zugriff auf alles, was einen etwas über die Welt lehren kann, einsetzen. Mit den gesetzlichen Richtlinien nahmen sie es nicht genau. Die Neugier, Wissensbegierde und allgemein das technische Interesse führte zur Entdeckung und Erkundung neuer ``Spielwiesen''~\cite{bpbKleineGeschichte:online}, was in den 1960er-Jahre zum ersten ``modernen'' Hack führte. Findige Hacker fanden heraus, dass sich durch das Abspielen einer ganz bestimmten Frequenz das Telefonnetz so manipulieren liess, dass Anrufe nicht verrechnet wurden. Sogar renommierte Persönlichkeiten wie die späteren Apple-Gründer Steve Jobs und Steve Wozniak beteiligten sich an dem sogenannten Blue-Boxing und verdienten Geld durch den Verkauf von Frequenzgeneratoren. \\Zeitungsartikel und Filme, insbesondere der 1983 veröffentlichte Titel War Games, trugen in grossem Masse zur heutigen Auffassung des Hackers bei.  Ein Hacker ist ``jemand, der ohne Erlaubnis in die Computersysteme anderer Leute eindringt, um Informationen herauszufinden oder etwas Illegales zu tun.'' \texttt{(Cambridge University Press, Oktober 2024, übersetzt mit DeepL)} \cite{bpbKleineGeschichte:online, CambridgeHacker:online}
+Mit dem Erscheinen erster Computer und der Gründung eines Computerclubs im \gls{mit} wurde die Bedeutung auf die technische Welt ausgeweitet. Als Steven Levy 1984 die Leiterprinzipen des Hackings zu einer ``Hackerethik'' zusammenfasste, formulierte er folgenden Satz: ``Du kannst mit Computern Kunst und Schönheit schaffen.''~\cite{bpbKleineGeschichte:online}
+
+Das Negative, das viele Personen heute mit dem Hacking assoziieren, wurde erst nach und nach dem Bedeutungskonzept hinzugefügt. Nach weiteren Grundsätzen der Hackerethik sollten sich Hacker für freie Informationszugänglichkeit, Dezentralisierung und unlimitierten Zugriff auf alles, was einen etwas über die Welt lehren kann, einsetzen. Mit den gesetzlichen Richtlinien nahmen sie es nicht genau. Die Neugier, Wissensbegierde und allgemein das technische Interesse führte zur Entdeckung und Erkundung neuer ``Spielwiesen''~\cite{bpbKleineGeschichte:online}, was in den 1960er-Jahre zum ersten ``modernen'' Hack führte. Findige Hacker fanden heraus, dass sich durch das Abspielen einer ganz bestimmten Frequenz das Telefonnetz so manipulieren liess, dass Anrufe nicht verrechnet wurden. Sogar renommierte Persönlichkeiten wie die späteren Apple-Gründer Steve Jobs und Steve Wozniak beteiligten sich an dem sogenannten Blue-Boxing und verdienten Geld durch den Verkauf von Frequenzgeneratoren.
+
+Zeitungsartikel und Filme, insbesondere der 1983 veröffentlichte Titel War Games, trugen in grossem Masse zur heutigen Auffassung des Hackers bei.  Ein Hacker ist ``jemand, der ohne Erlaubnis in die Computersysteme anderer Leute eindringt, um Informationen herauszufinden oder etwas Illegales zu tun.'' \texttt{(Cambridge University Press, Oktober 2024, übersetzt mit DeepL)} \cite{bpbKleineGeschichte:online, CambridgeHacker:online}
 
 \subsection{Motivation, Ethik und Begriffserklärung}
-Die Motivationen und Ethiken, die Hacker verfolgen, fallen sehr unterschiedlich aus. Grob kann man sie in zwei Kategorien einteilen: die ``Black Hats'' und die ``White Hats''. \\``Black Hat'' Hacker verfolgen kriminelle Ziele, die politisch, monetär oder egoistisch motiviert sein können. Oftmals verbreiten sie Schadsoftware. Dabei ignorieren sie legale und ethische Grundsätze, weshalb sie auch als ``Cracker'' bezeichnet werden.\\Ihre Gegenspieler sind die ``White Hat'' Hacker. Diese benutzen dieselben Methoden, arbeiten aber im Rahmen der Gesetze und halten sich an ethische Grundsätze. Ihre Aufgabe ist es, Privatpersonen, Firmen oder ganz allgemein gefährdete Computer vor den ``Black Hats'' zu schützen. Um dies zu bewerkstelligen, hacken sie sich nach vorheriger Absprache mit den Besitzer in Computersysteme ein, um mögliche Sicherheitslücken zu finden und zu beheben. Sie werden deshalb auch ``Penetration Tester'' genannt. \\ Das Resultat dieses Wettkampfes ist gewinnbringend, denn er führt zu ``intelligenteren Menschen, verbesserter Sicherheit, stabilerer Software, erfinderischen Problemlösungstechniken und sogar zu einer neuen Wirtschaft.'' \texttt{(Erickson, 2008, S. 4, übersetzt mit DeepL)} \cite{erickson2008hacking}\\Zwischen den beiden Extremen liegen die Grey Hat Hacker, die zwar oftmals illegal vorgehen, dabei aber keine negativen Absichten verfolgen. Sie hacken sich beispielsweise unberechtigt in ein Firmensystem ein, kommunizieren aber danach die gefunden Schwachstellen. \cite{WhiteHatBlackHat:paper, BlackHat34:online}
+Die Motivationen und Ethiken, die Hacker verfolgen, fallen sehr unterschiedlich aus. Grob kann man sie in zwei Kategorien einteilen: die ``Black Hats'' und die ``White Hats''.
 
-Ein weiterer oft verwendeter Begriff ist ``Script Kiddies''. Dabei handelt sich um meist junge Personen, die über keine profunden Kenntnisse im Bereich des Hackings verfügen. Sie verwenden ``von anderen entwickelten Skripts oder Programme für hauptsächlich böswillige Zwecke''\texttt{(Wikipedia, Oktober 2024, übersetzt mit DeepL)}~\cite{ScriptkiWikipedia:online}. Dennoch sind sie in der Lage, erheblichen Schaden anzurichten.~\cite{ScriptkiWikipedia:online}
+``Black Hat'' Hacker verfolgen kriminelle Ziele, die politisch, monetär oder egoistisch motiviert sein können. Oftmals verbreiten sie Schadsoftware. Dabei ignorieren sie legale und ethische Grundsätze, weshalb sie auch als ``Cracker'' bezeichnet werden.
+
+Ihre Gegenspieler sind die ``White Hat'' Hacker. Diese benutzen dieselben Methoden, arbeiten aber im Rahmen der Gesetze und halten sich an ethische Grundsätze. Ihre Aufgabe ist es, Privatpersonen, Firmen oder ganz allgemein gefährdete Computer vor den ``Black Hats'' zu schützen. Um dies zu bewerkstelligen, hacken sie sich nach vorheriger Absprache mit den Besitzern in Computersysteme ein, um mögliche Sicherheitslücken zu finden und zu beheben. Sie werden deshalb auch ``Penetration Tester'' genannt.
+
+Das Resultat dieses Wettkampfes ist gewinnbringend, denn er führt zu ``intelligenteren Menschen, verbesserter Sicherheit, stabilerer Software, erfinderischen Problemlösungstechniken und sogar zu einer neuen Wirtschaft.'' \texttt{(Erickson, 2008, S. 4, übersetzt mit DeepL)} \cite{erickson2008hacking}
+
+Zwischen den beiden Extremen liegen die ``Grey Hat'' Hacker, die zwar oftmals illegal vorgehen, dabei aber keine negativen Absichten verfolgen. Sie hacken sich beispielsweise unberechtigt in ein Firmensystem ein, kommunizieren aber danach die gefunden Schwachstellen. \cite{WhiteHatBlackHat:paper, BlackHat34:online}
+
+Ein weiterer oft verwendeter Begriff ist ``Script Kiddies''. Dabei handelt sich um meist junge Personen, die über keine profunden Kenntnisse im Bereich des Hackings verfügen. Sie verwenden ``von anderen entwickelte Skripts oder Programme für hauptsächlich böswillige Zwecke''\texttt{(Wikipedia, Oktober 2024, übersetzt mit DeepL)}~\cite{ScriptkiWikipedia:online}. Hierdurch sind sie in der Lage, erheblichen Schaden anzurichten.~\cite{ScriptkiWikipedia:online}
 
 \newpage
 \section{Grundlagen der Informatik}\label{sec:grundlagen-der-informatik}
-Zum Verständnis des Kapitels \nameref{sec:methoden-und-techniken} (\ref{sec:methoden-und-techniken}) sind Grundkenntnisse im Bereich der Informatik nötig, die in diesem Kapitel erarbeitet werden. \\Sofern keine andere Quelle angegeben wird, diente, wie am Anfang bereits erwähnt, das Buch ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} als Hauptquelle dieses Kapitels.
+Zum Verständnis des Kapitels \nameref{sec:methoden-und-techniken} (\ref{sec:methoden-und-techniken}) sind Grundkenntnisse im Bereich der Informatik nötig, die in diesem Kapitel erarbeitet werden.
+
+Sofern keine andere Quelle angegeben wird, diente das Buch ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} als Hauptquelle dieses Kapitels.
 \subsection{Hardwaretechnische Grundlagen}
-Ein Computer setzt sich aus verschiedenen Bestandteilen zusammen, die im Zusammenspiel die Verarbeitung von Informationen ermöglichen. Folgende Komponenten sind zur Ausführung eines Programms wichtig:
+Ein Computer setzt sich aus verschiedenen Bestandteilen zusammen, die im Zusammenspiel die Verarbeitung von Informationen ermöglichen. Folgende Konzepte/Komponenten sind zur Ausführung eines Programms wichtig:
+
+\subsubsection{Bits und Binärzahlen}
+Computer sind nur imstande, Nullen und Einsen zu speichern. Sie arbeiten also nur mit zwei Zuständen. Ein \gls{bit} beschreibt einen einzelnen solchen Zustand. Werden mehrere \glspl{bit} zur Datenspeicherung verwendet, steigt die Anzahl möglicher Kombinationen exponentiell auf \( 2^n \) (bei \(n = Anzahl~\glspl{bit}\)). Zahlen werden folgendermassen gespeichert: Jede Stelle, beginnend von rechts (also der letzten Ziffer), entspricht einem Exponenten zur Basis \(2\), wobei der Exponent bei \(0\) startet. Steht bei einer Stelle eine \(1\), wird der entsprechende Wert zur Gesamtzahl addiert, bei \(0\) nicht. Die (dezimale) Zahl \(21\) zum Beispiel entspricht der Binärzahl \texttt{10101}, da sie sich durch (von rechts nach links) \(1 \times 2^0 + 0 \times 2^1 + 1 \times 2^2 + 0 \times 2^3 + 1 \times 2^4 = 21\) zusammensetzt. Zur Konversion können Online-Rechner wie zum Beispiel \url{https://www.rapidtables.com/convert/number/} verwendet werden.
 
 \subsubsection{RAM (Arbeitsspeicher)}
 Das \gls{ram} ist ein elektronischer Computerspeicher, dessen Daten sehr schnell und in beliebiger Reihenfolge gelesen und geändert werden können. Er wird deshalb für Daten aktuell laufender Programme verwendet. Oft wird ein Vergleich zum menschlichen Kurzzeitgedächtnis hergestellt. 
-\paragraph{Bits und Binärzahlen}
-Computer sind nur imstande, Nullen und Einsen zu speichern. Sie arbeiten also nur mit zwei Zuständen. Ein \gls{bit} beschreibt einen einzelnen solchen Zustand. Werden mehrere \glspl{bit} zur Datenspeicherung verwendet, steigt die Anzahl möglicher Kombinationen exponentiell auf \( 2^n \) (bei \(n = Anzahl~\glspl{bit}\)). Zahlen werden folgendermassen gespeichert: Jede Stelle, beginnend von rechts (also der letzten Ziffer), entspricht einem Exponenten zur Basis \(2\), wobei der Exponent bei \(0\) startet. Steht bei einer Stelle eine \(1\), wird der entsprechende Wert zur Gesamtzahl addiert, bei \(0\) nicht. Die (dezimale) Zahl \(21\) zum Beispiel entspricht der Binärzahl \texttt{10101}, da sie sich durch (von rechts nach links) \(1 \times 2^0 + 0 \times 2^1 + 1 \times 2^2 + 0 \times 2^3 + 1 \times 2^4 = 21\) zusammensetzt. Zur Konversion können Online-Rechner wie zum Beispiel \url{https://www.rapidtables.com/convert/number/} verwendet werden.
 
 \paragraph{Big and Little Endian Byte Order}
 Ein Byte umfasst acht \glspl{bit}. Zur Ordnung von Bytes existieren zwei Strukturen: Big und Little Endian. Big Endian speichert das wichtigste, also signifikanteste Byte zuerst, während Little Endian dieses zuletzt speichert. Das signifikanteste Byte ist dasjenige, das den grössten Einfluss auf die Gesamtzahl hat, daher normalerweise das am weitesten links stehende.
 
 \paragraph{Speicheradressen}
-Jedes \gls{bit} im \gls{ram} ist einzeln adressierbar. Heutzutage arbeiten die meisten Computer mit 32-\gls{bit} oder 64-\gls{bit} Systemen. Dies entspricht der Adresslänge der Speicheradressen und limitiert somit die Anzahl adressierbarer \glspl{bit}. Bei 32-\gls{bit} ist die Ansteuerung von \(2^{32} = 4 294 967 296\) \glspl{bit} möglich, bei 64-\gls{bit} \(2^{64} = 18 446 744 073 709 551 616\). In der Praxis wird dies selten ausgereizt. Einfachheitshalber erfolgt die Angabe der Speicheradresse normalerweise im hexadezimalen Format (Basis 16). Dazu werden die Zeichen 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E und F verwendet. Ein Hexadezimalzeichen entspricht vier \glspl{bit} (da \(2^4 = 16\)), eine 32-\gls{bit} Adresse setzt sich also aus acht Hexadezimalstellen zusammen. Hexadezimalzahlen werden üblicherweise mit dem Präfix ``0x'' angekündet. Eine 32-\gls{bit} Speicheradresse könnte folgendermassen aussehen: 0xb7ec819b. \cite{BitWiki31:online}
+Jedes \gls{bit} im \gls{ram} ist einzeln adressierbar. Heutzutage arbeiten die meisten Computer mit 32-\gls{bit} oder 64-\gls{bit} Systemen. Dies entspricht der Adresslänge der Speicheradressen und limitiert somit die Anzahl adressierbarer \glspl{bit}. Bei 32-\gls{bit} ist die Ansteuerung von \(2^{32} = 4 294 967 296\) \glspl{bit} möglich, bei 64-\gls{bit} \(2^{64} = 18 446 744 073 709 551 616\). In der Praxis wird dies selten ausgereizt. Einfachheitshalber erfolgt die Angabe der Speicheradresse normalerweise im hexadezimalen Format (Basis 16). Dazu werden die Zeichen 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E und F verwendet. Ein Hexadezimalzeichen entspricht vier \glspl{bit} (da \(2^4 = 16^1\)), eine 32-\gls{bit} Adresse setzt sich also aus acht Hexadezimalstellen zusammen. Hexadezimalzahlen werden üblicherweise mit dem Präfix ``0x'' angekündet. Eine 32-\gls{bit} Speicheradresse könnte folgendermassen aussehen: 0xb7ec819b. \cite{BitWiki31:online}
 
 \subsubsection{CPU}\label{subsubsec:cpu}
 Die \gls{cpu} beschreibt den wichtigsten Prozessor eines Computers. Mithilfe einer komplexen Platinenstruktur führt er, den Anweisungen eines Programms folgend, Berechnungen durch. 
-\paragraph{Register}
-Register sind wichtige ``Speicherbereiche für Daten, auf die der Prozessor besonders schnell zugreifen kann''.~\cite{RegisterWikipedia:online} Sie speichern zum Beispiel den Fortschritt der Ausführung eines Programms. Einige der wichtigsten Register sind folgende:
-\begin{itemize}
-	\item \textbf{\gls{eip}}: Befehlszeiger für die jetzige Instruktions-Adresse \cite{UsefulRe7:online}
-	\item \textbf{\gls{esp}}: Stapelzeiger für die vorherige Adresse \cite{UsefulRe7:online}
-	\item \textbf{\gls{ebp}}: Basiszeiger bei Funktionsaufruf, dient zur Referenzierung lokaler Variablen im Stack \cite{UsefulRe7:online}
-	\item \textbf{\gls{sfp}}: Gesicherter Basiszeiger für das vorherige Stack Frame, dient zur Wiederherstellung des ursprünglichen Stack-Zustands \cite{UsefulRe7:online}
-\end{itemize}
-
-Die Bedeutung dieser Funktionen wird im Kapitel \nameref{subsec:funktionsweise-eines-programmes} (\ref{subsec:funktionsweise-eines-programmes}) genauer erklärt.
 
 \subsubsection{HDD/SSD}
 Speichermedien, wie hauptsächlich \gls{hdd} und \gls{ssd}, dienen der permanenten Speicherung von Daten, also auch über den Neustart eines Systems hinaus. Ihr Lese- und Schreibzugriff ist langsamer als bei \gls{ram}, die Speicherkapazität dafür meist höher. Oft wird ein Vergleich zum menschlichen Langzeitgedächtnis hergestellt. 
 
 \subsection{Funktionsweise eines Programms}\label{subsec:funktionsweise-eines-programmes}
-Hacker schreiben Code, nutzen ihn aber auch aus. Ein Verständnis grundlegender Programmierkonzepte ist deshalb notwendig.
+Hacker schreiben Code, um bereits vorhandene Programme zu ihren Zwecken zu nutzen. Ein Verständnis grundlegender Programmierkonzepte ist deshalb notwendig.
 \subsubsection{Einführung}
 ``Ein Programm ist nichts anderes als eine Reihe von Anweisungen, die in einer bestimmten Sprache geschrieben sind.'' \texttt{(Erickson, 2008, S. 20, übersetzt mit DeepL)} \cite{erickson2008hacking} Es ist vergleichbar mit einem Küchenrezept. Genauso wie das Küchenrezept Menschen sagt, was sie tun sollen, sagt ein Programm dem Computer, was er zu tun hat. Im Gegensatz zu Menschen hat ein Computer aber keinen eigenen Willen und muss sich an die gegebenen Instruktionen halten. In dieser Arbeit liegt der Fokus exemplarisch auf der Programmiersprache C, da darauf basierende Hacking-Methoden beschrieben werden. Die grundlegenden Konzepte können aber auf viele Programmiersprachen übertragen werden.
 \subsubsection{Grundlagen}
-Ein Programm besteht aus verschiedenen Elementen. Die wichtigsten Elemente werden im Folgenden beschrieben.
+Ein Programm besteht aus verschiedenen Elementen. Die wichtigsten Elemente werden im Folgenden beschrieben:
 
 \paragraph{Kontrollstrukturen}
 Kontrollstrukturen steuern den Ablauf eines Programms.
@@ -291,14 +300,14 @@ Kontrollstrukturen steuern den Ablauf eines Programms.
 Variablen und Konstanten speichern Daten. Während Variablen veränderbar sind, bleiben Konstanten über die Laufzeit eines Programms unverändert. Im Folgenden wird zur besseren Übersichtlichkeit von Variablen gesprochen, die beschriebenen Eigenschaften sind aber auf Konstanten übertragbar.
 
 \begin{itemize}
-	\item \textbf{Datentypen}: Bei Variablen wird zwischen verschiedenen Datentypen unterschieden. Einige Programmiersprachen sind bei der Handhabung flexibel und erlauben die Veränderungen des Datentyps, während andere den Datentyp fixieren. Die Liste beschreibt die wichtigsten Datentypen und deren Funktion:
+	\item \textbf{Datentypen}: Bei Variablen wird zwischen verschiedenen Datentypen unterschieden. Einige Programmiersprachen sind bei der Handhabung flexibel und erlauben die Veränderungen des Datentyps, während andere den Datentyp fixieren. Die folgende Liste beschreibt die wichtigsten Datentypen und deren Funktion:
 	\begin{itemize}
 		\item \textbf{String}: Text (``Hello'', ``World'')
 		\item \textbf{Int}: Ganzzahl (2, 37)
 		\item \textbf{Float}: Gleitkommazahl (3.1415, 2.7182)
 		\item \textbf{Boolean}: Wahrheitswert (True, False)
-		\item \textbf{Array}: Geordnete Liste mit festem Datentyp ([1, 3, 2, 8])
-		\item \textbf{List}: Geordnete Liste mit gemischten Datentypen ([2, ``Hello'', True])
+		\item \textbf{Array}: Geordnete Liste mit festem Datentyp ([``lorem'', ``ipsum'', ``dolor''])
+		\item \textbf{List}: Geordnete Liste mit gemischten Datentypen ([``Hello'', True, 3.1415])
 		\item \textbf{Dict}: Liste mit Schlüssel-Wert-Paaren ([``Mehl'': 500, ``Zitrone'': False])
 	\end{itemize}
 	\item \textbf{Gültigkeitsbereich und Lebensdauer}: Variablen sind je nach Initialisierung (Erstellung) nur für bestimmte Teile eines Programms zugänglich. Wird eine Variable beispielsweise in einer Funktion initialisiert, existiert sie nur während der Funktionsausführung. Variablen besitzen folgende Gültigkeitsbereiche:
@@ -331,9 +340,9 @@ Vergleichsoperatoren dienen dem Vergleich von Variablen oder Werten. Sie geben j
 \begin{itemize}
 	\item \textbf{Gleichheit (==)}: 5 == 5 $\rightarrow$ True
 	\item \textbf{Ungleichheit (!=)}: 5 != 3 $\rightarrow$ True
-	\item \textbf{Größer als (>) }: 5 > 3 $\rightarrow$ True
+	\item \textbf{Grösser als (>) }: 5 > 3 $\rightarrow$ True
 	\item \textbf{Kleiner als (<)}: 5 < 3 $\rightarrow$ False
-	\item \textbf{Größer oder gleich (>=)}: 7 >= 5 $\rightarrow$ True
+	\item \textbf{Grösser oder gleich (>=)}: 7 >= 5 $\rightarrow$ True
 	\item \textbf{Kleiner oder gleich (<=)}: 8 <= 2 $\rightarrow$ False
 \end{itemize}
 
@@ -377,17 +386,29 @@ Hier werden auch die in Kapitel~\ref{subsubsec:cpu} erwähnten Register ersichtl
 
 Zur Übersetzung zwischen den Abstraktionsebenen dienen der Compiler und Assembler. Der Compiler transformiert höhere Programmiersprache in Maschinensprache, der Assembler Assemblersprache in Maschinensprache.
 
-\subsubsection{Ablauf}
+\subsubsection{Ausführung}
+Zur Ausführung eines Programms werden Register benötigt.
+\paragraph{Register}
+Register sind in die \gls{cpu} integrierte ``Speicherbereiche für Daten, auf die der Prozessor besonders schnell zugreifen kann''.~\cite{RegisterWikipedia:online} Sie speichern zum Beispiel den aktuellen Standpunkt der Ausführung eines Programms. Einige der wichtigsten Register sind folgende:
+\begin{itemize}
+	\item \textbf{\gls{eip}}: Befehlszeiger für die jetzige Instruktions-Adresse \cite{UsefulRe7:online}
+	\item \textbf{\gls{esp}}: Stapelzeiger für die vorherige Adresse \cite{UsefulRe7:online}
+	\item \textbf{\gls{ebp}}: Basiszeiger bei Funktionsaufruf, dient zur Referenzierung lokaler Variablen im Stack \cite{UsefulRe7:online}
+	\item \textbf{\gls{sfp}}: Gesicherter Basiszeiger für das vorherige Stack Frame, dient zur Wiederherstellung des ursprünglichen Stack-Zustands \cite{UsefulRe7:online}
+\end{itemize}
+Eine Erklärung des Stacks (Stapel) und Stack Frame folgt im Kapitel \ref{subsubsec:speichersegmentierung}.
+
 Ein Programm wird nach folgendem Grundprinzip durchgeführt:
 \begin{enumerate}
 	\item Der Code wird kompiliert oder assembliert und als Maschinencode im \gls{ram} gespeichert.
-	\item Die Instruktion, zu der das \gls{eip}-Register zeigt, wird gelesen.
+	\item Die Instruktion, zu der der \gls{eip} zeigt, wird gelesen.
 	\item Die Bitlänge der Instruktion wird zum \gls{eip} addiert. Der \gls{eip} zeigt also zur nächsten Instruktion.
 	\item Die gelesene Instruktion wird ausgeführt.
 	\item Neustart bei Schritt 2.
 \end{enumerate}
 
-\subsubsection{Speichersegmentierung in C}
+
+\subsubsection{Speichersegmentierung in C}\label{subsubsec:speichersegmentierung}
 Die Datenanordnung im \gls{ram} folgt einer bestimmten Struktur. Bei C wird sie in fünf Segmente aufgeteilt.
 \begin{itemize}
 	\item \textbf{Text Segment}: Speichert Code (in Maschinensprache), ist unveränderlich
@@ -396,7 +417,7 @@ Die Datenanordnung im \gls{ram} folgt einer bestimmten Struktur. Bei C wird sie 
 	\item \textbf{Heap Segment}: Durch den Programmierer kontrollierbar, wächst von niedrigen zu hohen Adressen~\cite{StackHeapYoutube:online}
 	\item \textbf{Stack Segment}: Speichert Kontext und lokale Variablen bei Funktionsaufrufen, funktioniert nach \gls{lifo}-Prinzip: wächst von hohen zu niedrigen Adressen und wird umgekehrt abgearbeitet~\cite{StackHeapYoutube:online}
 \end{itemize}
-Unter dem Stack werden Umgebungsvariablen und Befehlszeilenargumente gespeichert. Umgebungsvariablen enthalten Information zur Umgebung des Systems, wie beispielsweise Pfade zu ausführbaren Programmen. ~\cite{UmgebungsMicrosoft:online} Befehlszeilenargumente sind vom Benutzer beim Programmstart eingegebene Daten.
+Unter dem Stack werden Umgebungsvariablen und Befehlszeilenargumente gespeichert. Umgebungsvariablen enthalten Information zur Umgebung des Systems, wie beispielsweise Pfade zu ausführbaren Programmen. ~\cite{UmgebungsMicrosoft:online} Befehlszeilenargumente sind vom Benutzer beim Programmstart eingegebene Daten. 
 
 \paragraph{Stack Frame}
 Ein Stack Frame ist ``ein Abschnitt des Stacks, der einem bestimmten Funktionsaufruf gewidmet ist.''~\texttt{(NordVPN, Dezember 2024, übersetzt mit DeepL)}\cite{StackFrameNordVPN:online} Das Stack Frame der aufgerufenen Funktion wird oberhalb des Stack Frame der aktuellen Funktion erstellt und enthält alle wichtigen Informationen. Dazu gehören unter anderem Variablen, der \gls{ebp} und die Rückkehradresse. Die Rückkehradresse wird benötigt, um an der richtigen Stelle zur ursprünglichen Funktion zurückzukehren.
@@ -404,12 +425,14 @@ Ein Stack Frame ist ``ein Abschnitt des Stacks, der einem bestimmten Funktionsau
 \subsection{Funktionsweise eines Netzwerks}
 Viele Hacking-Attacken nutzen Schwachstellen in Netzwerken aus. Für Hacker sind Netzwerk-Attacken sehr attraktiv, da sie keinen physischen Zugriff auf Infrastruktur erfordern.
 \subsubsection{Einführung}
-Ein Netzwerk ist ein ``großes System, das aus vielen ähnlichen Teilen besteht, die miteinander verbunden sind, um eine Bewegung oder Kommunikation zwischen den Teilen oder zwischen den Teilen und einem Kontrollzentrum zu ermöglichen.''~\texttt{(Cambridge University Press, Dezember 2024, übersetzt mit DeepL)} Prinzipiell beschreibt ein Netzwerk also die Verbindung mehrere Geräte zum Datenaustausch. Dabei existieren verschiedene Grössen von Netzwerken. Während ein lokales Netzwerk aus zwei Computern und einem Drucker bestehen kann, ist das Internet ein Netzwerk von globalem Ausmass, dass mehrere Milliarden Geräte verbindet. Anwendungen wie WhatsApp-Nachrichten oder das \gls{www} basieren auf einer Netzwerkstruktur.
+Ein Netzwerk ist ein ``grosses System, das aus vielen ähnlichen Teilen besteht, die miteinander verbunden sind, um eine Bewegung oder Kommunikation zwischen den Teilen oder zwischen den Teilen und einem Kontrollzentrum zu ermöglichen.''~\texttt{(Cambridge University Press, Dezember 2024, übersetzt mit DeepL)} Prinzipiell beschreibt ein Netzwerk also die Verbindung mehrere Geräte zum Datenaustausch. Dabei existieren verschiedene Grössen von Netzwerken. Während ein lokales Netzwerk aus zwei Computern und einem Drucker bestehen kann, ist das Internet ein Netzwerk von globalem Ausmass, dass mehrere Milliarden Geräte verbindet. Anwendungen wie WhatsApp-Nachrichten oder das \gls{www} basieren auf einer Netzwerkstruktur.
 
 \subsubsection{OSI-Modell}\label{subsubsec:osimodell}
 Das \gls{osi}-Modell standardisiert den Netzwerkverkehr und bildet damit die Grundlage zur Datenübertragung. Das Modell wurde in den 1980er-Jahren von der \gls{iso} entwickelt und ist heute mehrheitlich vom \gls{tcp}/\gls{ip}-Modell abgelöst. Wegen besserer Übersichtlichkeit wird es oft zu Unterrichtszwecken verwendet, weshalb in dieser Arbeit ebenfalls auf dieses Modell zurückgegriffen wird.~\cite{OSImodelWikipedia:online}
 \paragraph{Einführung}
-Das \gls{osi}-Modell ist in sieben Ebenen mit jeweils spezifischen Funktionen zum Datentransport organisiert. Ebene 7 ist dabei am nächsten bei der Anwendung, während Ebene 1 am nächsten bei der physischen Hardware liegt. Vor dem Transport werden Daten bei Ebene 7 beginnend in alle Ebenen verpackt, beim Erhalt werden sie wieder entpackt. Zwischengeräte wie Router, die für die Weiterleitung der Daten zuständig sind, entpacken diese nur soweit, wie für die Weiterleitung erforderlich ist. Meist entspricht dies Ebene 3. \\Daten werden immer in Datenpaketen transportiert. Diese bestehen aus einem Header und den eigentlichen Daten. Der Header enthält wichtige Informationen zum Datentransport, so zum Beispiel die Datenlänge oder die Senderadresse. 
+Das \gls{osi}-Modell ist in sieben Ebenen mit jeweils spezifischen Funktionen zum Datentransport organisiert. Ebene 7 ist dabei am nächsten bei der Anwendung, während Ebene 1 am nächsten bei der physischen Hardware liegt. Vor dem Transport werden Daten bei Ebene 7 beginnend in alle Ebenen verpackt, beim Erhalt werden sie wieder entpackt. Zwischengeräte wie Router, die für die Weiterleitung der Daten zuständig sind, entpacken diese nur soweit, wie für die Weiterleitung erforderlich ist. Meist entspricht dies Ebene 3.
+
+Daten werden immer in Datenpaketen transportiert. Diese bestehen aus einem Header und den eigentlichen Daten. Der Header enthält wichtige Informationen zum Datentransport, so zum Beispiel die Datenlänge oder die Senderadresse. 
 \paragraph{Netzwerkprotokolle}
 Netzwerkprotokolle standardisieren die Struktur eines Datenpaketes. Sie sind für die korrekte Formatierung der Daten verantwortlich und bestimmen den Inhalt des Headers. Damit ermöglichen sie verschiedenen Geräten eine einheitliche Kommunikationsbasis. Jedem Netzwerkprotokoll ist ein Port zugewiesen. Ein Port ist eine ``softwaredefinierte Nummer, die einem Netzwerkprotokoll zugeordnet ist und Kommunikation für einen bestimmten Dienst empfängt oder überträgt.''~\cite{WasistPo:online} Die Auflistung der sieben Ebenen weiter unten bietet einige Beispiele verschiedener Netzwerkprotokolle.
 \paragraph{Die sieben Ebenen}
@@ -456,14 +479,18 @@ Drei Typen von Sockets existieren: Stream Sockets, Datagram Sockets und Raw Sock
 Das Protokoll spezifiziert, welches Netzwerkprotokoll auf Ebene 4 verwendet wird. Im Normalfall muss es nicht explizit angegeben werden, da das System standardmässig das zum Typ des Sockets passende Protokoll auswählt.
 
 \newpage
-\section{Methoden und Techniken}\label{sec:methoden-und-techniken}
-Hacking-Attacken sind sehr unterschiedlich und fokussieren sich auf verschiedene Bereiche eines Computersystems. Einige erfordern physischen Zugriff auf ein System während andere über ein Netzwerk erfolgen. Dieses Kapitel zeigt exemplarisch einige gut verständliche Hacking-Methoden und Techniken auf. Die Kapitel folgen jeweils derselben Struktur: Zuerst wird die allgemeine Funktionsweise einer Attacke beschrieben und danach auf die Abwehrmechanismen eingegangen. In einigen Kapiteln findet sich auch ein konkretes Beispiel mit Code. Zuletzt folgt ein Kapitel mit Erklärungen zu bekannten Begriffen, die bis dahin noch nicht erklärt wurden. \\Sofern keine andere Quelle angegeben wird, diente, wie am Anfang bereits erwähnt, das Buch ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} als Hauptquelle dieses Kapitels. Einige Beispiele wurden direkt aus dem Buch übernommen. Diese sind so gekennzeichnet.
+\section{Hacking: Methoden und Techniken}\label{sec:methoden-und-techniken}
+Es existiert eine Vielzahl unterschiedlicher Hacking-Attacken, die sich auf verschiedene Bereiche eines Computersystems fokussieren. Einige erfordern physischen Zugriff auf ein System, während andere über ein Netzwerk erfolgen. Dieses Kapitel zeigt exemplarisch einige Hacking-Methoden und -Techniken auf. Die Ausführungen folgen dabei jeweils derselben Struktur: Zuerst wird die allgemeine Funktionsweise einer Attacke beschrieben, danach auf die Abwehrmechanismen eingegangen. In einigen Kapiteln findet sich ein konkretes Beispiel. Abschliessend folgt ein Kapitel mit Erklärungen bekannter Begriffe, die bis dahin noch nicht erläutert wurden.
+
+Sofern keine andere Quelle angegeben wird, diente das Buch ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} als Hauptquelle dieses Kapitels. Einige Beispiele wurden direkt aus dem Buch übernommen. Diese sind so gekennzeichnet.
 
 \subsection{Buffer Overflow}\label{subsec:buffer-overflow}
 Ein Buffer beschreibt einen reservierten Speicherbereich, um Daten temporär zu speichern. Ein Buffer Overflow tritt auf, wenn mehr Daten in diesen Bereich geschrieben werden, als die Kapazität erlaubt. Dies kann dazu führen, dass zur Ausführung des Programms wichtige Daten überschrieben werden und das Programm anders abläuft, als vom Programmierer ursprünglich geplant. Dies ist besonders kritisch, wenn das Programm mit Root-, also Administrationsrechten ausgeführt wird, da der Angreifer dann die Kontrolle über das gesamte System erlangen kann. Programmiersprachen wie C, bei denen sich \gls{ram} sehr direkt kontrollieren lässt, sind besonders anfällig für Attacken dieser Art. Moderne Programmiersprachen besitzen oft eine automatische Speicherverwaltung, die die direkte Kontrolle des \gls{ram} erschweren oder sogar verunmöglichen.
 
 \subsubsection{Allgemeine Funktionsweise}
-Voraussetzung dieser Attacke ist ein Programm, das Daten (zum Beispiel Text) als Input annimmt und diese in das \gls{ram} kopiert, ohne vorher zu überprüfen, ob ausreichend Platz reserviert wurde. Der Angreifer kann den Input dann bewusst zu lange wählen, so dass er die Kapazität des buffers überschreitet. Ziel ist oft die Überschreibung der Rückkehradresse einer Funktion. Diese liegt unterhalb des Buffers im Stack Frame. Da Daten im Stack in Richtung tiefer Adressen gespeichert werden, wird die Rückkehradresse ab einer bestimmten Inputlänge überschrieben. Bei geschickter Zeichenfolge wird sie durch eine neue Speicheradresse ersetzt, die auf einen eigens im \gls{ram} platzierten Code zeigt. Dieser oft bösartige Code wird als Shellcode bezeichnet. Er muss in Assembler- oder Maschinensprache angegeben werden. Zur Platzierung des Shellcodes im \gls{ram} können verschiedene Methoden verwendet werden. In diesem Fall wird er als Input eingegeben, die Platzierung in Umgebungsvariablen ist beispielsweise aber auch möglich, erfordert aber deren Zugriff. \\Der zur Ausführung dieser Attacke nötige Input enthält also eine neue Rückkehradresse und den Shellcode. Die Rückkehradresse zeigt dabei zur Speicheradresse des Shellcodes und lässt diesen bei Funktionsende ausführen. Zwei Probleme treten auf:
+Voraussetzung dieser Attacke ist ein Programm, das Daten (zum Beispiel Text) als Input annimmt und diese in das \gls{ram} kopiert, ohne vorher zu überprüfen, ob ausreichend Platz reserviert wurde. Der Angreifer kann den Input dann bewusst zu lange wählen, so dass er die Kapazität des buffers überschreitet. Ziel ist oft die Überschreibung der Rückkehradresse einer Funktion. Diese liegt unterhalb des Buffers im Stack Frame. Da Daten im Stack in Richtung tiefer Adressen gespeichert werden, wird die Rückkehradresse ab einer bestimmten Inputlänge überschrieben. Bei geschickter Zeichenfolge wird sie durch eine neue Speicheradresse ersetzt, die auf einen eigens im \gls{ram} platzierten Code zeigt. Dieser oft bösartige Code wird als Shellcode bezeichnet. Er muss in Assembler- oder Maschinensprache angegeben werden. Zur Platzierung des Shellcodes im \gls{ram} können verschiedene Methoden verwendet werden. In diesem Fall wird er als Input eingegeben, die Platzierung in Umgebungsvariablen ist beispielsweise aber auch möglich, erfordert aber deren Zugriff.
+
+Der zur Ausführung dieser Attacke nötige Input enthält also eine neue Rückkehradresse und den Shellcode. Die Rückkehradresse zeigt dabei zur Speicheradresse des Shellcodes und lässt diesen bei Funktionsende ausführen. Zwei Probleme treten auf:
 \begin{enumerate}
 	\item Meist ist es schwer vorherzusagen, wo genau die neue Rückkehradresse im Input platziert werden muss, damit sie die originale Rückkehradresse trifft. Die Speichersegmentierung kann zwischen Programmausführungen variieren und lässt eine exakte Vorhersage nur schwer zu. Dieses Problem kann einfach durch die wiederholte Angabe der neuen Rückkehradresse gelöst werden. Wenn man statt nur eine anzugeben einen ganzen Bereich mit Rückkehradressen füllt, erhöht sich die Wahrscheinlichkeit, die originale Rückkehradresse zu treffen, massiv.
 	\item Das zweite Problem bezieht sich auf die Vorhersage der Speicheradresse des Shellcodes. Da eine exakte, genau auf den Start des Shellcodes zeigende Rückkehradresse angegeben werden muss, kann das Problem nicht durch wiederholte Angabe gelöst werden. Hier greift man auf einen \gls{nop} sled zurück.
@@ -492,7 +519,7 @@ Bei modernen Computersystem ist diese Attacke wegen verschiedener Sicherheitsmec
 
 
 \subsubsection{Konkretes Beispiel}\label{subsubsec:bspbuffer-overflow}
-\textit{Dieses Beispiel inklusive Code wurde direkt aus dem Buch ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} übernommen. Es kann selbst nachgestellt werden. Zur Handhabung der Beispiele und Links zum Code siehe Kapitel \nameref{subsec:beispiele} im Appendix. Als Ver­ständ­nis­hil­fe wurde zusätzlich zum Buch wurde ein Stack Overflow-Eintrag verwendet.~\cite{stacko:online}}
+Dieses Beispiel inklusive Code wurde direkt aus dem Buch ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} übernommen. Es kann selbst nachgestellt werden. Zur Handhabung der Beispiele und Links zum Code siehe Kapitel \nameref{subsec:beispiele} im Appendix. Als Ver­ständ­nis­hil­fe wurde zusätzlich zum Buch wurde ein Stack Overflow-Eintrag verwendet.~\cite{stacko:online}
 
 Voraussetzung für die Durchführung dieses Beispiels ist ein 32bit Linux System, bei welchem die oben angegebenen Abwehrmechanismen nicht vorhanden oder deaktiviert sind. Für das Beispiel werden folgende Programme verwendet:
 
@@ -573,7 +600,7 @@ Erneut ist die Attacke bei modernen Computersystemen wegen verschiedenen Abwehrs
 \end{itemize} 
 
 \subsubsection{Konkretes Beispiel}\label{subsubsec:bspprintf}
-\textit{Dieses Beispiel inklusive Code wurde direkt aus dem Buch ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} übernommen. Es kann selbst nachgestellt werden. Zur Handhabung der Beispiele und Links zum Code siehe Kapitel \nameref{subsec:beispiele} im Appendix.}
+Dieses Beispiel inklusive Code wurde direkt aus dem Buch ``Hacking - The Art of Exploitation''~\cite{erickson2008hacking} übernommen. Es kann selbst nachgestellt werden. Zur Handhabung der Beispiele und Links zum Code siehe Kapitel \nameref{subsec:beispiele} im Appendix.
 
 Voraussetzung für die Durchführung dieses Beispiels ist ein 32bit Linux System, bei welchem die oben angegebenen Abwehrmechanismen nicht vorhanden oder deaktiviert sind. Für das Beispiel wird das Programm \textbf{fmt\_vuln.c} verwendet. 
 
@@ -612,7 +639,7 @@ Zur Ausführung der Attacke sind folgende Schritte notwendig:
 \subsection{Network Sniffing}\label{subsec:networksniffing}
 Network Sniffing beschreibt das Abfangen und Auslesen von an andere Geräte adressierten Datenpaketen in einem Netzwerk. Dazu wird ein Network Sniffer verwendet. Network Sniffers analysieren den Datenverkehr in einem Netzwerk. Die Verwendung ist erlaubt und kann Netzwerkadministratoren helfen, die Effizienz eines Netzwerkes durch gezielte Veränderung bestimmter Parameter zu verbessern. Da sie das Auslesen von fremden Daten ermöglichen, werden sie aber oft zu kriminellen Zwecken gebraucht.
 \subsubsection{Allgemeine Funktionsweise}
-Die Attacke ist vor Allem bei älteren Netzwerken effektiv. Diese greifen teilweise auf Hubs zurück. Hubs sind Datenverteiler, die keine direkten Verbindungen zwischen Netzwerkgeräten aufbauen, sondern alle Datenpakete an alle im Netzwerk befindlichen Geräte senden. Dabei vertrauen sie darauf, dass nur der eigentliche Empfänger die Daten ausliest. In der Standardkonfiguration ignorieren Betriebssysteme Datenpakete, die an einen anderen Empfänger gerichtet sind, dies lässt sich in den meisten Fällen jedoch leicht ändern. Die dazu benötigten Schritte variieren zwischen verschiedenen Betriebssystem. Die Installation eines Raw Sockets als Network Sniffer ermöglicht das Mitlesen von Datenpaketen. Eine bekannte Software hierfür ist Wireshark. Nach Empfang der Datenpaketen können diese oft, sofern keine verschlüsselte Kommunikation verwendet wird, bis auf Applikationsebene entpackt werden. Dabei werden unter Umständen sensible Daten wie Passwörter offengelegt, die der Angreifer für weitere Angriffe nutzen kann. 
+Die Attacke ist vor allem bei älteren Netzwerken effektiv. Diese greifen teilweise auf Hubs zurück. Hubs sind Datenverteiler, die keine direkten Verbindungen zwischen Netzwerkgeräten aufbauen, sondern alle Datenpakete an alle im Netzwerk befindlichen Geräte senden. Dabei vertrauen sie darauf, dass nur der eigentliche Empfänger die Daten ausliest. In der Standardkonfiguration ignorieren Betriebssysteme Datenpakete, die an einen anderen Empfänger gerichtet sind, dies lässt sich in den meisten Fällen jedoch leicht ändern. Die dazu benötigten Schritte variieren zwischen verschiedenen Betriebssystem. Die Installation eines Raw Sockets als Network Sniffer ermöglicht das Mitlesen von Datenpaketen. Eine bekannte Software hierfür ist Wireshark. Nach Empfang der Datenpaketen können diese oft, sofern keine verschlüsselte Kommunikation verwendet wird, bis auf Applikationsebene entpackt werden. Dabei werden unter Umständen sensible Daten wie Passwörter offengelegt, die der Angreifer für weitere Angriffe nutzen kann. 
 \subsubsection{Abwehrmechanismen}
 Verschiedene Sicherheitssysteme erschweren diese Art von Attacke. Die wichtigsten sind folgende zwei:
 \begin{itemize}
@@ -622,7 +649,7 @@ Verschiedene Sicherheitssysteme erschweren diese Art von Attacke. Die wichtigste
 	\item \textbf{Antivirensoftware}: Oft besitzen Antivirensoftware Systeme zur Erkennung von Netzwerkanomalien. Bei Erkennung einer Unregelmässigkeit wird das System analysiert und möglicherweise vom Netzwerk getrennt.
 \end{itemize}
 \subsubsection{Konkretes Beispiel}
-\textit{Dieses Beispiel wurde vom Verfasser dieser Arbeit konzipiert und dient der Veranschaulichung. Es wird ausdrücklich darauf hingewiesen, dass diese Attacke ohne Zustimmung aller involvierten Parteien illegal ist und strafrechtliche Konsequenzen davontragen kann.}
+Dieses Beispiel wurde vom Verfasser dieser Arbeit konzipiert und dient der Veranschaulichung. Es wird ausdrücklich darauf hingewiesen, dass diese Attacke ohne Zustimmung aller involvierten Parteien illegal ist und strafrechtliche Konsequenzen davontragen kann.
 
 Voraussetzung dieser Attacke ist ein Netzwerk, dass zur Datenverteilung Hubs einsetzt. In diesem Netzwerk müssen Geräte die veraltete, unverschlüsselte Version des \gls{pop3}-Mail-Protokolls verwenden. Diese Situation ist in kleinen Unternehmen mit alter \gls{it}-Infrastruktur denkbar.  Ziel der Attacke ist es, Zugriff auf den Mail-Server eines Benutzers zu erhalten. Zusätzlich zu obig genannten Voraussetzungen muss der Angreifer Zugriff auf das Netzwerk besitzen und im Besitzt eines Network Sniffers sein. In diesem Beispiel wird das Programm Wireshark benutzt, das unter folgendem Link kostenfrei heruntergeladen werden kann: \url{https://www.wireshark.org/}. Folgende Schritte sind nötig:
 
@@ -708,7 +735,7 @@ Da keine allgemeine Form der \gls{dos}-Attacke existiert, ist es erneut schwieri
 \end{itemize}
 
 \newpage
-\section{Analyse bekannter Hackerangriffen}
+\section{Analyse bekannter Hackerangriffe}
 
 \subsection{Russische Einflussnahme auf die Präsidentschaftswahlen (2016)}
 
